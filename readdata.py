@@ -1,5 +1,3 @@
-
-
 import csv
 
 content = open("data_2012.csv")
