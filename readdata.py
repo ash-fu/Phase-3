@@ -1,9 +1,7 @@
-
-
 import csv
 
-content = open("data_2012.csv")
-reader = csv.reader(content)
-headers = reader.next()
-
-print headers
+def getheaders(filename):
+   content = open(filename)
+   reader = csv.reader(content)
+   headers = reader.next()
+   return headers
