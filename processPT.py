@@ -2,8 +2,8 @@
 import pandas as pd
 import numpy as np
 
-data = pd.read_csv("data_2012.csv")
-data.head()
+df = pd.read_csv("data_2012.csv")
+df.head()
 
 agg = []
 
