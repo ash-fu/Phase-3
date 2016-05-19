@@ -25,7 +25,7 @@ def helloworld():
 #server/pivot_table_builder
 @app.route("/pivot_table_builder")
 def pivot_table_builder():
-	with open('templates/pivot_table_builder_try.html' , 'w') as html:
+	with open('templates/pivot_table_builder.html' , 'w') as html:
 		html.write('''
 		<!DOCTYPE html>
 		<html lang="en">
@@ -117,7 +117,7 @@ def pivot_table_builder():
 		</body>
 		</html>
 			''')
-	return render_template("pivot_table_builder_try.html")
+	return render_template("pivot_table_builder.html")
 
 @app.route("/getSelection", methods=['GET','POST'])
 def getSelection():
