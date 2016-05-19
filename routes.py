@@ -3,6 +3,7 @@ from phase3 import app
 import csv
 import pandas as pd
 import numpy as np
+import jinja2
 
 csvFile = open('data_2012.csv')#enter the csv filename
 csvReader = csv.reader(csvFile)
