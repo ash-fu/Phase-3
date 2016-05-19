@@ -1,6 +1,8 @@
 from flask import Flask, render_template
 from phase3 import app
 import csv
+import pandas as pd
+import numpy as np
 
 csvFile = open('data_2012.csv')#enter the csv filename
 csvReader = csv.reader(csvFile)
@@ -13,6 +15,11 @@ csvData = list(csvReader)
 def index():
     return render_template("index.html")
 
+#server/
+@app.route("/helloworld")
+def helloworld():
+    return render_template("helloworld.html")
+
 #server/pivot_table_builder
 @app.route("/pivot_table_builder")
 def pivot_table_builder():
@@ -24,8 +31,11 @@ def dataset():
 	with open('templates/dataset.html', 'w') as html: #enter the output filename
 	    html.write('''
 	<head>
+		<meta charset="utf-8">
 
 		<title>Dataset</title>
+
+		<link rel="stylesheet" href="templates/stylesheets/dataset.css" type="text/css">
 
 		<link rel="stylesheet" href="templates/css/bootstrap-table.min.css" type="text/css">
 
@@ -34,9 +44,17 @@ def dataset():
 	</head>	
 		''')   
 	    html.write('''
-	    	<body>
-	    	<table data-toggle = "table" data-pagination = "true">\r''')
-
+<body>
+	<header>
+	    <div class="header-content">
+	    	<img src="templates/img/car_accident_icon.png" alt="car accident icon">
+	    	<div class="header-title">
+	    		<h2>Road Accidents</h2>
+	    		<p>Leeds, England 2012</p>
+	    	</div>
+	    </div>
+	</header>
+<table data-toggle = "table" data-pagination = "true">\r''')
 	    r = 0
 	    for row in csvData:
 	        if r == 0:
@@ -64,5 +82,7 @@ def dataset():
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
-		''') 
+
+		''')
 	return render_template("dataset.html")
+
