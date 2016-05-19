@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 app = Flask(__name__, static_folder='.', static_url_path='')
 
-#import all routes from route.py
+#import all routes from routes.py
 from routes import *
 
 if __name__ == "__main__":
