@@ -32,10 +32,11 @@ def dataset():
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	
 	</head>	
-		''')    
+		''')   
 	    html.write('''
 	    	<body>
 	    	<table data-toggle = "table" data-pagination = "true">\r''')
+
 	    r = 0
 	    for row in csvData:
 	        if r == 0:
@@ -63,5 +64,5 @@ def dataset():
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
-		''')
+		''') 
 	return render_template("dataset.html")
