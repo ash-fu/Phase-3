@@ -17,7 +17,6 @@ def getheaders(filename):
         count +=1    
     header_type.append(numerical_headers)
     header_type.append(categorical_headers)
-    print header_type
     return header_type
 
 def num_header(filename):
