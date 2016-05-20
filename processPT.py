@@ -2,14 +2,13 @@
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("data_2012.csv")
-df.head()
+dataset = pd.read_csv("data_2012.csv")
+dataset.head()
 
-agg = []
 
-#example print table = constructPT(data,"Date (Intervals)","Sex of Casualty","Number of Vehicles","sum")
+#example print table = constructPT("Date (Intervals)","Sex of Casualty","Number of Vehicles","sum")
 #print table.to_html()
-def constructPT(dataset,rows,columns,values,agg):
+def constructPT(rows,columns,values,agg):
     
     if(agg == "sum"):
         agg_action = [np.sum]

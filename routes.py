@@ -14,12 +14,21 @@ csvData = list(csvReader)
 #server/
 @app.route("/")
 def index():
-    return render_template("index.html")
+	title = "Traffic Accident Statistics"
+	template_vars = {
+		"title": title
+	}
+	return render_template("index.html",vars=template_vars)
+
 
 #server/
-@app.route("/helloworld")
-def helloworld():
-    return render_template("helloworld.html")
+@app.route("/findings")
+def findings():
+    title = "Findings"
+    template_vars = {
+        "title": title
+    }
+    return render_template("findings.html",vars=template_vars)
 
 #server/pivot_table_builder
 @app.route("/pivot_table_builder")
@@ -152,7 +161,11 @@ def pivot_table(table):
 #server/dataset
 @app.route("/dataset")
 def dataset():
-	with open('templates/dataset.html', 'w') as html: #enter the output filename
+    title = "Dataset"
+    template_vars = {
+        "title": title
+    }
+    with open('templates/dataset.html', 'w') as html: #enter the output filename
 	    html.write('''
 	<head>
 		<meta charset="utf-8">
@@ -208,5 +221,5 @@ def dataset():
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
 
 		''')
-	return render_template("dataset.html")
+    return render_template("dataset.html",vars=template_vars)
 

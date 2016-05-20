@@ -2,15 +2,25 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>{% block title %} - My Site{% endblock %}</title>
-        <link rel="stylesheet" href="templates/stylesheets/navbar.css" type="text/css">
+
+        <title>{{vars.title}}</title>
+
+        <link rel="stylesheet" href="templates/stylesheets/base.css" type="text/css">
+
     	<link rel="stylesheet" href="templates/css/bootstrap.min.css" type="text/css">
+
+        {% block customCSS %}{% endblock %}
+
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        {% block customJS %}{% endblock %}
+        
     </head>
 
 
     <body>
+        
+        <!--navigation bar-->
 	    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
 		    <div class="container-fluid">
 		        <div class="navbar-header">
@@ -25,20 +35,38 @@
 		        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a class="page-scroll" href="/">Home</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">Services</a>
+                        <a class="page-scroll" href="/dataset">Data</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#portfolio">Portfolio</a>
+                        <a class="page-scroll" href="/pivot_table_builder">Pivot Table</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
+                        <a class="page-scroll" href="/findings">Findings</a>
                     </li>
                 </ul>
             </div>
 		    </div>
 	   	</nav>
+
+        <div id="wrapper">
+            <div id="header">
+                {% block header %}{% endblock %}
+            </div>
+            
+            <div id="content">
+                {% block content %}{% endblock %}
+            </div>
+
+            <div id="footer">
+                <p>Quoc Lieu, Jennifer Fong, Shishan Fu <br>
+                Phase 3 - Foundations of Informatics INFO20002</p>
+            </div>
+        </div>
+
+
+
     </body>
 </html>
