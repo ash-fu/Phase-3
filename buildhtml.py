@@ -10,7 +10,6 @@ def dropdown(filename):
         html += "<option value = '" + header + "'>" + header + "</option>"
     html += "</select></body></html>"
  
-    print html
     return html
  
-
+print dropdown("data_2012.csv")
