@@ -1,74 +1,0 @@
-
-		<!DOCTYPE html>
-		<html lang="en">
-  		<head>
-  		<meta charset="utf-8">
-  		<title>Pivot Table</title>
-
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"/>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
-		<link rel="stylesheet" href="templates/css/pivot_table.css" type="text/css">
-		  <meta name="viewport" content="width=device-width, initial-scale=1">
-  		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-
-  		</head>
-  		<h1>Pivot Table</h1>
-  		
-		<body>
-		<div class="row" id='dropbox1'>
-			<div class="col-xs-6 form-group">
-				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-				<form action = "/" method = "post">
-				<select class="selectpicker show-menu-arrow" name="row" id="row">
-					<option value="none" selected>Select Row Label</option>
-							<option value="Number of Vehicles">Number of Vehicles</option>					<option value="Number of Casualties">Number of Casualties</option>					<option value="Time (24hr)">Time (24hr)</option>					<option value="Age of Casualty">Age of Casualty</option>
-				</select></form>
-			</div>
-			<div class="col-xs-6 form-group">
-				<form action = "/" method = "post">
-				<select class="selectpicker show-menu-arrow" name="col" id="col">
-					<option value="none" selected>Select Column Label</option>
-							<option value="Number of Vehicles">Number of Vehicles</option>					<option value="Number of Casualties">Number of Casualties</option>					<option value="Time (24hr)">Time (24hr)</option>					<option value="Age of Casualty">Age of Casualty</option>
-				</select></form>
-			</div>
-		</div>
-	    <div class="row" id='dropbox2'>
-			<div class="col-xs-6 form-group">
-				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-				<form action = "/" method = "post">
-				<select class="selectpicker show-menu-arrow" name="data" id="data">
-					<option value="none" selected>Select Aggregation</option>
-							<option value="Accident Date">Accident Date</option>					<option value="1st Road Class">1st Road Class</option>					<option value="Road Surface">Road Surface</option>					<option value="Lighting Conditions">Lighting Conditions</option>					<option value="Weather Conditions">Weather Conditions</option>					<option value="Casualty Class">Casualty Class</option>					<option value="Casualty Severity">Casualty Severity</option>					<option value="Sex of Casualty">Sex of Casualty</option>					<option value="Type of Vehicle">Type of Vehicle</option>					<option value="Time (Intervals)">Time (Intervals)</option>					<option value="Date (Intervals)">Date (Intervals)</option>
-				</select></form>
-			</div>
-			<div class="col-xs-6 form-group">
-				<form action = "/" method = "post">
-				<select class="selectpicker show-menu-arrow" name="filter" id="filter">
-					<option value="none" selected>Select Filter Data</option>
-							<option value="Number of Vehicles">Number of Vehicles</option>					<option value="Number of Casualties">Number of Casualties</option>					<option value="Time (24hr)">Time (24hr)</option>					<option value="Age of Casualty">Age of Casualty</option>					<option value="Accident Date">Accident Date</option>					<option value="1st Road Class">1st Road Class</option>					<option value="Road Surface">Road Surface</option>					<option value="Lighting Conditions">Lighting Conditions</option>					<option value="Weather Conditions">Weather Conditions</option>					<option value="Casualty Class">Casualty Class</option>					<option value="Casualty Severity">Casualty Severity</option>					<option value="Sex of Casualty">Sex of Casualty</option>					<option value="Type of Vehicle">Type of Vehicle</option>					<option value="Time (Intervals)">Time (Intervals)</option>					<option value="Date (Intervals)">Date (Intervals)</option>
-				</select></form>
-			</div>
-
-
-			<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-			<a href="/pivot_table" class="btn btn-info btn-lg">Get Pivot Table</a>
-		</div>
-		</div>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-
-		<!-- (Optional) Latest compiled and minified JavaScript translation files -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
-
-		<script>
-			var row = document.getElementById("row");
-			var col = document.getElementById("col");
-		</script>
-
-		</body>
-		</html>
-			
