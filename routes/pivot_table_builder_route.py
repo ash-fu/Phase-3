@@ -1,39 +1,6 @@
 from flask import render_template
 from phase3 import app
-<<<<<<< HEAD:routes.py
-import csv
-import pandas as pd
-import numpy as np
-import jinja2
 import readdata
-
-csvFile = open('data_2012.csv')#enter the csv filename
-csvReader = csv.reader(csvFile)
-csvData = list(csvReader)
-
-#holds all routes to the application
-
-#server/
-@app.route("/")
-def index():
-	title = "Traffic Accident Statistics"
-	template_vars = {
-		"title": title
-	}
-	return render_template("index.html",vars=template_vars)
-
-
-#server/
-@app.route("/findings")
-def findings():
-    title = "Findings"
-    template_vars = {
-        "title": title
-    }
-    return render_template("findings.html",vars=template_vars)
-=======
-import readdata
->>>>>>> 5ed0585dab8837a475ee2b7e2b989ca3bdadb86e:routes/pivot_table_builder_route.py
 
 #server/pivot_table_builder
 @app.route("/pivot_table_builder")
