@@ -3,6 +3,8 @@ from phase3 import app
 import csv
 import pandas as pd
 import numpy as np
+import jinja2
+import buildhtml
 
 csvFile = open('data_2012.csv')#enter the csv filename
 csvReader = csv.reader(csvFile)
@@ -23,7 +25,10 @@ def helloworld():
 #server/pivot_table_builder
 @app.route("/pivot_table_builder")
 def pivot_table_builder():
-	return render_template("pivot_table_builder.html")
+      with open('templates/pivot_table_builder.html', 'w') as html:
+            pivot_table = buildhtml.dropdown('data_2012.csv')
+            html.write(pivot_table)                  
+      return render_template("pivot_table_builder.html")
 
 #server/dataset
 @app.route("/dataset")
