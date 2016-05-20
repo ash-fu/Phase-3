@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import jinja2
 import readdata
+import processPT
 
 csvFile = open('data_2012.csv')#enter the csv filename
 csvReader = csv.reader(csvFile)
@@ -31,7 +32,7 @@ def pivot_table_builder():
 		<html lang="en">
   		<head>
   		<meta charset="utf-8">
-  		<title>Pivot Table</title>
+  		<title>Pivot Table Builder</title>
 
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"/>
 		<!-- Latest compiled and minified CSS -->
@@ -109,9 +110,13 @@ def pivot_table_builder():
 		<!-- (Optional) Latest compiled and minified JavaScript translation files -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
 
-		<script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript">
 			var row = document.getElementById("row");
 			var col = document.getElementById("col");
+			dataset = csvData;
+			agg = "sum";
+			table = constructPT(dataset,row,col,values,agg);
+			pivot_table(table);
 		</script>
 
 		</body>
@@ -130,6 +135,21 @@ def getSelection():
 	print col
 	return (row,col)
 
+
+#server/dataset
+@app.route("/pivot_table")
+def pivot_table(table):
+	with open('templates/pivot_table.html' , 'w') as html:
+		html.write('''
+			<!DOCTYPE html>
+			<html lang="en">
+				<head>
+				<meta charset="utf-8">
+				<title>Pivot Table</title>
+			''')
+		table_ = table.to_html()
+		html += table_
+	return render_template("pivot_table.html")
 
 #server/dataset
 @app.route("/dataset")
