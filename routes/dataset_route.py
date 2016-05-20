@@ -1,10 +1,6 @@
-from flask import Flask, render_template, request
+from flask import render_template
 from phase3 import app
 import csv
-import pandas as pd
-import numpy as np
-import jinja2
-import readdata
 
 csvFile = open('data_2012.csv')#enter the csv filename
 csvReader = csv.reader(csvFile)
@@ -74,4 +70,3 @@ def dataset():
 
 		''')
     return render_template("dataset.html",vars=template_vars)
-    

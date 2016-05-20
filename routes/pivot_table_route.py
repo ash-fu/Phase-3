@@ -1,10 +1,7 @@
-from flask import Flask, render_template, request
+from flask import render_template
 from phase3 import app
-import csv
 import pandas as pd
 import numpy as np
-import jinja2
-import readdata
 
 #server/dataset
 @app.route("/pivot_table")
