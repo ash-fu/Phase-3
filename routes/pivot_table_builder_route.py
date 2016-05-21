@@ -16,7 +16,7 @@ def pivot_table_builder():
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"/>
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
-		<link rel="stylesheet" href="templates/css/pivot_table.css" type="text/css">
+		<link rel="stylesheet" href="templates/css/pivot_table_builder.css" type="text/css">
 		  <meta name="viewport" content="width=device-width, initial-scale=1">
   		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -28,6 +28,7 @@ def pivot_table_builder():
 		<body>
 		<div class="row" id='dropbox1'>
 			<div class="col-xs-6 form-group">
+				<label for = "row_label"> Row Label </label>
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 				<form action = "/" method = "post">
 				<select class="selectpicker show-menu-arrow" name="row" id="row">
@@ -40,6 +41,7 @@ def pivot_table_builder():
 				</select></form>
 			</div>
 			<div class="col-xs-6 form-group">
+				<label for = "col_label"> Column Label </label>
 				<form action = "/" method = "post">
 				<select class="selectpicker show-menu-arrow" name="col" id="col">
 					<option value="none" selected>Select Column Label</option>
@@ -54,6 +56,7 @@ def pivot_table_builder():
 	    <div class="row" id='dropbox2'>
 			<div class="col-xs-6 form-group">
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+				<label for = "agg_label"> Aggregation </label>
 				<form action = "/" method = "post">
 				<select class="selectpicker show-menu-arrow" name="data" id="data">
 					<option value="none" selected>Select Aggregation</option>
@@ -65,6 +68,7 @@ def pivot_table_builder():
 				</select></form>
 			</div>
 			<div class="col-xs-6 form-group">
+				<label for = "filter_label"> Report Filter </label>
 				<form action = "/" method = "post">
 				<select class="selectpicker show-menu-arrow" name="filter" id="filter">
 					<option value="none" selected>Select Filter Data</option>
