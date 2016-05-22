@@ -1,10 +1,10 @@
 from flask import render_template
 from phase3 import app
 
-#server/dataset
-@app.route("/Observations1")
+#server/findings
+@app.route("/findings")
 def observations1():
-    with open('templates/Observations1.html', 'w') as html: #enter the output filename
+    with open('templates/findings.html', 'w') as html: #enter the output filename
 	    html.write('''
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
@@ -98,12 +98,12 @@ The age group more likely to be in a car accident and be the casualty is from 15
                   }]
               });
           });
-    </script>	
+    </script>
 		''')
-  
+
 	    html.write('''
 <h2>Observation 2</h2>
-<p2>Majority of vehicle accidents occur in a car. Other vehicles that are likely to be in a accident are bicycles, bus, or motorcyles. <p2>  
+<p2>Majority of vehicle accidents occur in a car. Other vehicles that are likely to be in a accident are bicycles, bus, or motorcyles. <p2>
 <div id="container_b" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 <script type="text/javascript">
 $(function () {
@@ -162,18 +162,18 @@ $(function () {
                 y: 2
             }, {
                 name: 'Taxi',
-                y: 115           
+                y: 115
             }]
         }]
     });
 });
 </script>
             ''')
-            
+
 	    html.write('''
 <h2>Observation 3</h2>
 <p3>While poor weather conditions, lighting conditions, road surface is assumed to be cause vehicle accidents, this is not true. As seen in the graphs below fine weather,daylight and dry roads are the largest contributors to vehicle accidents.
-And a reasonable assumption is that fine weather, daylight and dry roads is not the reason for vehicle accidents. <p3> 
+And a reasonable assumption is that fine weather, daylight and dry roads is not the reason for vehicle accidents. <p3>
 <div id="container_c" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 <script type="text/javascript">
 $(function () {
@@ -211,7 +211,7 @@ $(function () {
                 y: 2450
             }, {
                 name: 'Raining',
-                y: 283                
+                y: 283
             }, {
                 name: 'Fog or Mist',
                 y: 4,
@@ -221,7 +221,7 @@ $(function () {
             }, {
                 name: 'Snowing',
                 y: 4
-         
+
             }]
         }]
     });
@@ -320,7 +320,7 @@ $(function () {
                 y: 5
             }, {
                 name: 'Snow',
-                y: 7                
+                y: 7
             }, {
                 name: 'Frost or Ice',
                 y: 22,
@@ -330,7 +330,7 @@ $(function () {
             }, {
                 name: 'Dry',
                 y: 2109
-         
+
             }]
         }]
     });
@@ -389,11 +389,11 @@ The assumption is that when there is a greater number of cars on the roads it ca
               });
           });
     </script>
-            ''') 
-            
+            ''')
+
             html.write('''
 <h2>Observation 4</h2>
-<p4>In addition, month is not correleated with vehicle accidents, meaning every month has a similar chance of having a vehicle accident <p4> 
+<p4>In addition, month is not correleated with vehicle accidents, meaning every month has a similar chance of having a vehicle accident <p4>
 <div id="container_g" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 <script type="text/javascript">
 $(function () {
@@ -463,7 +463,7 @@ $(function () {
                     y: 222
                 }, {
                     name: 'December',
-                    y: 222                   
+                    y: 222
                 }]
             }]
         });
@@ -473,7 +473,7 @@ $(function () {
             ''')
 	    html.write('''
 <h2>Observation 5</h2>
-<p5>Most vehicle accidents result in a severity of slight and driver and passenger are the casualties. <p5> 
+<p5>Most vehicle accidents result in a severity of slight and driver and passenger are the casualties. <p5>
 <div id="container_h" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 <script type="text/javascript">
           $(function () {
@@ -646,4 +646,4 @@ $(function () {
 <ul> or if you are in car , bicycle, bus, taxi or motorcyle </ul>
 <p6> even if the weather conditions, month, road conditions or lighting conditions is poor. </p6>
 ''')
-    return render_template("Observations1.html")
+    return render_template("findings.html")
