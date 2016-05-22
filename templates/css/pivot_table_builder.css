@@ -12,10 +12,28 @@ h1 {
    font-size: 25px;
 }
 
-button{
+/*button{
 	text-align: center;
-}
+	margin: 350px;s
+}*/
 
 #labelrow1{
 	text-align: center;
 }
+
+label{
+	display: block;
+	margin: 100px;
+}
+
+select{
+	margin: 50px;
+}
+
+textarea {
+	width: 600px;
+}
+
+/*a{
+	margin: 350px;
+}*/

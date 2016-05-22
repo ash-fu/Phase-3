@@ -11,6 +11,7 @@ dataset.head()
 
 def filterData():
     dataset = pd.read_csv("leeds-2012.csv")
+    data = 
     return dataset.loc[(dataset["Age of Casualty"] > 16), ["Sex of Casualty","Road Surface", "Casualty Class","Age of Casualty"]]
 
 def constructPT(rows,columns,values,agg):

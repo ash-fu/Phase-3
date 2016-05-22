@@ -1,13 +1,13 @@
 import csv
 
-def getheaders(filename):
+def getHeaders(filename):
     content = open(filename)
     reader = csv.reader(content)
     headers = reader.next()
     data = zip(*reader)
     categorical_headers= []
     numerical_headers= []
-    header_type = []
+    header_type=[]
     count= 0
     for column in data:
         if column[1].isdigit():
@@ -18,14 +18,20 @@ def getheaders(filename):
     header_type.append(numerical_headers)
     header_type.append(categorical_headers)
     return header_type
+    # if(type == "cate"):
+    #     return categorical_headers
+    # elif(tyep == "num"):
+    #     return numerical_headers
+    # else:
+    #     return numerical_headers + categorical_headers
 
-def num_header(filename):
-    headers = getheaders(filename)
-    return headers[0]
+# def num_header(filename):
+#     headers = getheaders(filename)
+#     return headers[0]
 
-def cate_header(filename):
-    headers = getheaders(filename)
-    return headers[1]
+# def cate_header(filename):
+#     headers = getheaders(filename)
+#     return headers[1]
 
 def gender(filename):
     content = open(filename)
