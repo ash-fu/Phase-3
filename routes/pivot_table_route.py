@@ -27,4 +27,3 @@ def pivot_table():
 			</html>
 			''')
 	return render_template("pivot_table.html")
-
