@@ -3,7 +3,7 @@ from phase3 import app
 import pandas as pd
 import numpy as np
 
-#server/dataset
+#server/pviot_table
 @app.route("/pivot_table")
 def pivot_table():
 	with open('templates/pivot_table.html' , 'w') as html:
@@ -26,6 +26,4 @@ def pivot_table():
 
 			</html>
 			''')
-		#table_ = table.to_html()
-		#html += table_
 	return render_template("pivot_table.html")
