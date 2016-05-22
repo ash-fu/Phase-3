@@ -1,7 +1,7 @@
 from flask import render_template
 from phase3 import app
 
-#server/dataset
+#server/Observations1
 @app.route("/Observations1")
 def observations1():
     with open('templates/Observations1.html', 'w') as html: #enter the output filename
