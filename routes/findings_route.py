@@ -9,6 +9,7 @@ def findings():
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
   <head>
+ <link rel="stylesheet" type="text/css" href="templates/css/findings.css">
     <title>
       Chart
     </title>
@@ -18,7 +19,7 @@ def findings():
 	    <div class="header-content">
 	    	<div class="header-title">
 	    		<h1>Road Accidents</h1>
-	    		<h2>Observation 1</h2>
+	    		<span style= 'background-color:white'><h2>Observation 1</h2></span>
 	    	</div>
 	    </div>
     </header>
@@ -103,7 +104,7 @@ The age group more likely to be in a car accident and be the casualty is from 15
   
 	    html.write('''
 <h2>Observation 2</h2>
-<p2>Majority of vehicle accidents occur in a car. Other vehicles that are likely to be in a accident are bicycles, bus, or motorcyles. <p2>  
+<p>Majority of vehicle accidents occur in a car. Other vehicles that are likely to be in a accident are bicycles, bus, or motorcyles. <p>  
 <div id="container_b" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 <script type="text/javascript">
 $(function () {
@@ -172,10 +173,10 @@ $(function () {
             
 	    html.write('''
 <h2>Observation 3</h2>
-<p3>While poor weather conditions, lighting conditions, road surface is assumed to be cause vehicle accidents, this is not true. As seen in the graphs below fine weather,daylight and dry roads are the largest contributors to vehicle accidents.
-And a reasonable assumption is that fine weather, daylight and dry roads is not the reason for vehicle accidents. <p3> 
-<div id="container_c" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-<script type="text/javascript">
+<p>While poor weather conditions, lighting conditions, road surface is assumed to be cause vehicle accidents, this is not true. As seen in the graphs below fine weather,daylight and dry roads are the largest contributors to vehicle accidents.
+And a reasonable assumption is that fine weather, daylight and dry roads is not the reason for vehicle accidents. <p>
+<p1></p1>
+<div id="container_c" style="float: left; width:33.33%; height: 400px; max-width: 600px; margin: 0 auto"></div><script type="text/javascript">
 $(function () {
     $('#container_c').highcharts({
         chart: {
@@ -227,7 +228,7 @@ $(function () {
     });
 });
 </script>
-<div id="container_d" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<div id="container_d" style="float: left; width: 33.33%; height: 400px; max-width: 600px; margin: 0 auto"></div>
 <script type="text/javascript">
 $(function () {
 
@@ -283,7 +284,7 @@ $(function () {
     });
 });
 </script>
-<div id="container_e" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<div id="container_e" style="float: left; width:33.33%; height: 400px; max-width: 600px; margin: 0 auto"></div>
 <script type="text/javascript">
 $(function () {
     $('#container_e').highcharts({
@@ -336,6 +337,7 @@ $(function () {
     });
 });
 </script>
+<h3></h3>
 <p>Instead, the data depicts that there is correlation with time period and vehicle accidents. As there are more car accidents during the time period 8am-8pm.
 The assumption is that when there is a greater number of cars on the roads it causes vehicle accidents.</p>
 <div id="container_f" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -393,7 +395,7 @@ The assumption is that when there is a greater number of cars on the roads it ca
             
             html.write('''
 <h2>Observation 4</h2>
-<p4>In addition, month is not correleated with vehicle accidents, meaning every month has a similar chance of having a vehicle accident <p4> 
+<p>In addition, month is not correleated with vehicle accidents, meaning every month has a similar chance of having a vehicle accident <p> 
 <div id="container_g" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 <script type="text/javascript">
 $(function () {
@@ -473,7 +475,7 @@ $(function () {
             ''')
 	    html.write('''
 <h2>Observation 5</h2>
-<p5>Most vehicle accidents result in a severity of slight and driver and passenger are the casualties. <p5> 
+<p>Most vehicle accidents result in a severity of slight and driver and passenger are the casualties. <p> 
 <div id="container_h" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 <script type="text/javascript">
           $(function () {
@@ -529,7 +531,7 @@ $(function () {
               });
           });
     </script>
-<p5>However, when passengers are the causalty there is a higher chance that it will be a serious accident.</p5>
+<p>However, when passengers are the causalty there is a higher chance that it will be a serious accident.</p>
 <div id="container_i" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 <script type="text/javascript">
           $(function () {
@@ -585,6 +587,7 @@ $(function () {
               });
           });
     </script>
+<br>
 <div id="container_j" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 <script type="text/javascript">
           $(function () {
@@ -639,11 +642,19 @@ $(function () {
 		''')
 	    html.write('''
 <h2>Conclusion</h2>
-<p6>Therefore, the overall contention is that there is a higher chance of a car accident if you are:</p6>
-<ul> using a vehicle during the peak periods- day time </ul>
-<ul> male aged between 15-35 </ul>
-<ul> if you are a driver or passenger </ul>
-<ul> or if you are in car , bicycle, bus, taxi or motorcyle </ul>
-<p6> even if the weather conditions, month, road conditions or lighting conditions is poor. </p6>
+<p id=conclusion>Therefore, the overall contention is that there is a higher chance of a car accident if you are:
+<br>
+<br>
+Using a vehicle during the peak periods- day time
+<br>
+Male aged between 15-35
+<br>
+If you are a driver or passenger
+<br>
+Or if you are in car , bicycle, bus, taxi or motorcyle
+<br>
+<br>
+even if the weather conditions, month, road conditions or lighting conditions is poor.
+</p>
 ''')
     return render_template("findings.html")
