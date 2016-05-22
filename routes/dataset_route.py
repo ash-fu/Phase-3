@@ -15,22 +15,36 @@ def dataset():
     }
     with open('templates/dataset.html', 'w') as html: #enter the output filename
 	    html.write('''
-	<head>
-		<meta charset="utf-8">
-
-		<title>Dataset</title>
-
-		<link rel="stylesheet" href="templates/stylesheets/dataset.css" type="text/css">
-
-		<link rel="stylesheet" href="templates/css/bootstrap-table.min.css" type="text/css">
-
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	{% extends "base.html" %}
 	
-	</head>	
-		''')   
+	{% block customCSS %}
+
+	<link rel="stylesheet" href="templates/stylesheets/dataset.css" type="text/css">
+
+	<link rel="stylesheet" href="templates/css/bootstrap-table.min.css" type="text/css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	
+	{% endblock %}
+
+	{% block customJS %}
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
+
+
+	{% endblock %}
+
+	''')  
+
 	    html.write('''
-<body>
-	<header>
+	{% block header %}
 	    <div class="header-content">
 	    	<img src="templates/img/car_accident_icon.png" alt="car accident icon">
 	    	<div class="header-title">
@@ -38,7 +52,9 @@ def dataset():
 	    		<p>Leeds, England 2012</p>
 	    	</div>
 	    </div>
-	</header>
+	{% endblock %}
+
+	{% block content %}
 <table data-toggle = "table" data-pagination = "true">\r''')
 	    r = 0
 	    for row in csvData:
@@ -57,16 +73,6 @@ def dataset():
 	        r += 1
 	    html.write('\t</tbody>\r')
 	    html.write('</table>\r')
-	    html.write('</body>\r')
-	    html.write('''
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	    html.write('{% endblock %}\r')
 
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
-
-		''')
     return render_template("dataset.html",vars=template_vars)

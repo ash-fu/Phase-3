@@ -5,6 +5,7 @@ import numpy as np
 
 #server/dataset
 @app.route("/pivot_table")
+<<<<<<< HEAD
 def pivot_table():
 	with open('templates/pivot_table.html' , 'w') as html:
 		html.write('''
@@ -29,3 +30,18 @@ def pivot_table():
 		#table_ = table.to_html()
 		#html += table_
 	return render_template("pivot_table.html")
+=======
+def pivot_table(table):
+	title = "Pivot Table"
+	template_vars = {
+		"title": title
+	}
+	with open('templates/pivot_table.html' , 'w') as html:
+		html.write('''
+		{% extends "base.html" %}
+		
+		''')
+		table_ = table.to_html()
+		html += table_
+	return render_template("pivot_table.html", vars=template_vars)
+>>>>>>> 6254edd4afc9687148978a31169b4bbf6c8fd577
