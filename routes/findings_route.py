@@ -18,7 +18,7 @@ def findings():
 	    <div class="header-content">
 	    	<div class="header-title">
 	    		<h1>Road Accidents</h1>
-	    		<h2>Observation 1</h2>
+	    		<h2>Observation 2</h2>
 	    	</div>
 	    </div>
     </header>
