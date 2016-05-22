@@ -19,7 +19,7 @@ def pivot_table():
 				<div id="row"><p>The row is: </p></div>
 				<script>
 					function show() {
-    					document.getElementById("row").innerHTML = row;
+    					document.getElementById("row").innerHTML = window.location.serach;
 					}
 				</script>
 				</body>
