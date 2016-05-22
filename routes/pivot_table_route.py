@@ -5,7 +5,7 @@ import numpy as np
 
 #server/dataset
 @app.route("/pivot_table")
-def pivot_table(table):
+def pivot_table():
 	with open('templates/pivot_table.html' , 'w') as html:
 		html.write('''
 			<!DOCTYPE html>
@@ -13,7 +13,19 @@ def pivot_table(table):
 				<head>
 				<meta charset="utf-8">
 				<title>Pivot Table</title>
+
+				</head>
+				<body>
+				<div id="row"><p>The row is: </p></div>
+				<script>
+					function show() {
+    					document.getElementById("row").innerHTML = row;
+					}
+				</script>
+				</body>
+
+			</html>
 			''')
-		table_ = table.to_html()
-		html += table_
+		#table_ = table.to_html()
+		#html += table_
 	return render_template("pivot_table.html")
