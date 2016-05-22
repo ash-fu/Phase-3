@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request, redirect
 from phase3 import app
 import readdata
 
@@ -17,10 +17,10 @@ def pivot_table_builder():
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
 		<link rel="stylesheet" href="templates/css/pivot_table_builder.css" type="text/css">
-		  <meta name="viewport" content="width=device-width, initial-scale=1">
-  		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-
+		  
   		</head>
   		<h1>Pivot Table</h1>
   		''')
@@ -30,7 +30,7 @@ def pivot_table_builder():
 			<div class="col-xs-6 form-group">
 				<label for = "row_label"> Row Label </label>
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-				<form action = "/" method = "post">
+				<form action = "templates/pivot_table.html" method = "GET">
 				<select class="selectpicker show-menu-arrow" name="row" id="row">
 					<option value="none" selected>Select Row Label</option>
 		''')
@@ -42,7 +42,7 @@ def pivot_table_builder():
 			</div>
 			<div class="col-xs-6 form-group">
 				<label for = "col_label"> Column Label </label>
-				<form action = "/" method = "post">
+				<form action = "templates/pivot_table.html" method = "GET">
 				<select class="selectpicker show-menu-arrow" name="col" id="col">
 					<option value="none" selected>Select Column Label</option>
 		''')
@@ -57,7 +57,7 @@ def pivot_table_builder():
 			<div class="col-xs-6 form-group">
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 				<label for = "agg_label"> Aggregation </label>
-				<form action = "/" method = "post">
+				<form action = "templates/pivot_table.html" method = "GET">
 				<select class="selectpicker show-menu-arrow" name="data" id="data">
 					<option value="none" selected>Select Aggregation</option>
 		''')
@@ -69,7 +69,7 @@ def pivot_table_builder():
 			</div>
 			<div class="col-xs-6 form-group">
 				<label for = "filter_label"> Report Filter </label>
-				<form action = "/" method = "post">
+				<form action = "templates/pivot_table.html" method = "GET">
 				<select class="selectpicker show-menu-arrow" name="filter" id="filter">
 					<option value="none" selected>Select Filter Data</option>
 		''')
@@ -80,7 +80,6 @@ def pivot_table_builder():
 				</select></form>
 			</div>
 
-
 			<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 			<a href="/pivot_table" class="btn btn-info btn-lg">Get Pivot Table</a>
 		</div>
@@ -89,25 +88,15 @@ def pivot_table_builder():
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-
 		<!-- (Optional) Latest compiled and minified JavaScript translation files -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
-
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript">
-			var row = document.getElementById("row");
-			var col = document.getElementById("col");
-			dataset = csvData;
-			agg = "sum";
-			table = constructPT(dataset,row,col,values,agg);
-			pivot_table(table);
-		</script>
 
 		</body>
 		</html>
 			''')
 	return render_template("pivot_table_builder.html")
 
-@app.route("/getSelection", methods=['GET','POST'])
+@app.route("/pivot_table", methods=['POST'])
 def getSelection():
 	row = request.form.get('row')
 	col = request.form.get('col')
@@ -116,4 +105,4 @@ def getSelection():
 	# 	col = request.get_all(col)
 	print row
 	print col
-	return (row,col)
+	return redirect('/')
