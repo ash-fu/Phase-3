@@ -1,0 +1,28 @@
+h1 {
+    color: black;
+    text-align: center;
+    font-family:monospace;
+    font-size: 40px;
+    background-color:white;
+}
+h2 {
+    color: black;
+    font-family: monospace;;
+    text-align: center;
+    background-color:white;
+    font-size: 27px;
+}
+
+p {
+  color: black;
+  font-family:sans-serif;
+  text-align: center;
+  background-color:white;
+}
+ul {
+  color: black;
+  font-family:sans-serif;
+  text-align: center;
+  background-color:white;
+  font-family:monospace;
+}

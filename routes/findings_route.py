@@ -12,6 +12,7 @@ def findings():
     <title>
       Chart
     </title>
+    <link rel="stylesheet" href="templates/stylesheets/findings.css" type="text/css">
   </head>
   <body>
     <header>
