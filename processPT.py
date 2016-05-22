@@ -8,6 +8,11 @@ dataset.head()
 
 #example print table = constructPT("Date (Intervals)","Sex of Casualty","Number of Vehicles","sum")
 #print table.to_html()
+
+def filterData():
+    dataset = pd.read_csv("leeds-2012.csv")
+    return dataset.loc[(dataset["Age of Casualty"] > 16), ["Sex of Casualty","Road Surface", "Casualty Class","Age of Casualty"]]
+
 def constructPT(rows,columns,values,agg):
     
     if(agg == "sum"):
@@ -28,3 +33,8 @@ def constructPT(rows,columns,values,agg):
 def filterPT(table,attribute,filterValue):
     table = table.query('%s == ["%s"]' % (attribute, filterValue))
     return table
+
+# simulation
+data = filterData()
+table = constructPT(data, "Road Surface", "Casualty Class","Age of Casualty","minimum")
+print table
