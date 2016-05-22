@@ -4,7 +4,7 @@ from phase3 import app
 #server/
 @app.route("/")
 def index():
-	title = "Traffic Accident Statistics"
+	title = "Road Accident Statistics"
 	template_vars = {
 		"title": title
 	}

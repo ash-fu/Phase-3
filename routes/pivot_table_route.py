@@ -6,14 +6,15 @@ import numpy as np
 #server/dataset
 @app.route("/pivot_table")
 def pivot_table(table):
+	title = "Pivot Table"
+	template_vars = {
+		"title": title
+	}
 	with open('templates/pivot_table.html' , 'w') as html:
 		html.write('''
-			<!DOCTYPE html>
-			<html lang="en">
-				<head>
-				<meta charset="utf-8">
-				<title>Pivot Table</title>
-			''')
+		{% extends "base.html" %}
+		
+		''')
 		table_ = table.to_html()
 		html += table_
-	return render_template("pivot_table.html")
+	return render_template("pivot_table.html", vars=template_vars)
