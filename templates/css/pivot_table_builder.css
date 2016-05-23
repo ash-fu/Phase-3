@@ -11,6 +11,10 @@ h1 {
    text-align: center;
    font-size: 25px;
 }
+#dropbox3 {
+   text-align: center;
+   font-size: 25px;
+}
 
 /*button{
 	text-align: center;
@@ -23,16 +27,40 @@ h1 {
 
 label{
 	display: block;
-	margin: 100px;
+	margin: 70px;
 }
 
 select{
-	margin: 50px;
+	margin: 40px;
 }
 
 textarea {
-	width: 600px;
+	width: 10px;
 }
+
+/*input[type=submit] {
+	text-align: center;
+    background:#cc6600; 
+    color : #fff;
+    font: 2.4em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
+    font-size: 200%;
+}*/
+
+input[type=submit]{
+    background-color: #813322;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius:8px;
+    color: #fff;
+    font: 2.4em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
+    font-size: 25px;
+    text-decoration: none;
+    cursor: pointer;
+    border:none;
+    margin: auto;
+}
+
+
 
 /*a{
 	margin: 350px;

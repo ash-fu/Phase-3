@@ -76,44 +76,28 @@ def pivot_table():
 	col = request.form['col']
 	values = request.form['data']
 	filter_data = request.form['filter data']
-	sign = request.form['sign']
+	filter_method = request.form['sign']
 	agg = request.form['agg']
 	filter_value = request.form['filter_value']
 
-	filteredData = filterData(filter_data, filter_value, sign)
+	filteredData = filterData(filter_data, filter_value, filter_method)
 	table = constructPT(filteredData, row, col, values, agg)
 
 	#filteredData = filterData(filterCategory,filterValue,filterMethod)
 	#table = constructPT(filteredData,row,column,values,agg)
 	with open('templates/pivot_table.html' , 'w') as html:
-
 		html.write('''
 			{% extends "base.html" %}
 			{% block content %}
 			''')
-			# +table.to_html())
-
+		c = table.to_html()
+		c = c.encode('ascii', 'ignore')
+		html.write(c)
 
 		html.write('''
 			{% endblock %}
 		''')
-		body = '''
-		The row is: %s<br>
-		The col is: %s<br>
-		The data is: %s<br>
-		The filter is: %s<br>
-		The sign is: %s<br>
-		The filter_value is: %s<br>
 
-		'''
-
-		body = body % (row, col, values, filter_data, sign, filter_value)
-
-		body += table.to_html()
-		# #body = body % (filterCategory,filterMethod,filterValue,agg)
-		html.write(body)
-
-		# html.write(table.to_html())
 	return render_template("pivot_table.html",vars=template_vars)
 
 

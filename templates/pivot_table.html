@@ -1,6 +1,65 @@
 
 			{% extends "base.html" %}
 			{% block content %}
-			
+			<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Lighting Conditions</th>
+      <th>Darkness: no street lighting</th>
+      <th>Darkness: street lighting unknown</th>
+      <th>Darkness: street lights present and lit</th>
+      <th>Darkness: street lights present but unlit</th>
+      <th>Daylight: street lights present</th>
+      <th>All</th>
+    </tr>
+    <tr>
+      <th>Road Surface</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Dry</th>
+      <td>1800</td>
+      <td>1755.0</td>
+      <td>1845</td>
+      <td>1730</td>
+      <td>1419</td>
+      <td>1530</td>
+    </tr>
+    <tr>
+      <th>Frost / Ice</th>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>905</td>
+      <td>905</td>
+    </tr>
+    <tr>
+      <th>Wet / Damp</th>
+      <td>0</td>
+      <td>1800.0</td>
+      <td>1615</td>
+      <td>0</td>
+      <td>1228</td>
+      <td>1255</td>
+    </tr>
+    <tr>
+      <th>All</th>
+      <td>1800</td>
+      <td>1777.5</td>
+      <td>1751</td>
+      <td>1730</td>
+      <td>1405</td>
+      <td>1520</td>
+    </tr>
+  </tbody>
+</table>
 			{% endblock %}
 		
