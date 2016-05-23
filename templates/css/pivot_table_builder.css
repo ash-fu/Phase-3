@@ -5,28 +5,24 @@ h1 {
 #dropbox1 {
    text-align: center;
    font-size: 25px;
+   margin: auto;
 }
 
 #dropbox2 {
    text-align: center;
    font-size: 25px;
-}
-#dropbox3 {
-   text-align: center;
-   font-size: 25px;
+   margin: auto;
 }
 
-/*button{
-	text-align: center;
-	margin: 350px;s
-}*/
 
 #labelrow1{
 	text-align: center;
 }
 
+
+
 label{
-	display: block;
+	/*display: block;*/
 	margin: 70px;
 }
 
@@ -34,17 +30,17 @@ select{
 	margin: 40px;
 }
 
-textarea {
-	width: 10px;
-}
 
-/*input[type=submit] {
-	text-align: center;
-    background:#cc6600; 
-    color : #fff;
-    font: 2.4em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
-    font-size: 200%;
-}*/
+textarea{
+  font-family: inherit; 
+  font-size: inherit;
+  vertical-align: middle;
+  width:220px;
+  height: 35px;
+  font-size: 13px !important;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
 
 input[type=submit]{
     background-color: #813322;
@@ -59,9 +55,3 @@ input[type=submit]{
     border:none;
     margin: auto;
 }
-
-
-
-/*a{
-	margin: 350px;
-}*/

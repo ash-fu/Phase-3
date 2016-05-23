@@ -23,6 +23,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
   <!-- (Optional) Latest compiled and minified JavaScript translation files -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   {% endblock %}
   
   {% block content %}
@@ -136,17 +137,19 @@
         <option value="does not contain">does not contain</option>
         <option value="is True">is True</option>
         <option value="is False">is False</option> -->
-      </select>
-      <textarea name = "filter_value" class="form-control" rows='1' cols="25"> Filter Value </textarea>
-    </div>
 
+      </select> 
+      <div class="row">
+        <textarea name = "filter_value"> Filter Value </textarea> 
+      </div>
+    </div>
+      
+    
     
   </div>
-  <div class="row" id='dropbox3'>
-<p>
-     <input type="submit" value = "Get Pivot Table" />
-</p>
-</div>
+  <p>
+       <input type="submit" value = "Get Pivot Table" />
+  </p>
 </div>
     
 </form>
