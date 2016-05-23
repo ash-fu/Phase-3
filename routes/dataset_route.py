@@ -14,7 +14,7 @@ def dataset():
         "title": title
     }
     with open('templates/dataset.html', 'w') as html: #enter the output filename
-	    html.write('''
+        html.write('''
 	{% extends "base.html" %}
 	
 	{% block customCSS %}
@@ -43,7 +43,7 @@ def dataset():
 
 	''')  
 
-	    html.write('''
+        html.write('''
 	{% block header %}
 	    <div class="header-content">
 	    	<img src="templates/img/car_accident_icon.png" alt="car accident icon">
@@ -56,21 +56,20 @@ def dataset():
 
 	{% block content %}
 <table data-toggle = "table" data-pagination = "true">\r''')
-	    r = 0
-	    for row in csvData:
-	        if r == 0:
-	            html.write('\t<thead>\r\t\t<tr>\r')
-	            for col in row:
-	                html.write('\t\t\t<th data-sortable="true">' + col + '</th>\r')
-	            html.write('\t\t</tr>\r\t</thead>\r')
-	            html.write('\t<tbody>\r')
-	        else:
-	            html.write('\t\t<tr>\r')
-	            for col in row:
-	                html.write('\t\t\t<td>' + col + '</td>\r')
-	            html.write('\t\t</tr>\r')
-
-	        r += 1
+        r = 0
+        for row in csvData:
+            if r == 0:
+                html.write('\t<thead>\r\t\t<tr>\r')
+                for col in row:
+                    html.write('\t\t\t<th data-sortable="true">' + col + '</th>\r')
+                    html.write('\t\t</tr>\r\t</thead>\r')
+                    html.write('\t<tbody>\r')
+            else:
+                html.write('\t\t<tr>\r')
+                for col in row:
+                    html.write('\t\t\t<td>' + col + '</td>\r')
+                    html.write('\t\t</tr>\r')
+            r += 1
 	    html.write('\t</tbody>\r')
 	    html.write('</table>\r')
 	    html.write('{% endblock %}\r')
