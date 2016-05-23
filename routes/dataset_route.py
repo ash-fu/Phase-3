@@ -25,7 +25,7 @@ def dataset():
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	
-	{% endblock %}
+
 
 	{% block customJS %}
 
@@ -39,20 +39,14 @@ def dataset():
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
 
 
-	{% endblock %}
 
 	''')  
 
         html.write('''
 	{% block header %}
 	    <div class="header-content">
-	    	<img src="templates/img/car_accident_icon.png" alt="car accident icon">
-	    	<div class="header-title">
-	    		<h2>Road Accidents</h2>
-	    		<p>Leeds, England 2012</p>
-	    	</div>
+
 	    </div>
-	{% endblock %}
 
 	{% block content %}
 <table data-toggle = "table" data-pagination = "true">\r''')
@@ -70,8 +64,6 @@ def dataset():
                     html.write('\t\t\t<td>' + col + '</td>\r')
                     html.write('\t\t</tr>\r')
             r += 1
-	    html.write('\t</tbody>\r')
-	    html.write('</table>\r')
-	    html.write('{% endblock %}\r')
+
 
     return render_template("dataset.html",vars=template_vars)
