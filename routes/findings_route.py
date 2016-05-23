@@ -4,22 +4,28 @@ from phase3 import app
 #server/findings
 @app.route("/findings")
 def findings():
+    title = "Charts"
+    template_vars = {
+      "title": title
+    }
     with open('templates/findings.html', 'w') as html: #enter the output filename
 	    html.write('''
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-  <head>
- <link rel="stylesheet" type="text/css" href="templates/css/findings.css">
-    <title>
-      Chart
-    </title>
-  </head>
+  {% extends "base.html" %}
+
+  {% block customCSS %}
+  <link rel="stylesheet" type="text/css" href="templates/stylesheets/findings.css">
+  {% endblock %}
+
+  {% block customJS %}
+  <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+  {% endblock %}
+
+{% block content %}
 <h1>Leeds</h1>
 <p>Leeds, a city in West Yorkshire, England, was one of the leading centers of industry in Victorian England. (TripAdvisor)
 They have realtime travel and traffic information for Leeds including live CCTV and mobile phone SMS services, live road traffic news and travel information, brought to you by BBC Travel and LeedsTravel.info</p>
-  <script src="http://maps.google.com/maps/api/js?sensor=false"
-          type="text/javascript"></script>
-  <div id="map" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+  
+  <div id="map" style="width: 800px; height: 400px; margin: 0 auto"></div>
 
   <script type="text/javascript">
     var locations = [
@@ -684,5 +690,6 @@ Or if you are in car , bicycle, bus, taxi or motorcyle
 <br>
 even if the weather conditions, month, road conditions or lighting conditions is poor.
 </p>
+{% endblock %}
 ''')
-    return render_template("findings.html")
+    return render_template("findings.html",vars=template_vars)
