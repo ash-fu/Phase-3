@@ -2,3 +2,7 @@
     margin-left:auto; 
     margin-right:auto;
  }
+
+ table{
+ 	background_gradient : (cmap='viridis', low=.5, high=0)
+ }

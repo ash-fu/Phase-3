@@ -84,11 +84,10 @@ def pivot_table():
 
 	filteredData = filterData(filter_data, filter_value, filter_method)
 	table = constructPT(filteredData, row, col, values, agg)
-	c = table.to_csv(column=False)
 
 	cm = sns.light_palette("green", as_cmap=True)
 
-	c = c.style.background_gradient(cmap=cm)
+	c = table.style.background_gradient(cmap=cm)
 
 	#filteredData = filterData(filterCategory,filterValue,filterMethod)
 	#table = constructPT(filteredData,row,column,values,agg)
