@@ -1,3 +1,4 @@
+# coding=utf-8
 from flask import render_template, request
 from phase3 import app
 import pandas as pd
@@ -7,41 +8,70 @@ from processPT import *
 #server/pivot_table
 @app.route("/pivot_table",methods=['POST', 'GET'])
 def pivot_table():
-	title = "Pivot Table"
-	template_vars = {
-		"title": title
-	}
+    title = "Pivot Table"
+    template_vars = {
+        "title": title
+    }
 
-	filterCategory = request.form['Filter Category']
-	filterMethod = request.form['Filter Method']
-	filterValue = request.form['Filter Value']
-	row = request.form['Row']
-	column = request.form['Column']
-	agg = request.form['agg']
-	values = request.form['Values']
-	
-	filteredData = filterData(filterCategory,filterValue,filterMethod)
-	table = constructPT(filteredData,row,column,values,agg)
-	with open('templates/pivot_table.html' , 'w') as html:
-		html.write('''
-			{% extends "base.html" %}
-			{% block content %}
-			''')
-		c = table.to_html()
-		c = c.encode('ascii', 'ignore')
-		html.write(c)
+    filterCategory = request.form['Filter Category']
+    filterMethod = request.form['Filter Method']
+    filterValue = request.form['Filter Value']
+    row = request.form['Row']
+    column = request.form['Column']
+    agg = request.form['agg']
+    values = request.form['Values']
+    
+    filteredData = filterData(filterCategory,filterValue,filterMethod)
+    table = constructPT(filteredData,row,column,values,agg)
+    with open('templates/pivot_table.html' , 'w') as html:
+        html.write('''
+            {% extends "base.html" %}
 
+            {% block customCSS %}
+            <link rel="stylesheet" href="templates/stylesheets/dataset.css" type="text/css">
+            <link rel="stylesheet" href="templates/css/bootstrap-table.min.css" type="text/css">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">            
+            {% endblock %}
 
-		html.write('''
-			{% endblock %}
-		''')
-		# body = '''Filter Method: %s <br>
-		# Filter Category: %s <br>
-		# Filter Value: %s <br>
-		# Aggregation: %s <br>
+            {% block customJS %}
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
+            {% endblock %}
+            ''')
 
-		# '''
-		# body = body % (filterCategory,filterMethod,filterValue,agg)
-		# html.write(body)
+        c = table.to_csv(column=False)
 
-	return render_template("pivot_table.html",vars=template_vars)
+        html.write('''
+            {% block content %}
+<table data-toggle = "table" data-pagination = "true">\r''')
+        
+        table = table.drop('All', axis=1)
+        table = table.drop('All')
+        maxVal = table.values.max()
+        c = table.to_csv(column=False)
+        r = 0
+        for row in c:
+            if r == 0:
+                html.write('\t<thead>\r\t\t<tr>\r')
+                for col in row:
+                    html.write('\t\t\t<th data-sortable="true">' + col + '</th>\r')
+                    html.write('\t\t</tr>\r\t</thead>\r')
+                    html.write('\t<tbody>\r')
+            else:
+                html.write('\t\t<tr>\r')
+                for col in row:
+                    html.write('\t\t\t<td>' + col + '</td>\r')
+                    html.write('\t\t</tr>\r')
+            r += 1
+        html.write('\t</tbody>\r')
+        html.write('</table>\r')
+
+        html.write('''
+            {% endblock %}
+        ''')
+
+    return render_template("pivot_table.html",vars=template_vars)
