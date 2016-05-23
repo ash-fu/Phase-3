@@ -10,6 +10,7 @@ from processPT import *
 import pandas as pd
 import numpy as np
 import csv
+import seaborn as sns
 
 dataset = pd.read_csv("data_2012.csv")
 dataset.head()
@@ -22,38 +23,38 @@ header = reader.next();
 
 
 def filterData(element,userInput,filterMethod):
-    if (filterMethod == ">"):
-        filteredData =  dataset.loc[(dataset["%s"%(element)] > "%s"%(userInput)), header]
-    elif (filterMethod == ">="):
-        filteredData =  dataset.loc[(dataset["%s"%(element)] >= "%s"%(userInput)), header]
-    elif (filterMethod == "<"):
-        filteredData =  dataset.loc[(dataset["%s"%(element)] < "%s"%(userInput)), header]
-    elif (filterMethod == "<="):
-        filteredData =  dataset.loc[(dataset["%s"%(element)] <= "%s"%(userInput)), header]
-    elif (filterMethod == "="):
-        filteredData =  dataset.loc[(dataset["%s"%(element)] == "%s"%(userInput)), header]
-    else:
-        filteredData =  dataset.loc[(dataset["%s"%(element)] != "%s"%(userInput)), header]
-    return filteredData
-    
+	if (filterMethod == ">"):
+		filteredData =  dataset.loc[(dataset["%s"%(element)] > "%s"%(userInput)), header]
+	elif (filterMethod == ">="):
+		filteredData =  dataset.loc[(dataset["%s"%(element)] >= "%s"%(userInput)), header]
+	elif (filterMethod == "<"):
+		filteredData =  dataset.loc[(dataset["%s"%(element)] < "%s"%(userInput)), header]
+	elif (filterMethod == "<="):
+		filteredData =  dataset.loc[(dataset["%s"%(element)] <= "%s"%(userInput)), header]
+	elif (filterMethod == "="):
+		filteredData =  dataset.loc[(dataset["%s"%(element)] == "%s"%(userInput)), header]
+	else:
+		filteredData =  dataset.loc[(dataset["%s"%(element)] != "%s"%(userInput)), header]
+	return filteredData
+	
 
 def constructPT(data,rows,columns,values,agg):
-    
-    if(agg == "sum"):
-        agg_action = [np.sum]
-    elif(agg == "minimum"):
-        agg_action = [np.min]
-    elif(agg == "maximum"):
-        agg_action = [np.max]
-    elif(agg == "median"):
-        agg_action = [np.median]
-    else:
-        agg_action = [np.mean]
+	
+	if(agg == "sum"):
+		agg_action = [np.sum]
+	elif(agg == "minimum"):
+		agg_action = [np.min]
+	elif(agg == "maximum"):
+		agg_action = [np.max]
+	elif(agg == "median"):
+		agg_action = [np.median]
+	else:
+		agg_action = [np.mean]
 
-    table = pd.pivot_table(data,index=rows,columns=columns,values=values,\
-    aggfunc=agg_action,fill_value=0,margins=True,dropna=True)
-    table.columns = table.columns.droplevel(0)
-    return table
+	table = pd.pivot_table(data,index=rows,columns=columns,values=values,\
+	aggfunc=agg_action,fill_value=0,margins=True,dropna=True)
+	table.columns = table.columns.droplevel(0)
+	return table
 
 
 #server/pivot_table
@@ -83,12 +84,22 @@ def pivot_table():
 
 	filteredData = filterData(filter_data, filter_value, filter_method)
 	table = constructPT(filteredData, row, col, values, agg)
+	c = table.to_csv(column=False)
+
+	cm = sns.light_palette("green", as_cmap=True)
+
+	c = c.style.background_gradient(cmap=cm)
 
 	#filteredData = filterData(filterCategory,filterValue,filterMethod)
 	#table = constructPT(filteredData,row,column,values,agg)
 	with open('templates/pivot_table.html' , 'w') as html:
 		html.write('''
 			{% extends "base.html" %}
+
+			{% block customCSS %}
+			  <link rel="stylesheet" href="templates/css/pivot_table_builder.css" type="text/css">
+			{% endblock %}
+
 			{% block content %}
 			''')
 		c = table.to_html()
@@ -104,72 +115,83 @@ def pivot_table():
 
 
 
-# =======
-#     title = "Pivot Table"
-#     template_vars = {
-#         "title": title
-#     }
 
-#     filterCategory = request.form['Filter Category']
-#     filterMethod = request.form['Filter Method']
-#     filterValue = request.form['Filter Value']
-#     row = request.form['Row']
-#     column = request.form['Column']
-#     agg = request.form['agg']
-#     values = request.form['Values']
-    
-#     filteredData = filterData(filterCategory,filterValue,filterMethod)
-#     table = constructPT(filteredData,row,column,values,agg)
-#     with open('templates/pivot_table.html' , 'w') as html:
-#         html.write('''
-#             {% extends "base.html" %}
+# 	title = "Pivot Table"
+# 	template_vars = {
+# 		"title": title
+# 	}
+# 	row = request.form['row']
+# 	col = request.form['col']
+# 	values = request.form['data']
+# 	filter_data = request.form['filter data']
+# 	filter_method = request.form['sign']
+# 	agg = request.form['agg']
+# 	filter_value = request.form['filter_value']    
+# 	filteredData = filterData(filter_data, filter_value, filter_method)
+# 	table = constructPT(filteredData, row, col, values, agg)
+	
 
-#             {% block customCSS %}
-#             <link rel="stylesheet" href="templates/stylesheets/dataset.css" type="text/css">
-#             <link rel="stylesheet" href="templates/css/bootstrap-table.min.css" type="text/css">
-#             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">            
-#             {% endblock %}
+# 	with open('templates/pivot_table.html' , 'w') as html:
+# 		html.write('''
+# 			{% extends "base.html" %}
 
-#             {% block customJS %}
-#             <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-#             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-#             <!-- Latest compiled and minified JavaScript -->
-#             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-#             <!-- Latest compiled and minified JavaScript -->
-#             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
-#             {% endblock %}
-#             ''')
+# 			{% block customCSS %}
+# 			<link rel="stylesheet" href="templates/stylesheets/dataset.css" type="text/css">
+# 			<link rel="stylesheet" href="templates/css/bootstrap-table.min.css" type="text/css">
+# 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">            
+# 			{% endblock %}
 
-#         c = table.to_csv(column=False)
+# 			{% block customJS %}
+# 			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+# 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+# 			<!-- Latest compiled and minified JavaScript -->
+# 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+# 			<!-- Latest compiled and minified JavaScript -->
+# 			<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
+# 			{% endblock %}
+# 			''')
 
-#         html.write('''
-#             {% block content %}
+# 		c = table.to_csv(column=False)
+
+# 		html.write('''
+# 			{% block content %}
 # <table data-toggle = "table" data-pagination = "true">\r''')
-        
-#         table = table.drop('All', axis=1)
-#         table = table.drop('All')
-#         maxVal = table.values.max()
-#         c = table.to_csv(column=False)
-#         r = 0
-#         for row in c:
-#             if r == 0:
-#                 html.write('\t<thead>\r\t\t<tr>\r')
-#                 for col in row:
-#                     html.write('\t\t\t<th data-sortable="true">' + col + '</th>\r')
-#                     html.write('\t\t</tr>\r\t</thead>\r')
-#                     html.write('\t<tbody>\r')
-#             else:
-#                 html.write('\t\t<tr>\r')
-#                 for col in row:
-#                     html.write('\t\t\t<td>' + col + '</td>\r')
-#                     html.write('\t\t</tr>\r')
-#             r += 1
-#         html.write('\t</tbody>\r')
-#         html.write('</table>\r')
+		
+# 		table = table.drop('All', axis=1)
+# 		table = table.drop('All')
+# 		maxVal = table.values.max()
+# 		c = table.to_csv(column=False)
+# 		r = 0
+# 		for row in c:
+# 			if r == 0:
+# 				html.write('\t<thead>\r\t\t<tr>\r')
+# 				for col in row:
+# 					html.write('\t\t\t<th data-sortable="true">' + col + '</th>\r')
+# 					html.write('\t\t</tr>\r\t</thead>\r')
+# 					html.write('\t<tbody>\r')
+# 			else:
+# 				html.write('\t\t<tr>\r')
+# 				for col in row:
+# 					html.write('\t\t\t<td>' + col + '</td>\r')
+# 					html.write('\t\t</tr>\r')
+# 			r += 1
+# 		html.write('\t</tbody>\r')
+# 		html.write('</table>\r')
 
-#         html.write('''
-#             {% endblock %}
-#         ''')
+# 		html.write('''
+# 			{% endblock %}
+# 		''')
 
-#     return render_template("pivot_table.html",vars=template_vars)
-# >>>>>>> c30d135032f4ab8583efcfc1be694e89c6b6ff43
+# 	return render_template("pivot_table.html",vars=template_vars)
+
+
+
+	# filterCategory = request.form['Filter Category']
+	# filterMethod = request.form['Filter Method']
+	# filterValue = request.form['Filter Value']
+	# row = request.form['Row']
+	# column = request.form['Column']
+	# agg = request.form['agg']
+	# values = request.form['Values']
+	# filteredData = filterData(filterCategory,filterValue,filterMethod)
+	# table = constructPT(filteredData,row,column,values,agg)
