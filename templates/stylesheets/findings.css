@@ -1,25 +1,30 @@
+
+body,h3{
+    background-color: white;
+}
+
 h1 {
     color: black;
     text-align: center;
-    font-family:monospace;
+    font-family:'Lucida Sans Unicode';
     font-size: 40px;
-    background-color:white;
+
 }
 h2 {
     color: black;
-    font-family: monospace;
+    font-family: 'Lucida Sans Unicode';
     text-align: center;
-    background-color:white;
     font-size: 27px;
 }
 
 p {
-  font-family:sans-serif;
+  color: black;
+  font-family:'Lucida Sans Unicode';
   text-align: center;
 }
 
 ul {
   color: black;
-  font-family:sans-serif;
+  font-family:'Lucida Sans Unicode';
   text-align: center;
 }
