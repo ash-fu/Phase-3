@@ -21,8 +21,8 @@ def dataset():
 	<link rel="stylesheet" href="templates/stylesheets/dataset.css" type="text/css">
 	<link rel="stylesheet" href="templates/css/bootstrap-table.min.css" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	
 	{% endblock %}
+
 	{% block customJS %}
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
@@ -36,11 +36,7 @@ def dataset():
         html.write('''
 	{% block header %}
 	    <div class="header-content">
-	    	<img src="templates/img/car_accident_icon.png" alt="car accident icon">
-	    	<div class="header-title">
-	    		<h2>Road Accidents</h2>
-	    		<p>Leeds, England 2012</p>
-	    	</div>
+
 	    </div>
 	{% endblock %}
 	{% block content %}
@@ -62,5 +58,6 @@ def dataset():
         html.write('\t</tbody>\r')
         html.write('</table>\r')
         html.write('{% endblock %}\r')
+
 
     return render_template("dataset.html",vars=template_vars)
