@@ -2626,13 +2626,13 @@ Number of Vehicles,Number of Casualties,Accident Date,Time (24hr),Road Surface,L
 2,2,12/12/2012,1730,Wet / Damp,Darkness: street lights present and lit,Fine without high winds,Driver,Slight,Male,46,Car,1600-1959,December,45 -49
 2,2,12/12/2012,1730,Wet / Damp,Darkness: street lights present and lit,Fine without high winds,Driver,Slight,Male,35,Car,1600-1959,December,35 -39
 2,1,12/13/2012,735,Dry,Darkness: street lighting unknown,Fine without high winds,Driver,Slight,Male,39,Pedal cycle,400-759,December,35 -39
-2,2,12/13/2012,655,Wet / Damp,Darkness: street lights present and lit,Fog or mist � if hazard,Driver,Slight,Male,52,Car,400-759,December,50 -54
-2,2,12/13/2012,655,Wet / Damp,Darkness: street lights present and lit,Fog or mist � if hazard,Driver,Slight,Female,41,Car,400-759,December,40 -44
+2,2,12/13/2012,655,Wet / Damp,Darkness: street lights present and lit,Fog or mist if hazard,Driver,Slight,Male,52,Car,400-759,December,50 -54
+2,2,12/13/2012,655,Wet / Damp,Darkness: street lights present and lit,Fog or mist if hazard,Driver,Slight,Female,41,Car,400-759,December,40 -44
 2,1,12/13/2012,1800,Dry,Darkness: street lighting unknown,Fine without high winds,Driver,Slight,Male,52,Car,1600-1959,December,50 -54
 3,2,12/13/2012,2040,Dry,Darkness: street lighting unknown,Fine without high winds,Driver,Slight,Male,40,Car,2000-2359,December,40 -44
 3,2,12/13/2012,2040,Dry,Darkness: street lighting unknown,Fine without high winds,Driver,Slight,Male,31,Car,2000-2359,December,30 -34
-2,2,12/13/2012,1515,Wet / Damp,Daylight: street lights present,Fog or mist � if hazard,Driver,Slight,Female,29,Car,1200-1559,December,25 -29
-2,2,12/13/2012,1515,Wet / Damp,Daylight: street lights present,Fog or mist � if hazard,Passenger,Slight,Female,8,Car,1200-1559,December,5 -9
+2,2,12/13/2012,1515,Wet / Damp,Daylight: street lights present,Fog or mist if hazard,Driver,Slight,Female,29,Car,1200-1559,December,25 -29
+2,2,12/13/2012,1515,Wet / Damp,Daylight: street lights present,Fog or mist if hazard,Passenger,Slight,Female,8,Car,1200-1559,December,5 -9
 2,1,12/13/2012,1625,Dry,Daylight: street lights present,Fine without high winds,Driver,Slight,Female,41,Car,1600-1959,December,40 -44
 4,1,12/14/2012,35,Dry,Darkness: street lighting unknown,Fine without high winds,Driver,Slight,Male,32,Car,0-359,December,30 -34
 2,1,12/14/2012,745,Wet / Damp,Daylight: street lights present,Fine without high winds,Driver,Slight,Male,41,Car,400-759,December,40 -44
