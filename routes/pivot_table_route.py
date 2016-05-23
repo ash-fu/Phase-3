@@ -2,70 +2,120 @@ from flask import render_template, request
 from phase3 import app
 import pandas as pd
 import numpy as np
+from processPT import *
 
-# Import modules for CGI handling 
-import cgi, cgitb 
 
-# Create instance of FieldStorage 
-# form = cgi.FieldStorage() 
-# cgitb.enable()
+# -*- coding: utf-8 -*-
+import pandas as pd
+import numpy as np
+import csv
 
-#server/pviot_table
-#@app.route("/pivot_table")
-@app.route("/pivot_table", methods = ['POST','GET'])
+dataset = pd.read_csv("data_2012.csv")
+dataset.head()
+content = open("data_2012.csv")
+reader = csv.reader(content)
+header = reader.next();
+
+#example print table = constructPT(data,"Date (Intervals)","Sex of Casualty","Number of Vehicles","sum")
+#print table.to_html()
+
+
+def filterData(element,userInput,filterMethod):
+    if (filterMethod == ">"):
+        filteredData =  dataset.loc[(dataset["%s"%(element)] > "%s"%(userInput)), header]
+    elif (filterMethod == ">="):
+        filteredData =  dataset.loc[(dataset["%s"%(element)] >= "%s"%(userInput)), header]
+    elif (filterMethod == "<"):
+        filteredData =  dataset.loc[(dataset["%s"%(element)] < "%s"%(userInput)), header]
+    elif (filterMethod == "<="):
+        filteredData =  dataset.loc[(dataset["%s"%(element)] <= "%s"%(userInput)), header]
+    elif (filterMethod == "="):
+        filteredData =  dataset.loc[(dataset["%s"%(element)] == "%s"%(userInput)), header]
+    else:
+        filteredData =  dataset.loc[(dataset["%s"%(element)] != "%s"%(userInput)), header]
+    return filteredData
+    
+
+def constructPT(data,rows,columns,values,agg):
+    
+    if(agg == "sum"):
+        agg_action = [np.sum]
+    elif(agg == "minimum"):
+        agg_action = [np.min]
+    elif(agg == "maximum"):
+        agg_action = [np.max]
+    elif(agg == "median"):
+        agg_action = [np.median]
+    else:
+        agg_action = [np.mean]
+
+    table = pd.pivot_table(data,index=rows,columns=columns,values=values,\
+    aggfunc=agg_action,fill_value=0,margins=True,dropna=True)
+    table.columns = table.columns.droplevel(0)
+    return table
+
+
+#server/pivot_table
+@app.route("/pivot_table", methods=['POST', 'GET'])
 def pivot_table():
+	title = "Pivot Table"
+	template_vars = {
+		"title": title
+	}
+
+	# filterCategory = request.form['Filter Category']
+	# filterMethod = request.form['Filter Method']
+	# filterValue = request.form['Filter Value']
+	# row = request.form['Row']
+	# column = request.form['Column']
+	# agg = request.form['agg']
+	# values = request.form['Values']
+
+
+	row = request.form['row']
+	col = request.form['col']
+	values = request.form['data']
+	filter_data = request.form['filter data']
+	sign = request.form['sign']
+	agg = request.form['agg']
+	filter_value = request.form['filter_value']
+
+	filteredData = filterData(filter_data, filter_value, sign)
+	table = constructPT(filteredData, row, col, values, agg)
+
+	#filteredData = filterData(filterCategory,filterValue,filterMethod)
+	#table = constructPT(filteredData,row,column,values,agg)
 	with open('templates/pivot_table.html' , 'w') as html:
+
+		html.write('''
+			{% extends "base.html" %}
+			{% block content %}
+			''')
+			# +table.to_html())
+
+
+		html.write('''
+			{% endblock %}
+		''')
 		body = '''
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-	<meta charset="utf-8">
-	<title>Pivot Table</title>
-	</head>
-	<body>
-	<div id="row"><p>The row is: %s</p></div>
-	<div id="col"><p>The col is: %s</p></div>
-	<div id="data"><p>The data is: %s</p></div>
-	<div id="filter"><p>The filter is: %s</p></div>
-	<div id="sign"><p>The sign is: %s</p></div>
-	<div id="filter_value"><p>The filter_value is: %s</p></div>
-				'''
-		# row = request.form['row']
-		# col = request.form['col']
-		# data = request.form['data']
-		# filter = request.form['filter']
-		# sign = request.form['sign']
-		# filter_value = request.form['filter_value']
+		The row is: %s<br>
+		The col is: %s<br>
+		The data is: %s<br>
+		The filter is: %s<br>
+		The sign is: %s<br>
+		The filter_value is: %s<br>
 
-		row = request.form.get("row")
-		col = request.form.get('col')
-		data = request.form.get('data')
-		filter = request.form.get('filter')
-		sign = request.form.get('sign')
-		filter_value = request.form.get('filter_value')
+		'''
 
-		# row = form.getvalue('row')
-		# col = form.getvalue('col')
-		# data = form.getvalue('data')
-		# filter = form.getvalue('filter')
-		# sign = form.getvalue('sign')
-		# filter_value = form.getvalue('filter_value')
+		body = body % (row, col, values, filter_data, sign, filter_value)
 
-	# row = request.args.get('row')
-	# col = request.args.get('col')
-	# data = request.args.get('data')
-	# filter = request.args.get('filter')
-
-
-		body = body % (row, col, data, filter, sign, filter_value)
-		body += '''
-	</body>
-</html>
-			'''
-		#print body
-
+		body += table.to_html()
+		# #body = body % (filterCategory,filterMethod,filterValue,agg)
 		html.write(body)
-	return render_template("pivot_table.html")
+
+		# html.write(table.to_html())
+	return render_template("pivot_table.html",vars=template_vars)
+
 
 
 
