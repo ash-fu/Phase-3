@@ -11,6 +11,7 @@ import pandas as pd
 import numpy as np
 import csv
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 dataset = pd.read_csv("data_2012.csv")
 dataset.head()
@@ -83,14 +84,17 @@ def pivot_table():
 	filter_value = request.form['filter_value']
 
 	filteredData = filterData(filter_data, filter_value, filter_method)
-	table = constructPT(filteredData, row, col, values, agg)
 
-	cm = sns.light_palette("green", as_cmap=True)
 
-	c = table.style.background_gradient(cmap=cm)
+	
 
-	#filteredData = filterData(filterCategory,filterValue,filterMethod)
-	#table = constructPT(filteredData,row,column,values,agg)
+	# cm = sns.light_palette("green", as_cmap=True)
+
+	# c = table.style.background_gradient(cmap=cm)
+	# c.savefig("templates/table.png", dpi=50)
+
+	# #filteredData = filterData(filterCategory,filterValue,filterMethod)
+	# #table = constructPT(filteredData,row,column,values,agg)
 	with open('templates/pivot_table.html' , 'w') as html:
 		html.write('''
 			{% extends "base.html" %}
@@ -100,10 +104,22 @@ def pivot_table():
 			{% endblock %}
 
 			{% block content %}
+			<p id = "table"></p>
 			''')
-		c = table.to_html()
-		c = c.encode('ascii', 'ignore')
-		html.write(c)
+
+		try:
+			table = constructPT(filteredData, row, col, values, agg)
+			c = table.to_html()
+			c = c.encode('ascii', 'ignore')
+			html.write(c)
+		except:
+			html.write('''<h1>Error</h1>
+					<h2>INVALID INPUT!</h2>''')
+		
+		# c = table.to_html()
+		# c = c.encode('ascii', 'ignore')
+		# html.write(c)
+
 
 		html.write('''
 			{% endblock %}
@@ -112,7 +128,10 @@ def pivot_table():
 	return render_template("pivot_table.html",vars=template_vars)
 
 
-
+def webshow(img):
+	savefig(img,dpi=50)
+	print 'Content-Type: text/html\n'
+	print '<img width="400" height="300" src="'+img+'" />'
 
 
 # 	title = "Pivot Table"

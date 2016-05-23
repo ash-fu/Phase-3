@@ -6,27 +6,18 @@
 			{% endblock %}
 
 			{% block content %}
+			<p id = "table"></p>
 			<table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>Weather Conditions</th>
-      <th>Fine with high winds</th>
-      <th>Fine without high winds</th>
-      <th>Fog or mist if hazard</th>
-      <th>Other</th>
-      <th>Raining with high winds</th>
-      <th>Raining without high winds</th>
-      <th>Snowing without high winds</th>
-      <th>Unknown</th>
+      <th>Casualty Severity</th>
+      <th>Fatal</th>
+      <th>Serious</th>
+      <th>Slight</th>
       <th>All</th>
     </tr>
     <tr>
-      <th>Lighting Conditions</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Road Surface</th>
       <th></th>
       <th></th>
       <th></th>
@@ -35,76 +26,46 @@
   </thead>
   <tbody>
     <tr>
-      <th>Darkness: no street lighting</th>
+      <th>Dry</th>
+      <td>7</td>
+      <td>110</td>
+      <td>1671</td>
+      <td>1788</td>
+    </tr>
+    <tr>
+      <th>Flood</th>
       <td>0</td>
-      <td>4</td>
       <td>0</td>
-      <td>9</td>
       <td>2</td>
       <td>2</td>
+    </tr>
+    <tr>
+      <th>Frost / Ice</th>
+      <td>0</td>
+      <td>0</td>
+      <td>8</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>Snow</th>
+      <td>0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>Wet / Damp</th>
       <td>3</td>
-      <td>0</td>
-      <td>9</td>
-    </tr>
-    <tr>
-      <th>Darkness: street lighting unknown</th>
-      <td>1</td>
-      <td>4</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>3</td>
-      <td>0</td>
-      <td>0</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>Darkness: street lights present and lit</th>
-      <td>2</td>
-      <td>5</td>
-      <td>2</td>
-      <td>2</td>
-      <td>2</td>
-      <td>5</td>
-      <td>2</td>
-      <td>0</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>Darkness: street lights present but unlit</th>
-      <td>0</td>
-      <td>4</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <th>Daylight: street lights present</th>
-      <td>2</td>
-      <td>5</td>
-      <td>2</td>
-      <td>1</td>
-      <td>2</td>
-      <td>4</td>
-      <td>2</td>
-      <td>1</td>
-      <td>5</td>
+      <td>29</td>
+      <td>467</td>
+      <td>499</td>
     </tr>
     <tr>
       <th>All</th>
-      <td>2</td>
-      <td>5</td>
-      <td>2</td>
-      <td>9</td>
-      <td>2</td>
-      <td>5</td>
-      <td>3</td>
-      <td>1</td>
-      <td>9</td>
+      <td>10</td>
+      <td>139</td>
+      <td>2153</td>
+      <td>2302</td>
     </tr>
   </tbody>
 </table>

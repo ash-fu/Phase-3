@@ -6,3 +6,16 @@
  table{
  	background_gradient : (cmap='viridis', low=.5, high=0)
  }
+
+
+
+ h1{
+ 	color: red;
+ 	text-align: center;
+ 	text-decoration: underline;
+ }
+
+ h2{
+ 	font-size: 55px;
+ 	text-align: center !important;
+ }
