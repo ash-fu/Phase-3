@@ -1,6 +1,46 @@
-Filter Method: Number of Vehicles <br>
-		Filter Category: = <br>
-		Filter Value: e <br>
-		Aggregation: sum <br>
 
+			{% extends "base.html" %}
+			{% block content %}
+			<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Weather Conditions</th>
+      <th>Fine with high winds</th>
+      <th>Fine without high winds</th>
+      <th>Unknown</th>
+      <th>All</th>
+    </tr>
+    <tr>
+      <th>Sex of Casualty</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Female</th>
+      <td>1</td>
+      <td>1787</td>
+      <td>0</td>
+      <td>1788</td>
+    </tr>
+    <tr>
+      <th>Male</th>
+      <td>3</td>
+      <td>2197</td>
+      <td>1</td>
+      <td>2201</td>
+    </tr>
+    <tr>
+      <th>All</th>
+      <td>4</td>
+      <td>3984</td>
+      <td>1</td>
+      <td>3989</td>
+    </tr>
+  </tbody>
+</table>
+			{% endblock %}
 		

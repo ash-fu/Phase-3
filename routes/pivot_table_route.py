@@ -20,26 +20,28 @@ def pivot_table():
 	agg = request.form['agg']
 	values = request.form['Values']
 	
-	#filteredData = filterData(filterCategory,filterValue,filterMethod)
-	#table = constructPT(filteredData,row,column,values,agg)
+	filteredData = filterData(filterCategory,filterValue,filterMethod)
+	table = constructPT(filteredData,row,column,values,agg)
 	with open('templates/pivot_table.html' , 'w') as html:
-		# html.write('''
-		# 	{% extends "base.html" %}
-		# 	{% block content %}
-		# 	'''+table.to_html())
+		html.write('''
+			{% extends "base.html" %}
+			{% block content %}
+			''')
+		c = table.to_html()
+		c = c.encode('ascii', 'ignore')
+		html.write(c)
 
 
+		html.write('''
+			{% endblock %}
+		''')
+		# body = '''Filter Method: %s <br>
+		# Filter Category: %s <br>
+		# Filter Value: %s <br>
+		# Aggregation: %s <br>
 
-		# html.write('''
-		# 	{% endblock %}
-		# ''')
-		body = '''Filter Method: %s <br>
-		Filter Category: %s <br>
-		Filter Value: %s <br>
-		Aggregation: %s <br>
-
-		'''
-		body = body % (filterCategory,filterMethod,filterValue,agg)
-		html.write(body)
+		# '''
+		# body = body % (filterCategory,filterMethod,filterValue,agg)
+		# html.write(body)
 
 	return render_template("pivot_table.html",vars=template_vars)
