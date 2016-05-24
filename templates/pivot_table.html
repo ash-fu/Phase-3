@@ -1,0 +1,57 @@
+
+			{% extends "base.html" %}
+
+			{% block customCSS %}
+			<link rel="stylesheet" href="templates/css/pivot_table_builder.css" type="text/css">
+ 			<link rel="stylesheet" href="templates/stylesheets/dataset.css" type="text/css">
+ 			<link rel="stylesheet" href="templates/css/bootstrap-table.min.css" type="text/css">
+ 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">            
+
+ 			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+ 			<!-- Latest compiled and minified JavaScript -->
+ 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+ 			<!-- Latest compiled and minified JavaScript -->
+ 			<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
+			{% endblock %}
+
+			{% block content %}
+			<p id = "table"></p>
+			<h3>Pivot Table</h3>
+	 			<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Casualty Severity</th>
+      <th>Fatal</th>
+      <th>Serious</th>
+      <th>Slight</th>
+    </tr>
+    <tr>
+      <th>Casualty Class</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Driver</th>
+      <td>11</td>
+      <td>155</td>
+      <td>1652</td>
+    </tr>
+    <tr>
+      <th>Passenger</th>
+      <td>NaN</td>
+      <td>60</td>
+      <td>885</td>
+    </tr>
+    <tr>
+      <th>Pedestrian</th>
+      <td>5</td>
+      <td>66</td>
+      <td>192</td>
+    </tr>
+  </tbody>
+</table>
+			{% endblock %}
+		
