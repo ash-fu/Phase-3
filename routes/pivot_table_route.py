@@ -55,7 +55,7 @@ def constructPT(data,rows,columns,values,agg):
 	#table = pd.pivot_table(data,index=rows,columns=columns,values=values,\
 	#aggfunc=agg_action,fill_value=0,margins=True,dropna=True)
 	table = pd.pivot_table(data,index=rows,columns=columns,values=values,\
-	aggfunc=agg_action,fill_value=0)
+	aggfunc=agg_action)
 	table.columns = table.columns.droplevel(0)
 	return table
 
@@ -67,15 +67,6 @@ def pivot_table():
 	template_vars = {
 		"title": title
 	}
-
-	# filterCategory = request.form['Filter Category']
-	# filterMethod = request.form['Filter Method']
-	# filterValue = request.form['Filter Value']
-	# row = request.form['Row']
-	# column = request.form['Column']
-	# agg = request.form['agg']
-	# values = request.form['Values']
-
 
 	row = request.form['row']
 	col = request.form['col']
@@ -105,9 +96,7 @@ def pivot_table():
  			<link rel="stylesheet" href="templates/stylesheets/dataset.css" type="text/css">
  			<link rel="stylesheet" href="templates/css/bootstrap-table.min.css" type="text/css">
  			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">            
- 			{% endblock %}
 
- 			{% block customJS %}
  			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
  			<!-- Latest compiled and minified JavaScript -->
  			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -121,15 +110,35 @@ def pivot_table():
 
 		try:
 			table = constructPT(filteredData, row, col, values, agg)
-			# table = table.drop('All', axis=1)
-	 	# 	table = table.drop('All')
-	 		maxVal = table.values.max()
+			html.write('''<h3>Pivot Table</h3>
+	 			''')
+			# # table = table.drop('All', axis=1)
+	 	# # 	table = table.drop('All')
+	 		# maxVal = table.values.max()
+	 		# #header = 
+	 		# r = 0;
+	 		# for row in table.iterrows():
+	 		# 	if r == 0:
+	 		# 		html.write('\t<thead>\r\t\t<tr>\r')
+				# for col in row:
+				# 	html.write('\t\t\t<th data-sortable="true">' + col + '</th>\r')
+				# 	html.write('\t\t</tr>\r\t</thead>\r')
+				# 	html.write('\t<tbody>\r')
+	 		# 		#put headers in right pose
+	 		# 		r = 1;
+	 		# 	else: 
+	 		# 		#deal with data
+	 		# 		for cell in row:
+	 		# 			val = row[cell]
+	 		# 			getColoredRow(maxVal, val)
+
+
 			c = table.to_html()
 			c = c.encode('ascii', 'ignore')
 			html.write(c)
 		except:
 			html.write('''<h1>Error</h1>
-					<h2>INVALID INPUT!</h2>''')
+					<h2>INVALID INPUT! Please check your selection. </h2>''')
 		
 		# c = table.to_html()
 		# c = c.encode('ascii', 'ignore')
@@ -142,10 +151,16 @@ def pivot_table():
 	return render_template("pivot_table.html",vars=template_vars)
 
 
-def webshow(img):
-	savefig(img,dpi=50)
-	print 'Content-Type: text/html\n'
-	print '<img width="400" height="300" src="'+img+'" />'
+def getColoredRow(maxVal,val):
+    white = [255,255,255]
+    orange = [255,63,0]
+    red = white[ 0 ] + ((orange[0] - white[0] ) * val / maxVal )
+    green = white[ 1 ] + ((orange[1] - white[1] ) * val / maxVal )
+    blue = white[ 2 ] + ((orange[2] - white[2] ) * val / maxVal )
+    
+    color = '<td style="background-color: rgb(%s,%s,%s)">%s</td>;'%(red,green,blue,val)
+    return color
+
 
 
 # 	title = "Pivot Table"

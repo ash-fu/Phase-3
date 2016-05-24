@@ -1,3 +1,4 @@
+
 			{% extends "base.html" %}
 
 			{% block customCSS %}
@@ -5,9 +6,7 @@
  			<link rel="stylesheet" href="templates/stylesheets/dataset.css" type="text/css">
  			<link rel="stylesheet" href="templates/css/bootstrap-table.min.css" type="text/css">
  			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">            
- 			{% endblock %}
 
- 			{% block customJS %}
  			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
  			<!-- Latest compiled and minified JavaScript -->
  			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -17,16 +16,29 @@
 
 			{% block content %}
 			<p id = "table"></p>
-			<table border="1" class="dataframe">
+			<h3>Pivot Table</h3>
+	 			<table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>Casualty Severity</th>
-      <th>Fatal</th>
-      <th>Serious</th>
-      <th>Slight</th>
+      <th>Weather Conditions</th>
+      <th>Fine with high winds</th>
+      <th>Fine without high winds</th>
+      <th>Fog or mist if hazard</th>
+      <th>Other</th>
+      <th>Raining with high winds</th>
+      <th>Raining without high winds</th>
+      <th>Snowing without high winds</th>
+      <th>Unknown</th>
+      <th>All</th>
     </tr>
     <tr>
-      <th>Road Surface</th>
+      <th>Lighting Conditions</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -34,35 +46,78 @@
   </thead>
   <tbody>
     <tr>
-      <th>Dry</th>
-      <td>7</td>
-      <td>110</td>
-      <td>1671</td>
-    </tr>
-    <tr>
-      <th>Flood</th>
+      <th>Darkness: no street lighting</th>
       <td>0</td>
+      <td>35</td>
       <td>0</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>Frost / Ice</th>
-      <td>0</td>
-      <td>0</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>Snow</th>
-      <td>0</td>
-      <td>0</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>Wet / Damp</th>
+      <td>27</td>
+      <td>6</td>
       <td>3</td>
-      <td>29</td>
-      <td>467</td>
+      <td>3</td>
+      <td>0</td>
+      <td>74</td>
+    </tr>
+    <tr>
+      <th>Darkness: street lighting unknown</th>
+      <td>1</td>
+      <td>720</td>
+      <td>0</td>
+      <td>0</td>
+      <td>4</td>
+      <td>32</td>
+      <td>0</td>
+      <td>0</td>
+      <td>757</td>
+    </tr>
+    <tr>
+      <th>Darkness: street lights present and lit</th>
+      <td>3</td>
+      <td>426</td>
+      <td>2</td>
+      <td>3</td>
+      <td>21</td>
+      <td>142</td>
+      <td>0</td>
+      <td>0</td>
+      <td>597</td>
+    </tr>
+    <tr>
+      <th>Darkness: street lights present but unlit</th>
+      <td>0</td>
+      <td>15</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>Daylight: street lights present</th>
+      <td>8</td>
+      <td>1502</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>122</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1636</td>
+    </tr>
+    <tr>
+      <th>All</th>
+      <td>12</td>
+      <td>2698</td>
+      <td>2</td>
+      <td>30</td>
+      <td>34</td>
+      <td>299</td>
+      <td>3</td>
+      <td>1</td>
+      <td>3079</td>
     </tr>
   </tbody>
 </table>
 			{% endblock %}
+		
