@@ -1,6 +1,7 @@
  table{
-    margin-left:auto; 
+ 	margin-left:auto; 
     margin-right:auto;
+ 	background_gradient : (cmap='viridis', low=.5, high=0)
  }
 
 

@@ -43,12 +43,14 @@ h4,
 h5,
 h6 {
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+    color: white;
 }
 
 p {
     margin-bottom: 20px;
     font-size: 16px;
     line-height: 1.5;
+    color: white;
 }
 
 .bg-primary {
@@ -391,6 +393,7 @@ fieldset[disabled] .btn-default.active {
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
+    width:150px;
 }
 
 .btn-primary:hover,
@@ -477,4 +480,13 @@ body {
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
+}
+
+ul
+{
+    list-style-type: none;
+}
+
+li {
+    margin:20px;
 }

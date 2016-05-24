@@ -87,7 +87,6 @@ def pivot_table():
 
 	filteredData = filterData(filter_data, filter_value, filter_method)
 
-
 	
 
 	# cm = sns.light_palette("green", as_cmap=True)
@@ -135,7 +134,6 @@ def pivot_table():
 		# c = table.to_html()
 		# c = c.encode('ascii', 'ignore')
 		# html.write(c)
-
 
 		html.write('''
 			{% endblock %}
