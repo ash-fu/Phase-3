@@ -2,7 +2,18 @@
 			{% extends "base.html" %}
 
 			{% block customCSS %}
-			  <link rel="stylesheet" href="templates/css/pivot_table_builder.css" type="text/css">
+			<link rel="stylesheet" href="templates/css/pivot_table_builder.css" type="text/css">
+ 			<link rel="stylesheet" href="templates/stylesheets/dataset.css" type="text/css">
+ 			<link rel="stylesheet" href="templates/css/bootstrap-table.min.css" type="text/css">
+ 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">            
+ 			{% endblock %}
+
+ 			{% block customJS %}
+ 			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+ 			<!-- Latest compiled and minified JavaScript -->
+ 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+ 			<!-- Latest compiled and minified JavaScript -->
+ 			<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
 			{% endblock %}
 
 			{% block content %}
@@ -14,11 +25,9 @@
       <th>Fatal</th>
       <th>Serious</th>
       <th>Slight</th>
-      <th>All</th>
     </tr>
     <tr>
       <th>Road Surface</th>
-      <th></th>
       <th></th>
       <th></th>
       <th></th>
@@ -30,13 +39,11 @@
       <td>7</td>
       <td>110</td>
       <td>1671</td>
-      <td>1788</td>
     </tr>
     <tr>
       <th>Flood</th>
       <td>0</td>
       <td>0</td>
-      <td>2</td>
       <td>2</td>
     </tr>
     <tr>
@@ -44,13 +51,11 @@
       <td>0</td>
       <td>0</td>
       <td>8</td>
-      <td>8</td>
     </tr>
     <tr>
       <th>Snow</th>
       <td>0</td>
       <td>0</td>
-      <td>5</td>
       <td>5</td>
     </tr>
     <tr>
@@ -58,14 +63,6 @@
       <td>3</td>
       <td>29</td>
       <td>467</td>
-      <td>499</td>
-    </tr>
-    <tr>
-      <th>All</th>
-      <td>10</td>
-      <td>139</td>
-      <td>2153</td>
-      <td>2302</td>
     </tr>
   </tbody>
 </table>

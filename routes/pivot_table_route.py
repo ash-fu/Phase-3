@@ -52,8 +52,10 @@ def constructPT(data,rows,columns,values,agg):
 	else:
 		agg_action = [np.mean]
 
+	#table = pd.pivot_table(data,index=rows,columns=columns,values=values,\
+	#aggfunc=agg_action,fill_value=0,margins=True,dropna=True)
 	table = pd.pivot_table(data,index=rows,columns=columns,values=values,\
-	aggfunc=agg_action,fill_value=0,margins=True,dropna=True)
+	aggfunc=agg_action,fill_value=0)
 	table.columns = table.columns.droplevel(0)
 	return table
 
@@ -100,7 +102,18 @@ def pivot_table():
 			{% extends "base.html" %}
 
 			{% block customCSS %}
-			  <link rel="stylesheet" href="templates/css/pivot_table_builder.css" type="text/css">
+			<link rel="stylesheet" href="templates/css/pivot_table_builder.css" type="text/css">
+ 			<link rel="stylesheet" href="templates/stylesheets/dataset.css" type="text/css">
+ 			<link rel="stylesheet" href="templates/css/bootstrap-table.min.css" type="text/css">
+ 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">            
+ 			{% endblock %}
+
+ 			{% block customJS %}
+ 			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+ 			<!-- Latest compiled and minified JavaScript -->
+ 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+ 			<!-- Latest compiled and minified JavaScript -->
+ 			<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
 			{% endblock %}
 
 			{% block content %}
@@ -109,6 +122,9 @@ def pivot_table():
 
 		try:
 			table = constructPT(filteredData, row, col, values, agg)
+			# table = table.drop('All', axis=1)
+	 	# 	table = table.drop('All')
+	 		maxVal = table.values.max()
 			c = table.to_html()
 			c = c.encode('ascii', 'ignore')
 			html.write(c)
