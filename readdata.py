@@ -45,3 +45,16 @@ def gender(filename):
         else:
             female.append(row[10])
     return (male,female)
+
+
+
+content = open("leeds-2012.csv")
+reader = csv.reader(content)
+headers = reader.next()
+data = zip(*reader)
+header = []
+count= 0
+for column in data:
+    header.append(column[count])
+    count +=1
+print heade
