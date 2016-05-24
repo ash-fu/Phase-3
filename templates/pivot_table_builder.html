@@ -19,6 +19,12 @@
   <!-- (Optional) Latest compiled and minified JavaScript translation files -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
   {% endblock %}
   
   {% block content %}
@@ -101,6 +107,7 @@
     <div class="row">
       <select class="selectpicker show-menu-arrow" name="filter data" id="filter data">
         <option value="none" selected>Select Filter Data</option>
+        <option value="No Filter">No Filter</option>
         <option value="Accident Date">Accident Date</option>
         <option value="Road Surface">Road Surface</option>
         <option value="Lighting Conditions">Lighting Conditions</option>
