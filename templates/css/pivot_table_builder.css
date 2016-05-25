@@ -32,7 +32,7 @@ select{
 
 
 textarea{
-  font-family: inherit; 
+  font-family: inherit;
   font-size: inherit;
   vertical-align: middle;
   width:220px;
@@ -48,7 +48,7 @@ input[type=submit]{
     -webkit-border-radius: 8px;
     border-radius:8px;
     color: #fff;
-    font: 2.4em Futura, ‘Century Gothic’, AppleGothic, sans-serif;
+    font: 2.4em sans-serif;
     font-size: 25px;
     text-decoration: none;
     cursor: pointer;

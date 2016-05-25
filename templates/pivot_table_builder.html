@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="templates/css/pivot_table_builder.css" type="text/css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -26,10 +26,10 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
   {% endblock %}
-  
+
   {% block content %}
 <h1>Pivot Table Builder</h1>
-  
+
 
 <form action = "pivot_table" method = "post">
 
@@ -39,7 +39,7 @@
   <div class="col-xs-6 form-group">
 
     <div class = 'row'><label for = "row_label"> Row </label></div>
-  
+
     <div class="row">
     <select class="selectpicker show-menu-arrow" name="row" id="row">
       <option value="none" selected>Select Row Label</option>
@@ -125,7 +125,7 @@
         <option value="Age of Casualty">Age of Casualty</option>
       </select>
     </div>
-    <div class="row"> 
+    <div class="row">
       <select class="selectpicker show-menu-arrow" name="sign" id="sign">
         <option value = "sign" selected> Select the Relationship </option>
         <option value="=">=</option>
@@ -140,21 +140,22 @@
         <option value="is True">is True</option>
         <option value="is False">is False</option> -->
 
-      </select> 
+      </select>
       <div class="row">
         <!--<input type="text" name = "filter_value"> Filter Value </input> -->
-        <textarea name = "filter_value"> Filter Value </textarea> 
+        <textarea name = "filter_value"> Filter Value </textarea>
       </div>
     </div>
-      
-    
-    
+
+
+
   </div>
+
   <p>
        <input type="submit" value = "Create Pivot Table" />
   </p>
 </div>
-    
+
 </form>
 
 {% endblock %}
