@@ -38,14 +38,8 @@ body {
 
 .navbar-default .navbar-header .navbar-brand {
     text-transform: uppercase;
-<<<<<<< HEAD
     font-family: 'Lucida Sans Unicode','Open Sans','Helvetica Neue',Arial,sans-serif;
     font-weight: 700;
-=======
-    font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
-    font-weight: 700;
-    color: #f05f40;
->>>>>>> 51d169508742fa3068e22327266fe340ac42bd35
 }
 
 .navbar-default .navbar-header .navbar-brand:hover,
