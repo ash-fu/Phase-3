@@ -6,17 +6,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   {% endblock %}
 
-  {% block customJS %}
-  <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-  {% endblock %}
-
   {% block content %}
   <h1>Leeds</h1>
   <p>Leeds, a city in West Yorkshire, England, was one of the leading centers of industry in Victorian England. (TripAdvisor)
   They have realtime travel and traffic information for Leeds including live CCTV and mobile phone SMS services, live road traffic news and travel information, brought to you by BBC Travel and LeedsTravel.info</p>
 
-  <!--<div id="map" style="width: 800px; height: 400px; margin: 0 auto"></div>-->
-
+  <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+  <div id="map" style="width: 800px; height: 400px; margin: 0 auto"></div>
   <script type="text/javascript">
     var locations = [
       ['Leeds', 53.801277, -1.548567],
@@ -123,10 +119,10 @@ The age group more likely to be in a car accident and be the casualty is from 15
                   }]
               });
           });
-    </script> 
-    
+    </script>
+
 <h2>Observation 2</h2>
-<p>Majority of vehicle accidents occur in a car. Other vehicles that are likely to be in a accident are bicycles, bus, or motorcyles. <p>  
+<p>Majority of vehicle accidents occur in a car. Other vehicles that are likely to be in a accident are bicycles, bus, or motorcyles. <p>
 <div id="container_b" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 <script type="text/javascript">
 $(function () {
@@ -185,13 +181,13 @@ $(function () {
                 y: 2
             }, {
                 name: 'Taxi',
-                y: 115           
+                y: 115
             }]
         }]
     });
 });
 </script>
-            
+
 <h2>Observation 3</h2>
 <p>While poor weather conditions, lighting conditions, road surface is assumed to be cause vehicle accidents, this is not true. As seen in the graphs below fine weather,daylight and dry roads are the largest contributors to vehicle accidents.
 And a reasonable assumption is that fine weather, daylight and dry roads is not the reason for vehicle accidents. <p>
@@ -232,7 +228,7 @@ $(function () {
                 y: 2450
             }, {
                 name: 'Raining',
-                y: 283                
+                y: 283
             }, {
                 name: 'Fog or Mist',
                 y: 4,
@@ -242,7 +238,7 @@ $(function () {
             }, {
                 name: 'Snowing',
                 y: 4
-         
+
             }]
         }]
     });
@@ -341,7 +337,7 @@ $(function () {
                 y: 5
             }, {
                 name: 'Snow',
-                y: 7                
+                y: 7
             }, {
                 name: 'Frost or Ice',
                 y: 22,
@@ -351,7 +347,7 @@ $(function () {
             }, {
                 name: 'Dry',
                 y: 2109
-         
+
             }]
         }]
     });
@@ -411,9 +407,9 @@ The assumption is that when there is a greater number of cars on the roads it ca
               });
           });
     </script>
-            
+
 <h2>Observation 4</h2>
-<p>In addition, month is not correleated with vehicle accidents, meaning every month has a similar chance of having a vehicle accident <p> 
+<p>In addition, month is not correleated with vehicle accidents, meaning every month has a similar chance of having a vehicle accident <p>
 <div id="container_g" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 <script type="text/javascript">
 $(function () {
@@ -483,16 +479,16 @@ $(function () {
                     y: 222
                 }, {
                     name: 'December',
-                    y: 222                   
+                    y: 222
                 }]
             }]
         });
     });
 });
 </script>
-            
+
 <h2>Observation 5</h2>
-<p>Most vehicle accidents result in a severity of slight and driver and passenger are the casualties. <p> 
+<p>Most vehicle accidents result in a severity of slight and driver and passenger are the casualties. <p>
 <div id="container_h" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
 <script type="text/javascript">
           $(function () {
@@ -656,7 +652,7 @@ $(function () {
               });
           });
     </script>
-    
+
 <h2>Conclusion</h2>
 <p id=conclusion>"Therefore, the overall contention is that there is a higher chance of a car accident if you are:
 <br>
