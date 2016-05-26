@@ -91,31 +91,25 @@ def pivot_table():
 		html.write('''
 			{% extends "base.html" %}
 
-			{% block customCSS %}
-			<link rel="stylesheet" href="templates/css/pivot_table_builder.css" type="text/css">
- 			<link rel="stylesheet" href="templates/stylesheets/dataset.css" type="text/css">
- 			<link rel="stylesheet" href="templates/css/bootstrap-table.min.css" type="text/css">
- 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">            
-
- 			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
- 			<!-- Latest compiled and minified JavaScript -->
- 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
- 			<!-- Latest compiled and minified JavaScript -->
- 			<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
+			{% block customCSS %}   
+			<link rel="stylesheet" href="templates/css/pivottable.css" type="text/css">
+                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+               
 			{% endblock %}
 
 			{% block content %}
-			<p id = "table"></p>
 			''')
 
 		try:
 			table = constructPT(filteredData, row, col, values, agg)
-			html.write('''<h3>Pivot Table</h3>
-	 			''')
+  			maxVal=table.max().max()
+  			vPoor=int(float(maxVal/5))
+  			poor=vPoor*2
+     			avg=vPoor*3
+  			good=vPoor*4
+  			vGood=vPoor*5        
 			# # table = table.drop('All', axis=1)
 	 	# # 	table = table.drop('All')
-	 		# maxVal = table.values.max()
-	 		# #header = 
 	 		# r = 0;
 	 		# for row in table.iterrows():
 	 		# 	if r == 0:
@@ -131,14 +125,48 @@ def pivot_table():
 	 		# 		for cell in row:
 	 		# 			val = row[cell]
 	 		# 			getColoredRow(maxVal, val)
-
-
+                     
 			c = table.to_html()
-			c = c.encode('ascii', 'ignore')
-			html.write(c)
+			c = c.encode('ascii', 'ignore')           
+			html.write('''
+                    
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+<script type="text/javascript">
+$('tbody tr td').each(
+
+function() {
+    var ''') 
+			html.write('vGood = '+ str(vGood)+',')
+			html.write('good = '+ str(good)+',')
+			html.write('avg = '+ str(avg)+',')
+			html.write('poor= '+ str(poor)+',')
+			html.write('vPoor= '+ str(vPoor)+',')
+			html.write('''
+        score = $(this).text();
+    
+    if (score >= vGood) {
+        $(this).addClass('vGood');
+    }
+    else if (score < vGood && score >= good) {
+        $(this).addClass('good');
+    }
+    else if (score <good && score >= avg) {
+        $(this).addClass('avg');
+    }
+    else if (score < avg&& score >= poor) {
+        $(this).addClass('poor');
+    }
+    else if (score < poor) {
+        $(this).addClass('vPoor');
+    }
+    });
+ </script>''')
+ 			html.write('''<h1>Pivot Table</h1><br><br>''')
+ 			html.write('<table>'+c +'<br><br><br><br><br><br><br><br><br><br><br><br><br>')
 		except:
-			html.write('''<h1>Error</h1>
-					<h2>INVALID INPUT! Please check your selection. </h2>''')
+			html.write('''<h1>Error</h1><br><br><br><br><br><br><br><br><br><br>
+					<h2 style="text-align:center">INVALID INPUT! Please check your selection. </h2>''')
 		
 		# c = table.to_html()
 		# c = c.encode('ascii', 'ignore')
