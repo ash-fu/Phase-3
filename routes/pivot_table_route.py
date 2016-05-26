@@ -94,7 +94,6 @@ def pivot_table():
 			{% block customCSS %}   
 			<link rel="stylesheet" href="templates/css/pivottable.css" type="text/css">
                  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-               
 			{% endblock %}
 
 			{% block content %}
@@ -129,9 +128,8 @@ def pivot_table():
 			c = table.to_html()
 			c = c.encode('ascii', 'ignore')           
 			html.write('''
-                    
 <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
-<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>                    
 <script type="text/javascript">
 $('tbody tr td').each(
 
@@ -163,7 +161,7 @@ function() {
     });
  </script>''')
  			html.write('''<h1>Pivot Table</h1><br><br>''')
- 			html.write('<table>'+c +'<br><br><br><br><br><br><br><br><br><br><br><br><br>')
+ 			html.write('<table>'+c +'<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>')
 		except:
 			html.write('''<h1>Error</h1><br><br><br><br><br><br><br><br><br><br>
 					<h2 style="text-align:center">INVALID INPUT! Please check your selection. </h2>''')

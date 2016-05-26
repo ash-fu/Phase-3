@@ -31,15 +31,14 @@ select{
 }
 
 
-textarea{
-  font-family: inherit;
+input[type=text]{
+  font-family: inherit; 
   font-size: inherit;
   vertical-align: middle;
   width:220px;
-  height: 35px;
+  height: 30px;
   font-size: 13px !important;
   -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
 }
 
 input[type=submit]{
