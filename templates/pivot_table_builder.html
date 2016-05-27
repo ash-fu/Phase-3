@@ -1,0 +1,116 @@
+
+            {% extends "base.html" %}
+
+            {% block customCSS %}
+                <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"/>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+                <link rel="stylesheet" href="templates/css/pivot_table_builder.css" type="text/css">
+                <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+            {% endblock %}
+
+            {% block customJS %}
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
+                <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>   
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+                <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+            {% endblock %}  
+        {% block header %}
+        <div id = "heading">
+            <h2>Pivot Table Builder</h2> 
+            <img src = "templates/img/cars.png"/>
+        </div>
+        {% endblock %}{% block content %}<form method="post" action="pivot_table">
+            <!--Row-->
+            <div class="row" id='dropbox1'>
+                <div class="col-xs-6 form-group">
+
+                  <div class = 'row'><label for = "row_label"> Row </label></div>
+                
+                  <div class="row">
+                  <select class="selectpicker show-menu-arrow" name="row" id="row">
+        <option value="" selected > -- select an option -- </option><option value='Accident Date'>Accident Date</option>
+<option value='Road Surface'>Road Surface</option>
+<option value='Lighting Conditions'>Lighting Conditions</option>
+<option value='Weather Conditions'>Weather Conditions</option>
+<option value='Casualty Class'>Casualty Class</option>
+<option value='Casualty Severity'>Casualty Severity</option>
+<option value='Sex of Casualty'>Sex of Casualty</option>
+<option value='Type of Vehicle'>Type of Vehicle</option>
+<option value='Time (Intervals)'>Time (Intervals)</option>
+<option value='Date (Intervals)'>Date (Intervals)</option>
+<option value='Age (Intervals)'>Age (Intervals)</option>
+
+                </select>
+                </div>
+            </div>
+        
+            <!--Column-->
+            <div class="col-xs-6 form-group">
+                <div class="row"><label for = "col_label"> Column </label></div>
+                <div class="row">
+                <select required class="selectpicker show-menu-arrow" name="col" id="col">
+        <option value="" selected > -- select an option -- </option><option value='Accident Date'>Accident Date</option><option value='Road Surface'>Road Surface</option><option value='Lighting Conditions'>Lighting Conditions</option><option value='Weather Conditions'>Weather Conditions</option><option value='Casualty Class'>Casualty Class</option><option value='Casualty Severity'>Casualty Severity</option><option value='Sex of Casualty'>Sex of Casualty</option><option value='Type of Vehicle'>Type of Vehicle</option><option value='Time (Intervals)'>Time (Intervals)</option><option value='Date (Intervals)'>Date (Intervals)</option><option value='Age (Intervals)'>Age (Intervals)</option>
+                </select>
+            </div>
+          </div>
+        </div>
+        
+            <!--Values-->
+            <div class="row" id='dropbox2'>
+            <div class="col-xs-6 form-group">
+              <div class="row"> <label for = "agg_label"> Aggregation </label> </div>
+              <div class="row">
+                <select class="selectpicker show-menu-arrow" name="val" id="val">
+        <option value="" selected > -- select an option -- </option><option value='Number of Vehicles'>Number of Vehicles</option><option value='Number of Casualties'>Number of Casualties</option><option value='Time (24hr)'>Time (24hr)</option><option value='Age of Casualty'>Age of Casualty</option>
+                </select>
+            </div>
+        
+            <!--Aggregation-->
+            <div class="row">
+                <select class="selectpicker show-menu-arrow" name="agg" id="agg">
+                    <option value="" selected > -- select an option -- </option>
+                    <option value="sum">Sum</option>
+                    <option value="median">Median</option>
+                    <option value="maximum">Maximum</option>
+                    <option value="minimum">Minimum</option>
+                    <option value="mean">Mean</option>
+                </select>
+                </div>
+            </div>
+        
+            <!--Filter-->
+            <div class="col-xs-6 form-group">
+                <div class="row"> <label for = "filter_label"> Category Filter </label> </div>
+                <div class="row">
+                    <select class="selectpicker show-menu-arrow" name="filter category" id="filter category">
+        <option value="" selected > -- select an option -- </option><option value='No Filter'>No Filter</option><option value='Number of Vehicles'>Number of Vehicles</option><option value='Number of Casualties'>Number of Casualties</option><option value='Time (24hr)'>Time (24hr)</option><option value='Age of Casualty'>Age of Casualty</option><option value='Accident Date'>Accident Date</option><option value='Road Surface'>Road Surface</option><option value='Lighting Conditions'>Lighting Conditions</option><option value='Weather Conditions'>Weather Conditions</option><option value='Casualty Class'>Casualty Class</option><option value='Casualty Severity'>Casualty Severity</option><option value='Sex of Casualty'>Sex of Casualty</option><option value='Type of Vehicle'>Type of Vehicle</option><option value='Time (Intervals)'>Time (Intervals)</option><option value='Date (Intervals)'>Date (Intervals)</option><option value='Age (Intervals)'>Age (Intervals)</option>
+                </select>
+            </div>
+        
+            <div class="row"> 
+                <select class="selectpicker show-menu-arrow" name="filter method" id="filter method">
+                  <option value="" selected > -- select an option -- </option>
+                  <option value="=">equal to</option>
+                  <option value="!=">not equal to</option>
+                  <option value=">">greater than</option>
+                  <option value=">=">equal to or greater than</option>
+                  <option value="<">less than</option>
+                  <option value="<=">equal to or less than</option>
+                </select>
+            
+        
+                <div class="row">
+                <input type="text" name = "filter value"/>
+                </div>
+            </div>
+        
+            </div>
+            <p>
+                <input type="submit" />
+            </p>
+        </div>
+        </form>
+        {% endblock %}

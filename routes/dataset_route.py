@@ -2,7 +2,7 @@ from flask import render_template
 from phase3 import app
 import csv
 
-csvFile = open('data_2012.csv')#enter the csv filename
+csvFile = open('data_2012.csv')
 csvReader = csv.reader(csvFile)
 csvData = list(csvReader)
 
@@ -13,7 +13,7 @@ def dataset():
     template_vars = {
         "title": title
     }
-    with open('templates/dataset.html', 'w') as html: #enter the output filename
+    with open('templates/dataset.html', 'w') as html: 
         html.write('''
             {% extends "base.html" %}
 

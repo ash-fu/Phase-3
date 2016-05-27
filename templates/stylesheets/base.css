@@ -9,8 +9,7 @@ body {
     position:relative;
 }
 #header {
-    background:#ededed;
-    padding:10px;
+    padding:20px;
 }
 #content {
     padding-bottom:100px; /* Height of the footer element */
@@ -24,7 +23,6 @@ body {
     height:50px;
     position:absolute;
     bottom:0;
-    left:0;
 }
 
 .navbar-default {

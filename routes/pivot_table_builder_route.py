@@ -1,7 +1,7 @@
 from flask import render_template
 from phase3 import app
 import csv
-
+from readdata import *
 
 #server/pivot_table_builder
 @app.route("/pivot_table_builder")
@@ -12,8 +12,11 @@ def pivot_table_builder():
     }
     elements_list = getelements("data_2012.csv")
     all_elements = elements_list[0]+elements_list[1]
+    filter_elements=["No Filter"]+all_elements
     categorical_elements = elements_list[1]
     numerical_elements = elements_list[0]
+
+
     with open('templates/pivot_table_builder.html' , 'w') as html:
         html.write('''
             {% extends "base.html" %}
@@ -22,25 +25,30 @@ def pivot_table_builder():
                 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
                 <link rel="stylesheet" href="templates/css/pivot_table_builder.css" type="text/css">
-                <meta name="viewport" content="width=device-width, initial-scale=1">
                 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
             {% endblock %}
 
             {% block customJS %}
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
                 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-                <!-- Latest compiled and minified JavaScript -->
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-                <!-- (Optional) Latest compiled and minified JavaScript translation files -->
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
+                <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>   
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
                 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
             {% endblock %}  
         ''')
 
-        html.write('{% block content %}')
+        html.write('{% block header %}')
+        html.write('''
+        <div id = "heading">
+            <h2>Pivot Table Builder</h2> 
+            <img src = "templates/img/cars.png"/>
+        </div>
+        ''')
+        html.write('{% endblock %}')
 
+        html.write('{% block content %}')
         html.write('<form method="post" action="pivot_table">')
 
         # rows
@@ -54,8 +62,9 @@ def pivot_table_builder():
                   <div class="row">
                   <select class="selectpicker show-menu-arrow" name="row" id="row">
         ''')
+        html.write('<option value="" selected > -- select an option -- </option>')
         for e in categorical_elements:
-            html.write("<option value='%s'>%s</option>"%(e,e))
+            html.write("<option value='%s'>%s</option>\n"%(e,e))
 
         html.write('''
                 </select>
@@ -69,8 +78,9 @@ def pivot_table_builder():
             <div class="col-xs-6 form-group">
                 <div class="row"><label for = "col_label"> Column </label></div>
                 <div class="row">
-                <select class="selectpicker show-menu-arrow" name="col" id="col">
+                <select required class="selectpicker show-menu-arrow" name="col" id="col">
         ''')
+        html.write('<option value="" selected > -- select an option -- </option>')
         for e in categorical_elements:
             html.write("<option value='%s'>%s</option>"%(e,e))
 
@@ -88,9 +98,9 @@ def pivot_table_builder():
             <div class="col-xs-6 form-group">
               <div class="row"> <label for = "agg_label"> Aggregation </label> </div>
               <div class="row">
-                <select class="selectpicker show-menu-arrow" name="data" id="data">
+                <select class="selectpicker show-menu-arrow" name="val" id="val">
         ''')
-        
+        html.write('<option value="" selected > -- select an option -- </option>')
         for e in numerical_elements:
             html.write("<option value='%s'>%s</option>"%(e,e))
         
@@ -104,6 +114,7 @@ def pivot_table_builder():
             <!--Aggregation-->
             <div class="row">
                 <select class="selectpicker show-menu-arrow" name="agg" id="agg">
+                    <option value="" selected > -- select an option -- </option>
                     <option value="sum">Sum</option>
                     <option value="median">Median</option>
                     <option value="maximum">Maximum</option>
@@ -118,11 +129,11 @@ def pivot_table_builder():
         html.write('''
             <!--Filter-->
             <div class="col-xs-6 form-group">
-                <div class="row"> <label for = "filter_label"> Report Filter </label> </div>
+                <div class="row"> <label for = "filter_label"> Category Filter </label> </div>
                 <div class="row">
-                    <select class="selectpicker show-menu-arrow" name="filter data" id="filter data">
+                    <select class="selectpicker show-menu-arrow" name="filter category" id="filter category">
         ''')
-        filter_elements=["No Filter"]+all_elements
+        html.write('<option value="" selected > -- select an option -- </option>')
         for e in filter_elements:
             html.write("<option value='%s'>%s</option>"%(e,e))
 
@@ -134,9 +145,10 @@ def pivot_table_builder():
         # filter method
         html.write('''
             <div class="row"> 
-                <select class="selectpicker show-menu-arrow" name="sign" id="sign">
+                <select class="selectpicker show-menu-arrow" name="filter method" id="filter method">
+                  <option value="" selected > -- select an option -- </option>
                   <option value="=">equal to</option>
-                  <option value="<">not equal to</option>
+                  <option value="!=">not equal to</option>
                   <option value=">">greater than</option>
                   <option value=">=">equal to or greater than</option>
                   <option value="<">less than</option>
@@ -148,7 +160,7 @@ def pivot_table_builder():
         #filter value
         html.write('''
                 <div class="row">
-                <input type="text" name = "Filter_value"/>
+                <input type="text" name = "filter value"/>
                 </div>
             </div>
         ''')
@@ -165,22 +177,3 @@ def pivot_table_builder():
         html.write('{% endblock %}')
     return render_template("pivot_table_builder.html",vars=template_vars)
 
-
-def getelements(filename):
-    content = open(filename)
-    reader = csv.reader(content)
-    headers = reader.next()
-    data = zip(*reader)
-    categorical_headers= []
-    numerical_headers= []
-    header_type = []
-    count= 0
-    for column in data:
-        if column[1].isdigit():
-            numerical_headers.append(headers[count])
-        else:
-            categorical_headers.append(headers[count])
-        count +=1
-    header_type.append(numerical_headers)
-    header_type.append(categorical_headers)
-    return header_type
