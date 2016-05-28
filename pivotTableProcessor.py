@@ -2,8 +2,33 @@ import pandas as pd
 import numpy as np
 import csv
 
+#Contains all the different functions that help construct the pivot table
+# and pivot table builder
+
 FILENAME = "data_2012.csv"
 
+#Gets the header of the csv file. Appends 2 lists into one header list. 
+#The first list contains the numerical headers and second list contains all the categorical.
+def getelements():
+    content = open(FILENAME)
+    reader = csv.reader(content)
+    headers = reader.next()
+    data = zip(*reader)
+    categorical_headers= []
+    numerical_headers= []
+    header_type = []
+    count= 0
+    for column in data:
+        if column[1].isdigit():
+            numerical_headers.append(headers[count])
+        else:
+            categorical_headers.append(headers[count])
+        count +=1
+    header_type.append(numerical_headers)
+    header_type.append(categorical_headers)
+    return header_type
+
+#Filters data according to the specified inputs
 def filterData(element,userInput,filterMethod,headers):
     dataset = pd.read_csv(FILENAME)
     dataset.head()
@@ -33,7 +58,8 @@ def filterData(element,userInput,filterMethod,headers):
             filteredData =  dataset.loc[(dataset[element] != userInput), header]
     return filteredData
     
-
+# Constructs a pivot table according to the row and col arguments as well as the 
+# filtered data
 def constructPT(data,rows,columns,values,agg):
     
     if(agg == "sum"):
@@ -52,6 +78,7 @@ def constructPT(data,rows,columns,values,agg):
     table.columns = table.columns.droplevel(0)
     return table
 
+# Finds the correct colour for the table row
 def getColoredRow(maxVal,val):
     if(isNum(val)!=True):
         return '<th>%s</th>\r'%(val)
@@ -67,7 +94,8 @@ def getColoredRow(maxVal,val):
         val = int(val)
         color = '<td style="background-color: rgb(%d,%d,%d)">%s</td>\r'%(red,green,blue,val)
         return color
-    
+
+# Checks if argument is a number or another type of variable
 def isNum(s):
     try:
         float(s)

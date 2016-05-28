@@ -309,6 +309,16 @@ div.fixed-table-scroll-outer {
 
 /* Our code starts from here */
 
+.header-content h2 {
+    color: black;
+    font-size: 40px;
+    font-family: 'Lucida Sans Unicode','Arial';
+}
+
+.header-content p {
+    font-family: 'Lucida Sans Unicode','Arial';
+}
+
 /* To put the heading and image in the middle*/
 .header-content{
 	text-align: center;

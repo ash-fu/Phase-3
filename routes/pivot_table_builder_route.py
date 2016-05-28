@@ -1,7 +1,9 @@
 from flask import render_template
 from phase3 import app
 import csv
-from readdata import *
+from pivotTableProcessor import getelements
+
+#Page users can input their selections to construct their desired pivot table
 
 #server/pivot_table_builder
 @app.route("/pivot_table_builder")
@@ -10,7 +12,7 @@ def pivot_table_builder():
     template_vars = {
       "title": title
     }
-    elements_list = getelements("data_2012.csv")
+    elements_list = getelements()
     all_elements = elements_list[0]+elements_list[1]
     filter_elements=["No Filter"]+all_elements
     categorical_elements = elements_list[1]
@@ -22,9 +24,10 @@ def pivot_table_builder():
             {% extends "base.html" %}
 
             {% block customCSS %}
+                <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
-                <link rel="stylesheet" href="templates/css/pivot_table_builder.css" type="text/css">
                 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+                <link rel="stylesheet" href="templates/stylesheets/pivot_table_builder.css" type="text/css">
             {% endblock %}
 
             {% block customJS %}
@@ -41,8 +44,10 @@ def pivot_table_builder():
         html.write('{% block header %}')
         html.write('''
         <div id = "heading">
-            <h2>Pivot Table Builder</h2> 
-            <img src = "templates/img/cars.png"/>
+            <span>
+                <h2>Pivot Table Builder</h2>
+                <img src = "templates/img/cars.png" width="10%"/>
+            </span>
         </div>
         ''')
         html.write('{% endblock %}')
@@ -55,9 +60,7 @@ def pivot_table_builder():
             <!--Row-->
             <div class="row" id='dropbox1'>
                 <div class="col-xs-6 form-group">
-
                   <div class = 'row'><label for = "row_label"> Row </label></div>
-                
                   <div class="row">
                   <select class="selectpicker show-menu-arrow" name="row" id="row">
         ''')
@@ -168,11 +171,10 @@ def pivot_table_builder():
         html.write('''
             </div>
             <p>
-                <input type="submit" />
+                <input type="submit" value = "Create Pivot Table" />
             </p>
         </div>
         </form>
         ''')
         html.write('{% endblock %}')
     return render_template("pivot_table_builder.html",vars=template_vars)
-

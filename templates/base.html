@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+<!-- the base template html page. Other pages will be extending from this page to use its footer and navbar. Jinja2 is used to connect this with the other templates.  -->
+
 <html lang="en">
 
 <html>
@@ -30,7 +33,7 @@
                 	</button>
 		            <span>
                         <a class="navbar-brand page-scroll" href="/">Traffic Statistics</a>
-                        <img src = "templates/img/traffic_lights.png" width="20%"/>
+                        <img style="padding-top:10px" src = "templates/img/traffic_lights.png" width="10%"/>
                     </span>
 		        </div>
 		        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -54,6 +57,7 @@
         </div>
         {% endblock %}
 
+        <!--General layout of the other html pages-->
         <div id="wrapper">
             <div id="header">
                 {% block header %}{% endblock %}

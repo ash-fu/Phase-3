@@ -1,10 +1,12 @@
 from flask import render_template
 from phase3 import app
 
+#Renders our findings html page.
+
 #server/findings
 @app.route("/findings")
 def findings():
-    title = "Charts"
+    title = "Findings"
     template_vars = {
       "title": title
     }

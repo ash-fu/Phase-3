@@ -1,18 +1,19 @@
-# coding=utf-8
 from flask import render_template, request
 from phase3 import app
 import pandas as pd
 import numpy as np
 import csv
 import StringIO
-from processPT import *
-from readdata import *
+from pivotTableProcessor import *
 
 dataset = pd.read_csv("data_2012.csv")
 dataset.head()
 content = open("data_2012.csv")
 reader = csv.reader(content)
 header = reader.next();
+
+#Constructs the pivot table according to the users input details. If pivot table cannot be constructed
+#from users inputs, an error page with a link that takes users back to the builder.
 
 #server/pivot_table
 @app.route("/pivot_table", methods=['POST', 'GET'])
@@ -28,7 +29,8 @@ def pivot_table():
     filter_category = request.form['filter category']
     filter_method = request.form['filter method']
     filter_value = request.form['filter value']  
-    headers = getelements("data_2012.csv")
+    headers = getelements()
+    
 
     with open('templates/pivot_table.html' , 'w') as html:
         html.write('''
@@ -36,7 +38,8 @@ def pivot_table():
 
             {% block customCSS %}
             <link rel="stylesheet" href="templates/stylesheets/dataset.css" type="text/css">
-            <link rel="stylesheet" href="templates/css/bootstrap-table.min.css" type="text/css">
+            <link rel="stylesheet" href="templates/stylesheets/pivot_table.css" type="text/css">
+            <link rel="stylesheet" href="templates/stylesheets/bootstrap-table.min.css" type="text/css">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">            
             {% endblock %}
 
@@ -59,20 +62,20 @@ def pivot_table():
             c = table.to_csv()
             reader = csv.reader(c.split('\n'), delimiter=',')
             csvData = list(reader)
-            csvData.pop()
+            csvData.pop() #gets rid of the empty row
 
             html.write('''
                 {% block header %}
 
-                <h2>Pivot Table Builder</h2>
+                <h2>Pivot Table</h2>
 
                 {% endblock %}
             ''')
 
             html.write("{% block content %}")
 
-            html.write('<div style="overflow:scroll;height:400px" >')
-            html.write('<table  style="width:900px" class="table">\r')
+            html.write('<div style="overflow:scroll" >')
+            html.write('<table class="table">\r')
             r = 0
             for row in csvData:
                 if r == 0:
@@ -91,14 +94,18 @@ def pivot_table():
             html.write('\t</tbody>\r')
             html.write('</table>\r')
             html.write('</div>')
+            html.write('<br><p>SCALE:</p>')
+            html.write('<img style="width:100%" src=templates/img/color-scale.png/>')
         except:
             html.write("{% block content %}")
             html.write('''
-                <p>Error:No results</p>
+                <div id="error">
+                <img src=templates/img/car_accident_icon.png/>
+                <p>Oops! Seems like we have no results for your inputs!</p>
                 <a href="/pivot_table_builder">Go Back To Builder</a>
+                </div>
             ''')
 
         html.write("{% endblock %}")
 
     return render_template("pivot_table.html",vars=template_vars)
-
