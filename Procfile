@@ -1,1 +1,1 @@
-web: gunicorn app:phase3.py
+web: gunicorn phase3:app
