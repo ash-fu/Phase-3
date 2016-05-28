@@ -13,23 +13,39 @@ def dataset():
     template_vars = {
         "title": title
     }
+
+    # content = open('data_2012.csv')
+    # reader = csv.reader(content)
+    # headers = reader.next()
+    # data = zip(*reader)
+    # numerical_headers = []
+    # count = 0
+    # for column in data:
+    #     if column[1].isdigit():
+    #         numerical_headers.append(headers[count])
+    #     count += 1
+
+
+    # elements_list = pivot_table_builder_route.getelements("data_2012.csv")
+    # numerical_elements = elements_list[0]
+
     with open('templates/dataset.html', 'w') as html: #enter the output filename
         html.write('''
             {% extends "base.html" %}
 
             {% block customCSS %}
-            <meta name="viewport" content="width=device-width, initial-scale=1">
+          
             <link rel="stylesheet" type=text/css href="templates/stylesheets/dataset.css">
 
+            <!--link rel="stylesheet" href="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.css"-->
 
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table-locale-all.js">
+            <!--script src="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.js"></script-->
+
+            <script src="templates/stylesheets/dataset.js"></script>
+
+            
 
 
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
-
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-            <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
             {% endblock %}
 
             {% block header %}
@@ -42,13 +58,17 @@ def dataset():
             </div>
             {% endblock %}''')    
         html.write('{% block content %}\r')
-        html.write('<div class="table-responsive">\r <table data-toggle = "table" data-pagination = "true" id = "table">\r')
+        html.write('<table data-toggle = "table" data-pagination = "true" id = "table" data-search="true">\r')
         r = 0
         for row in csvData:
             if r == 0:
-                html.write('\t<thead>\r\t\t<tr>\r')
+                html.write('\t<thead class= table_header>\r\t\t<tr>\r')
                 for col in row:
-                    html.write('\t\t\t<th data-sortable="true" >' + col + '</th>\r')
+                    # if col in numerical_headers:
+                    #     html.write('\t\t\t<th data-sortable="true" class=s_table_col>' + col + '</th>\r')
+                    # else:
+                    #     html.write('\t\t\t<th data-sortable="true" class=table_col>' + col + '</th>\r')
+                    html.write('\t\t\t<th data-sortable="true" class=table_col>' + col + '</th>\r')
                 html.write('\t\t</tr>\r\t</thead>\r')
                 html.write('\t<tbody>\r')
             else:
@@ -59,7 +79,7 @@ def dataset():
 
             r += 1
         html.write('\t</tbody>\r')
-        html.write('</table>\r <\div>\r')
+        html.write('</table>\r')
         html.write('{% endblock %}\r')
         
         html.write('''

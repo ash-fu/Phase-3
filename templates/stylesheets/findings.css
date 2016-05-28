@@ -1,5 +1,5 @@
 
-body,h3{
+body{
     background-color: white;
 }
 
@@ -17,6 +17,9 @@ h2 {
     text-align: center;
     font-weight: normal
 }
+h4{
+  text-align:center;
+}
 
 p {
   font-family:'Lucida Sans Unicode';
@@ -31,11 +34,46 @@ ul {
   text-align: center;
 }
 
+#Leeds{
+  padding-left:40px;
+  padding-right: 40px
+}
+
+#button{
+  background-color: #d85539;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius:8px;
+  color: #fff;
+  font: 2.4em sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+  border:none;
+  margin: auto;
+}
+
+
 #para {
   float:left;
   width: 50%;
   height: 435px;
   padding: 40px;
+}
+#paraintro {
+  float:left;
+  width: 50%;
+  height: 470px;
+  padding: 40px;
+}
+#imgright {
+  float:right;
+  width: 50%;
+  height: 470px;
+  padding-right: 33px;
+  padding-left: 75px;
+  padding-top: 40px;
+  padding-bottom: 37px;
 }
 #heading {
   font-weight:bolder;
@@ -44,4 +82,10 @@ ul {
 }
 #special{
   color:white;
+}
+
+#pm{
+  font-family:'Lucida Sans Unicode';
+  text-align:left;
+  color:  #424242;
 }
