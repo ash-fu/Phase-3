@@ -1,1 +1,1 @@
-web: gunicorn phase3:app
+web: gunicorn app:phase3
