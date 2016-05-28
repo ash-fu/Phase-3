@@ -685,20 +685,19 @@ The assumption is that when there is a greater number of cars on roads it causes
                   text: 'Months'},
               categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-          },
+                },
           yAxis: {
-            title: {
-                text: 'Number of Accidents'},
+              min: 0,
+    					max: 300,
+              title: {
+                    text: 'Number of Accidents'
+              },
               plotLines: [{
-                  value: 0,
-                  width: 1,
-                  color: '#808080'
-              }]
-          },
-          yAxis: {
-     							min: 0,
-    							max: 300
-  				},
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                    }]
+                },
           series: [{
               data: [186,248,228,189,258,192,244,251,259,249,222,222]
           }]
