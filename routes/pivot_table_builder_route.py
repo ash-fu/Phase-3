@@ -132,7 +132,7 @@ def pivot_table_builder():
             <div class="row"> 
                 <select class="selectpicker show-menu-arrow" name="sign" id="sign">
                   <option value="=">equal to</option>
-                  <option value="<">not equal to</option>
+                  <option value="!=">not equal to</option>
                   <option value=">">greater than</option>
                   <option value=">=">equal to or greater than</option>
                   <option value="<">less than</option>

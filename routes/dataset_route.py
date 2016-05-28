@@ -18,9 +18,18 @@ def dataset():
             {% extends "base.html" %}
 
             {% block customCSS %}
+            <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" type=text/css href="templates/stylesheets/dataset.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.css">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table-locale-all.js">
+
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+            <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
             {% endblock %}
 
             {% block header %}
@@ -33,13 +42,13 @@ def dataset():
             </div>
             {% endblock %}''')    
         html.write('{% block content %}\r')
-        html.write('<table data-toggle = "table" data-pagination = "true">\r')
+        html.write('<div class="table-responsive">\r <table data-toggle = "table" data-pagination = "true" id = "table">\r')
         r = 0
         for row in csvData:
             if r == 0:
                 html.write('\t<thead>\r\t\t<tr>\r')
                 for col in row:
-                    html.write('\t\t\t<th data-sortable="true">' + col + '</th>\r')
+                    html.write('\t\t\t<th data-sortable="true" >' + col + '</th>\r')
                 html.write('\t\t</tr>\r\t</thead>\r')
                 html.write('\t<tbody>\r')
             else:
@@ -50,7 +59,7 @@ def dataset():
 
             r += 1
         html.write('\t</tbody>\r')
-        html.write('</table>\r')
+        html.write('</table>\r <\div>\r')
         html.write('{% endblock %}\r')
         
         html.write('''
@@ -63,7 +72,7 @@ def dataset():
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
             <!-- Latest compiled and minified JavaScript -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.0/bootstrap-table.min.js"></script>
             
             {% endblock %}
             ''')
