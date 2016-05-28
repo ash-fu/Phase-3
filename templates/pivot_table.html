@@ -15,7 +15,10 @@
             <!-- Latest compiled and minified JavaScript -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
             {% endblock %}
-            {% block content %}
-                <p>Error:No results</p>
-                <a href="/pivot_table_builder">Go Back To Builder</a>
-            {% endblock %}
+            
+                {% block header %}
+
+                <h2>Pivot Table Builder</h2>
+
+                {% endblock %}
+            {% block content %}<div style="overflow:scroll;height:400px" ><table  style="width:900px" class="table">	<thead>		<tr>			<th>Lighting Conditions</th>			<th>Dry</th>			<th>Flood</th>			<th>Frost / Ice</th>			<th>Snow</th>			<th>Wet / Damp</th>		</tr>	</thead>	<tbody>		<tr><th>Darkness: no street lighting</th><td style="background-color: rgb(255,100,100)">1</td><td style="background-color: rgb(255,255,255)">0</td><td style="background-color: rgb(255,100,100)">1</td><td style="background-color: rgb(255,100,100)">1</td><td style="background-color: rgb(255,100,100)">1</td>		</tr>		<tr><th>Darkness: street lighting unknown</th><td style="background-color: rgb(255,100,100)">1</td><td style="background-color: rgb(255,50,100)">2</td><td style="background-color: rgb(255,100,100)">1</td><td style="background-color: rgb(255,255,255)">0</td><td style="background-color: rgb(255,100,100)">1</td>		</tr>		<tr><th>Darkness: street lights present and lit</th><td style="background-color: rgb(255,100,100)">1</td><td style="background-color: rgb(255,100,100)">1</td><td style="background-color: rgb(255,100,100)">1</td><td style="background-color: rgb(255,100,100)">1</td><td style="background-color: rgb(255,100,100)">1</td>		</tr>		<tr><th>Darkness: street lights present but unlit</th><td style="background-color: rgb(255,100,100)">1</td><td style="background-color: rgb(255,255,255)">0</td><td style="background-color: rgb(255,0,100)">3</td><td style="background-color: rgb(255,255,255)">0</td><td style="background-color: rgb(255,255,255)">0</td>		</tr>		<tr><th>Daylight: street lights present</th><td style="background-color: rgb(255,100,100)">1</td><td style="background-color: rgb(255,50,100)">2</td><td style="background-color: rgb(255,100,100)">1</td><td style="background-color: rgb(255,100,100)">1</td><td style="background-color: rgb(255,100,100)">1</td>		</tr>	</tbody></table></div>{% endblock %}
