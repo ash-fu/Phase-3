@@ -22,7 +22,6 @@ def pivot_table_builder():
             {% extends "base.html" %}
 
             {% block customCSS %}
-                <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet"/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
                 <link rel="stylesheet" href="templates/css/pivot_table_builder.css" type="text/css">
                 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">

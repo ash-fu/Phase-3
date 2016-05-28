@@ -1,3 +1,4 @@
+# coding=utf-8
 from flask import render_template, request
 from phase3 import app
 import pandas as pd
@@ -6,8 +7,6 @@ import csv
 import StringIO
 from processPT import *
 from readdata import *
-
-
 
 dataset = pd.read_csv("data_2012.csv")
 dataset.head()
@@ -30,7 +29,6 @@ def pivot_table():
     filter_method = request.form['filter method']
     filter_value = request.form['filter value']  
     headers = getelements("data_2012.csv")
-    
 
     with open('templates/pivot_table.html' , 'w') as html:
         html.write('''
@@ -104,90 +102,3 @@ def pivot_table():
 
     return render_template("pivot_table.html",vars=template_vars)
 
-
-    # title = "Pivot Table"
-    # template_vars = {
-    #   "title": title
-    # }
-
-    # row = request.form['row']
-    # col = request.form['col']
-    # values = request.form['data']
-    # filter_data = request.form['filter data']
-    # filter_method = request.form['sign']
-    # agg = request.form['agg']
-    # filter_value = request.form['filter_value']
-
-    # filteredData = filterData(filter_data, filter_value, filter_method)
-
-    
-
-    # # cm = sns.light_palette("green", as_cmap=True)
-
-    # # c = table.style.background_gradient(cmap=cm)
-    # # c.savefig("templates/table.png", dpi=50)
-
-    # # #filteredData = filterData(filterCategory,filterValue,filterMethod)
-    # # #table = constructPT(filteredData,row,column,values,agg)
-    # with open('templates/pivot_table.html' , 'w') as html:
-    #   html.write('''
-    #       {% extends "base.html" %}
-
-    #       {% block customCSS %}
-    #       <link rel="stylesheet" href="templates/css/pivot_table_builder.css" type="text/css">
- #          <link rel="stylesheet" href="templates/stylesheets/dataset.css" type="text/css">
- #          <link rel="stylesheet" href="templates/css/bootstrap-table.min.css" type="text/css">
- #          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">            
-
- #          <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
- #          <!-- Latest compiled and minified JavaScript -->
- #          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
- #          <!-- Latest compiled and minified JavaScript -->
- #          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
-    #       {% endblock %}
-
-    #       {% block content %}
-    #       <p id = "table"></p>
-    #       ''')
-
-    #   try:
-    #       table = constructPT(filteredData, row, col, values, agg)
-    #       html.write('''<h3>Pivot Table</h3>
-    #           ''')
-    #       # # table = table.drop('All', axis=1)
-    #   # #     table = table.drop('All')
-    #       # maxVal = table.values.max()
-    #       # #header = 
-    #       # r = 0;
-    #       # for row in table.iterrows():
-    #       #   if r == 0:
-    #       #       html.write('\t<thead>\r\t\t<tr>\r')
-    #           # for col in row:
-    #           #   html.write('\t\t\t<th data-sortable="true">' + col + '</th>\r')
-    #           #   html.write('\t\t</tr>\r\t</thead>\r')
-    #           #   html.write('\t<tbody>\r')
-    #       #       #put headers in right pose
-    #       #       r = 1;
-    #       #   else: 
-    #       #       #deal with data
-    #       #       for cell in row:
-    #       #           val = row[cell]
-    #       #           getColoredRow(maxVal, val)
-
-
-    #       c = table.to_html()
-    #       c = c.encode('ascii', 'ignore')
-    #       html.write(c)
-    #   except:
-    #       html.write('''<h1>Error</h1>
-    #               <h2>INVALID INPUT! Please check your selection. </h2>''')
-        
-    #   # c = table.to_html()
-    #   # c = c.encode('ascii', 'ignore')
-    #   # html.write(c)
-
-    #   html.write('''
-    #       {% endblock %}
-    #   ''')
-
-    # return render_template("pivot_table.html",vars=template_vars)
