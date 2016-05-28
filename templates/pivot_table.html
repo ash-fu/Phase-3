@@ -16,10 +16,10 @@
             <!-- Latest compiled and minified JavaScript -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
             {% endblock %}
-            {% block content %}
-                <div id="error">
-                <img src=templates/img/car_accident_icon.png/>
-                <p>Oops! Seems like we have no results for your inputs!</p>
-                <a href="/pivot_table_builder">Go Back To Builder</a>
-                </div>
-            {% endblock %}
+            
+                {% block header %}
+
+                <h2>Pivot Table</h2>
+
+                {% endblock %}
+            {% block content %}<div style="overflow:scroll" ><table class="table">	<thead>		<tr>			<th>Casualty Severity</th>			<th>Female</th>			<th>Male</th>		</tr>	</thead>	<tbody>		<tr><th>Fatal</th><td style="background-color: rgb(255,149,100)">10</td><td style="background-color: rgb(255,149,100)">16</td>		</tr>		<tr><th>Serious</th><td style="background-color: rgb(255,142,100)">139</td><td style="background-color: rgb(255,134,100)">281</td>		</tr>		<tr><th>Slight</th><td style="background-color: rgb(255,31,100)">2153</td><td style="background-color: rgb(255,0,100)">2729</td>		</tr>	</tbody></table></div><br><p>SCALE:</p><img style="width:100%" src=templates/img/color-scale.png/>{% endblock %}

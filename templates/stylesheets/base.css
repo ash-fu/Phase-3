@@ -25,6 +25,10 @@ body {
     bottom:0;
 }
 
+li {
+  padding:5px;
+}
+
 p {
     font-family:'Lucida Sans Unicode','Arial';
 }

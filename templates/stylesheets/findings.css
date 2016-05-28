@@ -27,14 +27,14 @@ p {
 }
 
 
-ul {
+#conclusion ul {
   color: black;
   font-family:'Lucida Sans Unicode','Arial';
   text-align: center;
   list-style: none 
 }
 
-li {
+#conclusion li {
   padding:10px;
 }
 
