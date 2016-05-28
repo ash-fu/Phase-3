@@ -22,7 +22,6 @@ h1 {
 
 
 label{
-	/*display: block;*/
 	margin: 70px;
 }
 
@@ -31,24 +30,24 @@ select{
 }
 
 
-input[type=text]{
+input[type=text]{ /*Filter Value input textbox*/
   font-family: inherit; 
   font-size: inherit;
   vertical-align: middle;
   width:220px;
   height: 30px;
-  font-size: 13px !important;
+  font-size: 13px !important; /*A suitable font size*/
   -moz-border-radius: 5px;
 }
 
-input[type=submit]{
-    background-color: #d85539;
-    -moz-border-radius: 8px;
+input[type=submit]{ /*For submit button*/
+    background-color: #d85539; /* Dark orange Background*/
+    -moz-border-radius: 8px; /* Round box */
     -webkit-border-radius: 8px;
     border-radius:8px;
-    color: #fff;
-    font: 2.4em sans-serif;
-    font-size: 25px;
+    color: #fff; /* White colour text*/
+    font: 2.4em sans-serif; /*Nicer font*/
+    font-size: 24px;
     text-decoration: none;
     cursor: pointer;
     border:none;

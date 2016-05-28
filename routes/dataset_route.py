@@ -13,42 +13,22 @@ def dataset():
     template_vars = {
         "title": title
     }
-
-    # content = open('data_2012.csv')
-    # reader = csv.reader(content)
-    # headers = reader.next()
-    # data = zip(*reader)
-    # numerical_headers = []
-    # count = 0
-    # for column in data:
-    #     if column[1].isdigit():
-    #         numerical_headers.append(headers[count])
-    #     count += 1
-
-
-    # elements_list = pivot_table_builder_route.getelements("data_2012.csv")
-    # numerical_elements = elements_list[0]
-
     with open('templates/dataset.html', 'w') as html: #enter the output filename
         html.write('''
             {% extends "base.html" %}
 
             {% block customCSS %}
-          
+
+            <!-- For Webpage and Table styling -->
             <link rel="stylesheet" type=text/css href="templates/stylesheets/dataset.css">
 
-            <!--link rel="stylesheet" href="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.css"-->
-
-            <!--script src="https://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.js"></script-->
-
-            <script src="templates/stylesheets/dataset.js"></script>
-
-            
-
-
+            <!-- For Table Styling and interactive-->            
+            <script src="http://code.jquery.com/jquery.min.js"></script>
+          
             {% endblock %}
 
             {% block header %}
+
             <div class="header-content">
                 <img src="templates/img/car_accident_icon.png" alt="car accident icon">
                 <div class="header-title">
@@ -56,30 +36,33 @@ def dataset():
                     <p>Leeds, England 2012</p>
                 </div>
             </div>
+
+            <div id="myBar">
+                <div id="label">Loading...</div>
+            </div>
             {% endblock %}''')    
         html.write('{% block content %}\r')
-        html.write('<table data-toggle = "table" data-pagination = "true" id = "table" data-search="true">\r')
+
+        # create table
+        html.write('<div id = "body" style = "display:none;">\r<table data-toggle = "table" data-pagination = "true" id = "table" data-search="true">\r')
         r = 0
         for row in csvData:
-            if r == 0:
+            if r == 0: 
+                # create headers
                 html.write('\t<thead class= table_header>\r\t\t<tr>\r')
                 for col in row:
-                    # if col in numerical_headers:
-                    #     html.write('\t\t\t<th data-sortable="true" class=s_table_col>' + col + '</th>\r')
-                    # else:
-                    #     html.write('\t\t\t<th data-sortable="true" class=table_col>' + col + '</th>\r')
                     html.write('\t\t\t<th data-sortable="true" class=table_col>' + col + '</th>\r')
                 html.write('\t\t</tr>\r\t</thead>\r')
                 html.write('\t<tbody>\r')
             else:
+                # put in data
                 html.write('\t\t<tr>\r')
                 for col in row:
                     html.write('\t\t\t<td>' + col + '</td>\r')
                 html.write('\t\t</tr>\r')
-
             r += 1
         html.write('\t</tbody>\r')
-        html.write('</table>\r')
+        html.write('</table>\r</div>\r')
         html.write('{% endblock %}\r')
         
         html.write('''
@@ -93,6 +76,13 @@ def dataset():
 
             <!-- Latest compiled and minified JavaScript -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.0/bootstrap-table.min.js"></script>
+
+            <script type="text/javascript">
+            jQuery(document).ready(function(){
+                $('#body').show();
+                $('#myBar').hide();
+            });
+            </script>
             
             {% endblock %}
             ''')
