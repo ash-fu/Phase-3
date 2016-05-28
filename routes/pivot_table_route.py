@@ -36,6 +36,7 @@ def filterData(element,userInput,filterMethod):
         filteredData =  dataset.loc[(dataset["%s"%(element)] == "%s"%(userInput)), header]
     else:
         filteredData =  dataset.loc[(dataset["%s"%(element)] != "%s"%(userInput)), header]
+
     return filteredData
     
 
@@ -74,9 +75,12 @@ def pivot_table():
 	filter_data = request.form['filter data']
 	filter_method = request.form['sign']
 	agg = request.form['agg']
-	filter_value = request.form['filter_value']
+	filter_value = request.form['Filter_value']
 
-	filteredData = filterData(filter_data, filter_value, filter_method)
+	if(filter_data != "No Filter"):
+		filteredData = filterData(filter_data, filter_value, filter_method)
+	else:
+		filteredData = dataset
 
 	
 
