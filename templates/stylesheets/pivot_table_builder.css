@@ -1,5 +1,9 @@
-h1 {
-    text-align: center;
+body {
+  font-family: 'Lucida Sans Unicode','Arial';
+}
+
+#heading {
+  text-align: center;
 }
 
 #dropbox1 {
@@ -16,38 +20,39 @@ h1 {
 
 
 #labelrow1{
-	text-align: center;
+  text-align: center;
 }
 
 
 
 label{
-	margin: 70px;
+  /*display: block;*/
+  margin: 10px;
 }
 
 select{
-	margin: 40px;
+  margin: 10px;
 }
 
 
-input[type=text]{ /*Filter Value input textbox*/
+input[type=text]{
   font-family: inherit; 
   font-size: inherit;
   vertical-align: middle;
   width:220px;
   height: 30px;
-  font-size: 13px !important; /*A suitable font size*/
+  font-size: 13px !important;
   -moz-border-radius: 5px;
 }
 
-input[type=submit]{ /*For submit button*/
-    background-color: #d85539; /* Dark orange Background*/
-    -moz-border-radius: 8px; /* Round box */
+input[type=submit]{
+    background-color: #d85539;
+    -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     border-radius:8px;
-    color: #fff; /* White colour text*/
-    font: 2.4em sans-serif; /*Nicer font*/
-    font-size: 24px;
+    color: #fff;
+    font: 2.4em sans-serif;
+    font-size: 25px;
     text-decoration: none;
     cursor: pointer;
     border:none;

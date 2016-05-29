@@ -1,4 +1,5 @@
-
+<!--HTML code for the findings page. used a mix of bootstrap, google maps API, jQuery and javascript for the 
+different charts. -->
   {% extends "base.html" %}
 
   {% block customCSS %}
@@ -56,7 +57,7 @@
 
 <br><br><br><hr style="border-color:#D0D0D0"><br>
 <h1>Introduction to Data Analysis</h1><br>
-<div id="paraintro">
+<div style="overflow:auto" id="paraintro">
 <p id= "heading">Data</p>
 <p>The following observations on Leeds Road Accidents in 2012 are based on data provided by the <a href="http://leedsdatamill.org/dataset/road-traffic-accidents">Leeds City Council </a>.
 <br>
@@ -85,7 +86,7 @@ Damage-only accidents, with no human casualties or accidents on private roads or
 <hr style="border-color:#D0D0D0"><br>
 <h1>Demographic in Accident</h1>
 <br><br>
-<div id="para">
+<div style="overflow:auto" id="para">
 <p id= "heading">Hypothesis</p>
 <p>The demographic more likely to be in a Vehicle Accident are young males aged between 16-25 (teenagers and young adults).</p>
 <p id= "heading">Observation From Data</p>
@@ -215,7 +216,7 @@ Damage-only accidents, with no human casualties or accidents on private roads or
 <br>
 <h1>Vehicle in Accident</h1>
 <br>
-<div id="para">
+<div id="para" style="overflow:auto">
 <br>
 <p id= "heading">Hypothesis</p>
 <p>Cars are the most likely vehicle to be in an accident.</p>
@@ -628,7 +629,7 @@ The assumption is that when there is a greater number of cars on roads it causes
 <br>
 <h1>Months in Accident</h1>
 <br>
-<div id="para">
+<div id="para" style="overflow:auto">
 <br>
 <p id= "heading">Hypothesis</p>
 <p>During the winter periods or holiday periods there are more likely to be car accidents as there are more cars on poor road conditions</p>
@@ -681,14 +682,14 @@ The assumption is that when there is a greater number of cars on roads it causes
               x: -20
           },
           xAxis: {
-         			title: {
+              title: {
                   text: 'Months'},
               categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
                 },
           yAxis: {
               min: 0,
-    					max: 300,
+              max: 300,
               title: {
                     text: 'Number of Accidents'
               },
@@ -709,7 +710,7 @@ The assumption is that when there is a greater number of cars on roads it causes
 <br>
 <h1>Severity of Casualty in Accident</h1>
 <br><br>
-<div id="para">
+<div id="para" style="overflow:auto">
 <br>
 <p id="heading">Hypothesis</p>
 <p>Most vehicle accidents result in small accidents and the people hurt are most likely the driver and passenger<p>
@@ -895,24 +896,23 @@ $(function () {
 </div>
 
 
-
+<div id="conclusion">
 <p id="special"> 1 </p>
 <hr style="border-color:#D0D0D0">
-<br><br>
+<br>
 <h2>Conclusion</h2>
-<br>
-<p id=conclusion>The overall contention of Vehicle Accidents in Leeds 2012:
-<br>
-<br>
-The most likely demographic to be involved in Vehicle Accident are males aged between 20-34.
-<br>
-Majority of Vehicle Accidents occur in car. However, vunerable vehicles including motorcycles and bicycles contritbute a large proportion of serious and fatal accidents.
-<br>
-Poor weather conditions are more likely to deter road accidents rather than cause road accidents. Also more road accidents are likely to occur when more vehicles are on the roads.
-<br>
-There is no correlation between vehicle accidents and months, however when the month is wetter it increases the change of a vehicle accident.
-<br>
-While most vehicle accidents are small and involve cars, pedestrians are the most vunerable as they are more likely to be involved in serious or fatal accidents.
-</p>
-<br><br>
+<p id=conclusion>The overall contention of Vehicle Accidents in Leeds 2012:</p>
+<ul>
+<li>The most likely demographic to be involved in Vehicle Accident are males aged between 20-34.</li>
+
+<li>Majority of Vehicle Accidents occur in car. However, vunerable vehicles including motorcycles and bicycles contritbute a large proportion of serious and fatal accidents.</li>
+
+<li>Poor weather conditions are more likely to deter road accidents rather than cause road accidents. Also more road accidents are likely to occur when more vehicles are on the roads.</li>
+
+<li>There is no correlation between vehicle accidents and months, however when the month is wetter it increases the change of a vehicle accident.</li>
+
+<li>While most vehicle accidents are small and involve cars, pedestrians are the most vunerable as they are more likely to be involved in serious or fatal accidents.</li>
+</ul>
+</div>
+
 {% endblock %}

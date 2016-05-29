@@ -2,6 +2,9 @@ from flask import render_template
 from phase3 import app
 import csv
 
+#This page contains the dataset table that we used for our analysis. Python is
+#used to construct the csv file into a table with Bootstrap.
+
 csvFile = open('data_2012.csv')
 csvReader = csv.reader(csvFile)
 csvData = list(csvReader)
@@ -13,18 +16,15 @@ def dataset():
     template_vars = {
         "title": title
     }
-    with open('templates/dataset.html', 'w') as html: 
+    with open('templates/dataset.html', 'w') as html: #enter the output filename
         html.write('''
             {% extends "base.html" %}
 
             {% block customCSS %}
 
             <!-- For Webpage and Table styling -->
-            <link rel="stylesheet" href="templates/css/bootstrap.min.css" type="text/css">
+            <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
             <link rel="stylesheet" type=text/css href="templates/stylesheets/dataset.css">
-
-            <!-- For Table Styling and interaction-->            
-            <script src="http://code.jquery.com/jquery.min.js"></script>
           
             {% endblock %}
 
@@ -44,8 +44,9 @@ def dataset():
             {% endblock %}''')    
         html.write('{% block content %}\r')
 
-        # create table
-        html.write('<div id = "body" style = "display:none;">\r<table data-toggle = "table" data-pagination = "true" id = "table" data-search="true">\r')
+        # constructs table
+        html.write('<div id = "body" style = "display:none;">\r')
+        html.write('<table data-toggle = "table" data-pagination = "true" id = "table" data-search="true">\r')
         r = 0
         for row in csvData:
             if r == 0: 
@@ -68,6 +69,9 @@ def dataset():
         
         html.write('''
             {% block customJS %}
+
+            <!-- For Table Styling and interactive-->            
+            <script src="http://code.jquery.com/jquery.min.js"></script>
 
             <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>

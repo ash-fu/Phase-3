@@ -6,13 +6,13 @@ body{
 h1 {
     color: black;
     text-align: center;
-    font-family:'Lucida Sans Unicode';
+    font-family:'Lucida Sans Unicode','Arial';
     font-size: 40px;
 
 }
 h2 {
     color: black;
-    font-family: 'Lucida Sans Unicode';
+    font-family: 'Lucida Sans Unicode','Arial';
     font-size: 20px;
     text-align: center;
     font-weight: normal
@@ -22,15 +22,20 @@ h4{
 }
 
 p {
-  font-family:'Lucida Sans Unicode';
+  font-family:'Lucida Sans Unicode','Arial';
   text-align: center;
 }
 
 
-ul {
+#conclusion ul {
   color: black;
-  font-family:'Lucida Sans Unicode';
+  font-family:'Lucida Sans Unicode','Arial';
   text-align: center;
+  list-style: none 
+}
+
+#conclusion li {
+  padding:10px;
 }
 
 #Leeds{
@@ -84,7 +89,7 @@ ul {
 }
 
 #pm{
-  font-family:'Lucida Sans Unicode';
+  font-family:'Lucida Sans Unicode','Arial';
   text-align:left;
   color:  #424242;
 }

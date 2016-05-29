@@ -1,0 +1,25 @@
+
+            {% extends "base.html" %}
+
+            {% block customCSS %}
+            <link rel="stylesheet" href="templates/stylesheets/dataset.css" type="text/css">
+            <link rel="stylesheet" href="templates/stylesheets/pivot_table.css" type="text/css">
+            <link rel="stylesheet" href="templates/stylesheets/bootstrap-table.min.css" type="text/css">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">            
+            {% endblock %}
+
+            {% block customJS %}
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
+            {% endblock %}
+            
+                {% block header %}
+
+                <h2>Pivot Table</h2>
+
+                {% endblock %}
+            {% block content %}<div style="overflow:scroll" ><table class="table">	<thead>		<tr>			<th>Weather Conditions</th>			<th>Fatal</th>			<th>Serious</th>			<th>Slight</th>		</tr>	</thead>	<tbody>		<tr><th>Fine with high winds</th><td style="background-color: rgb(255,255,255)">0</td><td style="background-color: rgb(255,255,255)">0</td><td style="background-color: rgb(255,116,100)">2</td>		</tr>		<tr><th>Fine without high winds</th><td style="background-color: rgb(255,100,100)">3</td><td style="background-color: rgb(255,83,100)">4</td><td style="background-color: rgb(255,66,100)">5</td>		</tr>		<tr><th>Fog or mist if hazard</th><td style="background-color: rgb(255,255,255)">0</td><td style="background-color: rgb(255,255,255)">0</td><td style="background-color: rgb(255,116,100)">2</td>		</tr>		<tr><th>Other</th><td style="background-color: rgb(255,255,255)">0</td><td style="background-color: rgb(255,255,255)">0</td><td style="background-color: rgb(255,0,100)">9</td>		</tr>		<tr><th>Raining with high winds</th><td style="background-color: rgb(255,255,255)">0</td><td style="background-color: rgb(255,133,100)">1</td><td style="background-color: rgb(255,116,100)">2</td>		</tr>		<tr><th>Raining without high winds</th><td style="background-color: rgb(255,100,100)">3</td><td style="background-color: rgb(255,83,100)">4</td><td style="background-color: rgb(255,100,100)">3</td>		</tr>		<tr><th>Snowing without high winds</th><td style="background-color: rgb(255,255,255)">0</td><td style="background-color: rgb(255,255,255)">0</td><td style="background-color: rgb(255,100,100)">3</td>		</tr>		<tr><th>Unknown</th><td style="background-color: rgb(255,255,255)">0</td><td style="background-color: rgb(255,255,255)">0</td><td style="background-color: rgb(255,133,100)">1</td>		</tr>	</tbody></table></div><br><p>SCALE:</p><img style="width:100%" src=templates/img/color-scale.png/>{% endblock %}

@@ -25,6 +25,15 @@ body {
     bottom:0;
 }
 
+li {
+  padding:5px;
+}
+
+p {
+    font-family:'Lucida Sans Unicode','Arial';
+}
+
+/*navigation bar styling*/
 .navbar-default {
     border-color: rgba(34,34,34,.05);
     font-family: 'Lucida Sans Unicode','Open Sans','Helvetica Neue',Arial,sans-serif;
