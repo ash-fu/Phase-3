@@ -9,6 +9,7 @@ Run:
 pip install Jinja2
 
 To run the website:
+-open commandline/terminal
 -navigate into the phase-3 directory
 -run: python phase3.py
 -open web browser and type: http://localhost:5000/
