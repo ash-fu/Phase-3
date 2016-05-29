@@ -20,9 +20,10 @@ def dataset():
             {% block customCSS %}
 
             <!-- For Webpage and Table styling -->
+            <link rel="stylesheet" href="templates/css/bootstrap.min.css" type="text/css">
             <link rel="stylesheet" type=text/css href="templates/stylesheets/dataset.css">
 
-            <!-- For Table Styling and interactive-->            
+            <!-- For Table Styling and interaction-->            
             <script src="http://code.jquery.com/jquery.min.js"></script>
           
             {% endblock %}
