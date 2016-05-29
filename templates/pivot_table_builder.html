@@ -64,13 +64,13 @@
               <div class="row"> <label for = "agg_label"> Aggregation </label> </div>
               <div class="row">
                 <select class="selectpicker show-menu-arrow" name="val" id="val">
-        <option value="" selected > -- select an option -- </option><option value='Number of Vehicles'>Number of Vehicles</option><option value='Number of Casualties'>Number of Casualties</option><option value='Time (24hr)'>Time (24hr)</option><option value='Age of Casualty'>Age of Casualty</option>
+        <option value="" selected > -- select an option -- </option><option value='Number of Vehicles'>Number of Vehicles</option><option value='Number of Casualties'>Number of Casualties</option><option value='Age of Casualty'>Age of Casualty</option>
                 </select>
             </div>
         
             <!--Aggregation-->
             <div class="row">
-                <select class="selectpicker show-menu-arrow" name="agg" id="agg">
+                <select class="selectpicker show-menu-arrow" name="agg" id="agg" data-dropup-auto="false">
                     <option value="" selected > -- select an option -- </option>
                     <option value="sum">Sum</option>
                     <option value="median">Median</option>
@@ -85,13 +85,13 @@
             <div class="col-xs-6 form-group">
                 <div class="row"> <label for = "filter_label"> Category Filter </label> </div>
                 <div class="row">
-                    <select class="selectpicker show-menu-arrow" name="filter category" id="filter category">
-        <option value="" selected > -- select an option -- </option><option value='No Filter'>No Filter</option><option value='Number of Vehicles'>Number of Vehicles</option><option value='Number of Casualties'>Number of Casualties</option><option value='Time (24hr)'>Time (24hr)</option><option value='Age of Casualty'>Age of Casualty</option><option value='Accident Date'>Accident Date</option><option value='Road Surface'>Road Surface</option><option value='Lighting Conditions'>Lighting Conditions</option><option value='Weather Conditions'>Weather Conditions</option><option value='Casualty Class'>Casualty Class</option><option value='Casualty Severity'>Casualty Severity</option><option value='Sex of Casualty'>Sex of Casualty</option><option value='Type of Vehicle'>Type of Vehicle</option><option value='Time (Intervals)'>Time (Intervals)</option><option value='Date (Intervals)'>Date (Intervals)</option><option value='Age (Intervals)'>Age (Intervals)</option>
+                    <select class="selectpicker show-menu-arrow" name="filter category" id="filter category" data-dropup-auto="false">
+        <option value="" selected > -- select an option -- </option><option value='No Filter'>No Filter</option><option value='Number of Vehicles'>Number of Vehicles</option><option value='Number of Casualties'>Number of Casualties</option><option value='Time (24hr)'>Time (24hr)</option><option value='Age of Casualty'>Age of Casualty</option><option value='Accident Date'>Accident Date</option><option value='Road Surface'>Road Surface</option><option value='Lighting Conditions'>Lighting Conditions</option><option value='Weather Conditions'>Weather Conditions</option><option value='Casualty Class'>Casualty Class</option><option value='Casualty Severity'>Casualty Severity</option><option value='Sex of Casualty'>Sex of Casualty</option><option value='Type of Vehicle'>Type of Vehicle</option>
                 </select>
             </div>
         
             <div class="row"> 
-                <select class="selectpicker show-menu-arrow" name="filter method" id="filter method">
+                <select class="selectpicker show-menu-arrow" name="filter method" id="filter method" data-dropup-auto="false">
                   <option value="" selected > -- select an option -- </option>
                   <option value="=">equal to</option>
                   <option value="!=">not equal to</option>

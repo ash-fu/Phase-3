@@ -45,7 +45,8 @@ def dataset():
         html.write('{% block content %}\r')
 
         # constructs table
-        html.write('<div id = "body" style = "display:none;">\r<table data-toggle = "table" data-pagination = "true" id = "table" data-search="true">\r')
+        html.write('<div id = "body" style = "display:none;">\r')
+        html.write('<table data-toggle = "table" data-pagination = "true" id = "table" data-search="true">\r')
         r = 0
         for row in csvData:
             if r == 0: 

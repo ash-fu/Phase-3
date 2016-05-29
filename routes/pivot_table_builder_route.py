@@ -103,6 +103,7 @@ def pivot_table_builder():
                 <select class="selectpicker show-menu-arrow" name="val" id="val">
         ''')
         html.write('<option value="" selected > -- select an option -- </option>')
+        numerical_elements.remove('Time (24hr)')
         for e in numerical_elements:
             html.write("<option value='%s'>%s</option>"%(e,e))
         
@@ -115,7 +116,7 @@ def pivot_table_builder():
         html.write('''
             <!--Aggregation-->
             <div class="row">
-                <select class="selectpicker show-menu-arrow" name="agg" id="agg">
+                <select class="selectpicker show-menu-arrow" name="agg" id="agg" data-dropup-auto="false">
                     <option value="" selected > -- select an option -- </option>
                     <option value="sum">Sum</option>
                     <option value="median">Median</option>
@@ -133,9 +134,13 @@ def pivot_table_builder():
             <div class="col-xs-6 form-group">
                 <div class="row"> <label for = "filter_label"> Category Filter </label> </div>
                 <div class="row">
-                    <select class="selectpicker show-menu-arrow" name="filter category" id="filter category">
+                    <select class="selectpicker show-menu-arrow" name="filter category" id="filter category" data-dropup-auto="false">
         ''')
         html.write('<option value="" selected > -- select an option -- </option>')
+        #removes elements that are no useful for filtering
+        filter_elements.remove('Time (Intervals)')
+        filter_elements.remove('Date (Intervals)')
+        filter_elements.remove('Age (Intervals)')
         for e in filter_elements:
             html.write("<option value='%s'>%s</option>"%(e,e))
 
@@ -147,7 +152,7 @@ def pivot_table_builder():
         # filter method
         html.write('''
             <div class="row"> 
-                <select class="selectpicker show-menu-arrow" name="filter method" id="filter method">
+                <select class="selectpicker show-menu-arrow" name="filter method" id="filter method" data-dropup-auto="false">
                   <option value="" selected > -- select an option -- </option>
                   <option value="=">equal to</option>
                   <option value="!=">not equal to</option>

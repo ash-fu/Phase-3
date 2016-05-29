@@ -89,7 +89,6 @@ def pivot_table():
                     for col in row:
                         html.write(getColoredRow(maxVal,col))
                     html.write('\t\t</tr>\r')
-
                 r += 1
             html.write('\t</tbody>\r')
             html.write('</table>\r')
