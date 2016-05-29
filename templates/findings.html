@@ -1,4 +1,4 @@
-<!--HTML code for the findings page. used a mix of bootstrap, google maps API, jQuery and javascript for the 
+<!--HTML code for the findings page. used a mix of bootstrap, google maps API, jQuery and javascript for the
 different charts. -->
   {% extends "base.html" %}
 
@@ -11,6 +11,7 @@ different charts. -->
   {% endblock %}
 
   {% block content %}
+  <!-- Introduction1 -->
   <br>
   <h1>Leeds</h1>
   <br>
@@ -18,6 +19,8 @@ different charts. -->
   They have continuous updates on incidents and roadworks, indicating severity of incident and location, including nearby roads affected. Traffic camera footage is also available. You can find more information and updates on road incidents at
   <a href="http://www.bbc.co.uk/travel/leeds/incidents/road ">BBC</a>.</p>
   <br>
+
+  <!-- Map -->
   <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
   <div id="map" style="width: 800px; height: 400px; margin: 0 auto"></div>
   <script type="text/javascript">
@@ -56,6 +59,8 @@ different charts. -->
 <script src="http://code.highcharts.com/modules/exporting.js" type="text/javascript"></script>
 
 <br><br><br><hr style="border-color:#D0D0D0"><br>
+
+<!-- Introduction 2 -->
 <h1>Introduction to Data Analysis</h1><br>
 <div style="overflow:auto" id="paraintro">
 <p id= "heading">Data</p>
@@ -81,7 +86,7 @@ Damage-only accidents, with no human casualties or accidents on private roads or
 <br>
 </div>
 
-
+<!-- Observation 1-->
 <p id="special"> 1 </p>
 <hr style="border-color:#D0D0D0"><br>
 <h1>Demographic in Accident</h1>
@@ -93,7 +98,7 @@ Damage-only accidents, with no human casualties or accidents on private roads or
 <p>In 2012, Males in Leeds are more likely to be the casualty of a Vehicle Accident in comparison to Females. In addition, the age group more likely to be the casualty of Vehicle Accident is 20-34.</p>
 <p>Press button below for additional information on observations from government reports</p>
 
-
+<!-- Additional Information 1-->
 <div class="container" style="color:black; text-align:left; width: 35%;">
 <button id ="button" type="button" data-toggle="modal" style= "background-color:#d85539; border-color:#d85539;" data-target="#myModal">Additional Information</button>
 <div class="modal fade" id="myModal" role="dialog">
@@ -129,9 +134,9 @@ Damage-only accidents, with no human casualties or accidents on private roads or
 </div>
 </div>
 </div>
-
-
 </div>
+
+<!-- Graph 1-->
 <div>
 <div id="container_a" style="float: right; width: 50%; height: 435px"></div>
 <br><br><br><br><br>
@@ -211,9 +216,13 @@ Damage-only accidents, with no human casualties or accidents on private roads or
               });
           });
     </script>
+
+
 <p id="special"> 1 </p>
 <hr style="border-color:#D0D0D0">
 <br>
+
+<!-- Observation 2-->
 <h1>Vehicle in Accident</h1>
 <br>
 <div id="para" style="overflow:auto">
@@ -223,6 +232,8 @@ Damage-only accidents, with no human casualties or accidents on private roads or
 <p id= "heading">Observation From Data</p>
 <p>In 2012, majority of vehicle accidents in Leeds occur in a car. Other vehicles that are likely to be in a accident are bicycles, motorcyles, taxi , bus or goods vehicle. <br>However, these other vehicles contribute nearly 50% of accidents of severity of fatal or serious. Also, motorcyles appear to be particularly vunerable as 13% of fatal accidents and 19% of serious accidents involve motorcycles.<p>
 <p>Press button below for additional information on observations from government reports</p>
+
+<!-- Additional Information 2-->
   <div class="container" style="color:black; text-align:left; width: 35%;">
   <button id ="button" type="button" data-toggle="modal" style= "background-color:#d85539; border-color:#d85539;" data-target="#myModal1">Additional Information</button>
   <div class="modal fade" id="myModal1" role="dialog">
@@ -264,13 +275,19 @@ Damage-only accidents, with no human casualties or accidents on private roads or
 
 </div>
 
-
+<!-- Graph 2-->
 <div id="container_b" style="float: right; width: 50%; height: 435px; margin: 0 auto"><br><br><br></div>
 <script type="text/javascript">
 $(function () {
     $('#container_b').highcharts({
         chart: {
-            type: 'column'
+            type: 'column',
+            spacingLeft: 15,
+            spacingBottom: 35,
+            spacingRight: 50,
+        },
+        credits: {
+            enabled: false,
         },
         title: {
             text: 'Type of Vehicle in Accidents Leeds 2012'
@@ -321,9 +338,13 @@ $(function () {
 });
 
 </script>
+
+
 <p id="special"> 1 </p>
 <hr style="border-color:#D0D0D0">
 <br>
+
+<!-- Observation 3-->
 <h1>Conditions in Accident</h1>
 <br><br>
 <p id="heading">Hypothesis</p>
@@ -333,7 +354,9 @@ $(function () {
 A reasonable assumption is that fine weather, daylight and dry roads are not the reason for vehicle accidents.
 <br>In fact, from the additional information obtained, a reasonable assumption is that there are less casualties when the weather is poor as road users, <br> particularly pedestrians, cyclists and motorcyclists will use roads less when it is rains.<p>
 <p>Press button below for additional information on observations from government reports </p>
-<div class="container" style="color:black; text-align:left; width: 15.1%;">
+
+<!-- Additional Information 3-->
+<div class="container" style="color:black; text-align:left; width: 15.25%;">
 <button id ="button" type="button" data-toggle="modal" style= "background-color:#d85539; border-color:#d85539;" data-target="#myModal2">Additional Information</button>
 <div class="modal fade" id="myModal2" role="dialog">
 <div class="modal-dialog">
@@ -368,6 +391,8 @@ Although the behaviour of all road user groups are likely to be influenced by th
 <p id="special"> 1 </p>
 <hr style="border-color:#D0D0D0">
 <br><br><br>
+
+<!-- Graph 3.1-->
 <div id="container_c" style="float: left; width:33.33%; height: 450px; max-width: 600px; margin: 0 auto"></div><script type="text/javascript">
 $(function () {
     $('#container_c').highcharts({
@@ -426,6 +451,8 @@ $(function () {
     });
 });
 </script>
+
+<!-- Graph 3.2-->
 <div id="container_d" style="float: left; width: 33.33%; height: 450px; max-width: 600px; margin: 0 auto"></div>
 <script type="text/javascript">
 $(function () {
@@ -492,6 +519,8 @@ $(function () {
     });
 });
 </script>
+
+<!-- Graph 3.3-->
 <div id="container_e" style="float: left; width:33.33%; height: 450px; max-width: 600px; margin: 0 auto"></div>
 <br><br><br><br>
 <script type="text/javascript">
@@ -551,15 +580,20 @@ $(function () {
     });
 });
 </script>
+
 <p id="special"> 1 </p>
 <hr style="border-color:#D0D0D0">
 <br><br><br>
+
+<!-- Extra Observation 3-->
 <div id="para">
 <br><br><br><br><br>
 <p id= "heading">Extra Observation From Data</p>
 <p>Instead from the data in 2012 in Leeds, it depicts that there is correlation between time period and vehicle accidents. As there are more car accidents during the time period 8am-8pm.
 The assumption is that when there is a greater number of cars on roads it causes more vehicle accidents.</p>
 </div>
+
+<!-- Extra Graph 3-->
 <div id="container_f" style="float: right; width: 50%; height: 435px; margin: 0 auto"></div>
 <script type="text/javascript">
           $(function () {
@@ -624,9 +658,12 @@ The assumption is that when there is a greater number of cars on roads it causes
               });
           });
     </script>
+
 <p id="special"> 1 </p>
 <hr style="border-color:#D0D0D0">
 <br>
+
+<!-- Observation 4-->
 <h1>Months in Accident</h1>
 <br>
 <div id="para" style="overflow:auto">
@@ -636,6 +673,8 @@ The assumption is that when there is a greater number of cars on roads it causes
 <p id= "heading">Observation From Data</p>
 <p>From the data in 2012 in Leeds it shows no correlation between months and number of accidents. <br>From the additional information from government reports, it is reasonable to assume that decreases in casualties in certain months (March, April, June) may be due to unusually wet months. Assuming the number of road users in Leeds decrease during wetter months. </p>
 <p>Press button below for additional information on observations from government reports </p>
+
+<!-- Addtional Information 4-->
 <div class="container" style="color:black; text-align:left; width: 35%;">
 <button id ="button" type="button" data-toggle="modal" style= "background-color:#d85539; border-color:#d85539;" data-target="#myModal5">Additional Information</button>
 <div class="modal fade" id="myModal5" role="dialog">
@@ -657,7 +696,10 @@ The assumption is that when there is a greater number of cars on roads it causes
 </div>
 </div>
 </div>
-</div></div>
+</div>
+</div>
+
+<!-- Graph 4-->
   <div id="container_g" style="width:50%; float:right; height: 435px; margin: 0 auto"></div>
   <script type="text/javascript">
   $(function () {
@@ -705,9 +747,12 @@ The assumption is that when there is a greater number of cars on roads it causes
       });
   });
 </script>
+
 <p id="special"> 1 </p>
 <hr style="border-color:#D0D0D0">
 <br>
+
+<!-- Observation 5-->
 <h1>Severity of Casualty in Accident</h1>
 <br><br>
 <div id="para" style="overflow:auto">
@@ -717,6 +762,8 @@ The assumption is that when there is a greater number of cars on roads it causes
 <p id="heading">Observation From Data </p>
 <p>While drivers and passengers contribute a large proportion to vehicle accidents, pedestrians are more vulnerable to severe accidents. From the data in 2012 in Leeds there is a higher chance that pedestrian will be involved in a serious accident as 131 out of 465 accident are serious. </p>
   <p>Press button below for additional information on observations from government reports </p>
+
+  <!-- Addtitional Information 5-->
   <div class="container" style="color:black; text-align:left; width: 35%;">
   <button id ="button" type="button" data-toggle="modal" style= "background-color:#d85539; border-color:#d85539;" data-target="#myModal3">Additional Information</button>
   <div class="modal fade" id="myModal3" role="dialog">
@@ -740,6 +787,8 @@ The assumption is that when there is a greater number of cars on roads it causes
   </div>
   </div>
 </div>
+
+<!-- Graph 5-->
   <div id="container_i" style="width: 50%; float:right; height: 435px; margin: 0 auto"></div>
 <script type="text/javascript">
           $(function () {
@@ -801,14 +850,18 @@ The assumption is that when there is a greater number of cars on roads it causes
               });
           });
     </script>
+
 <p id="special"> 1 </p>
 <hr style="border-color:#D0D0D0">
 <br><br><br>
+
+<!-- Comparisons-->
 <h1>Comparison of Road Accidents</h1>
 <div id="paraintro">
 <p id= "heading">Cities in West Yorkshire</p>
 <br>
-<div id="container_j" style=" float:left; height: 330px;"></div>
+<!-- Comparisons Graph-->
+<div id="container_j" style=" float:left; width:100%; height: 330px;"></div>
 <script type="text/javascript">
 $(function () {
     $('#container_j').highcharts({
@@ -868,10 +921,14 @@ $(function () {
 </script>
 <br><br>
 </div>
+
+<!-- Comparisons 2 Graph (note image used cause too difficult to graph data over 40years to that detail)-->
 <div id="imgright">
 <p id= "heading">Trend in Road Accidents in Great Britain over 40 years</p>
 <br>
 <img src="templates/img/graph.jpeg">
+
+<!-- Comparisons 2 Additional Information-->
 <div class="container" style="color:black; text-align:left; width: 37%;">
 <button id ="button" type="button" data-toggle="modal" style= "background-color:#d85539; border-color:#d85539;" data-target="#myModal6">Additional Information</button>
 <div class="modal fade" id="myModal6" role="dialog">
@@ -895,15 +952,16 @@ $(function () {
 <br><br>
 </div>
 
-
+<!-- conclusion-->
 <div id="conclusion">
 <p id="special"> 1 </p>
 <hr style="border-color:#D0D0D0">
 <br>
 <h2>Conclusion</h2>
 <p id=conclusion>The overall contention of Vehicle Accidents in Leeds 2012:</p>
+<br>
 <ul>
-<li>The most likely demographic to be involved in Vehicle Accident are males aged between 20-34.</li>
+<li>The most likely demographic to be involved in Vehicle Accidents are males aged between 20-34.</li>
 
 <li>Majority of Vehicle Accidents occur in car. However, vunerable vehicles including motorcycles and bicycles contritbute a large proportion of serious and fatal accidents.</li>
 
