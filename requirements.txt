@@ -34,6 +34,7 @@ enum34==1.1.2
 et-xmlfile==1.0.1
 fastcache==1.0.2
 Flask==0.10.1
+foreman==0.9.7
 funcsigs==0.4
 futures==3.0.3
 gevent==1.0.2
@@ -103,6 +104,7 @@ pyzmq==15.2.0
 qtconsole==4.1.1
 redis==2.10.3
 requests==2.9.1
+requests-futures==0.9.7
 rope==0.9.4
 scikit-image==0.11.3
 scikit-learn==0.17
