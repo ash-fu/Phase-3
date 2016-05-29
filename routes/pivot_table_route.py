@@ -3,7 +3,6 @@ from phase3 import app
 import pandas as pd
 import numpy as np
 import csv
-import StringIO
 from pivotTableProcessor import *
 
 dataset = pd.read_csv("data_2012.csv")
@@ -58,8 +57,8 @@ def pivot_table():
             table = table.drop('All', axis=1)
             table = table.drop('All')
             maxVal = table.values.max()
-
             c = table.to_csv()
+            c = c.encode('utf-8') 
             reader = csv.reader(c.split('\n'), delimiter=',')
             csvData = list(reader)
             csvData.pop() #gets rid of the empty row
