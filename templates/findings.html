@@ -1,0 +1,976 @@
+<!--HTML code for the findings page. used a mix of bootstrap, google maps API, jQuery and javascript for the
+different charts. -->
+  {% extends "base.html" %}
+
+  {% block customCSS %}
+  <link rel="stylesheet" type="text/css" href="templates/stylesheets/findings.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  {% endblock %}
+
+  {% block content %}
+  <!-- Introduction1 -->
+  <br>
+  <h1>Leeds</h1>
+  <br>
+  <p id= "Leeds">Leeds is a city in West Yorkshire, England; like most cities in England they have a sophisticated road update system.
+  They have continuous updates on incidents and roadworks, indicating severity of incident and location, including nearby roads affected. Traffic camera footage is also available. You can find more information and updates on road incidents at
+  <a href="http://www.bbc.co.uk/travel/leeds/incidents/road ">BBC</a>.</p>
+  <br>
+
+  <!-- Map -->
+  <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+  <div id="map" style="width: 800px; height: 400px; margin: 0 auto"></div>
+  <script type="text/javascript">
+    var locations = [
+      ['Leeds', 53.801277, -1.548567],
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(53.801277, -1.548567),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+  </script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="http://code.jquery.com/jquery-1.9.1.js" type="text/javascript"></script>
+<script src="http://code.highcharts.com/highcharts.js" type="text/javascript"></script>
+<script src="http://code.highcharts.com/modules/exporting.js" type="text/javascript"></script>
+
+<br><br><br><hr style="border-color:#D0D0D0"><br>
+
+<!-- Introduction 2 -->
+<h1>Introduction to Data Analysis</h1><br>
+<div style="overflow:auto" id="paraintro">
+<p id= "heading">Data</p>
+<p>The following observations on Leeds Road Accidents in 2012 are based on data provided by the <a href="http://leedsdatamill.org/dataset/road-traffic-accidents">Leeds City Council </a>.
+<br>
+Moreover, the additional information are obtained from these 3 reports:
+<a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/245754/reported-road-casualties-in-great-britain-main-results-2012.pdf">Great Britain Main Results 2012 </a>
+, <a href="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/245149/rrcgb2012-01.pdf">Great Britain Annual Report 2012 </a>
+, <a href="http://www.leeds.gov.uk/docs/Road%20traffic%20collisions%20annual%20report.pdf">West Yorkshire Reported Casualties 2014 </a>
+.</p>
+<p id= "heading">Limitation of Data</p>
+<p>Most of the statistics are based on road accidents reported to the police (STATS19 system). However, a limitation of this dataset, is that a considerable proportion of non-fatal casualties are not reported to the police; since data from hospital, compensation claims and surveys indicate a higher number of casualties than reported. (gov.uk)</p>
+<p id= "heading">Definition of Accident</p>
+<p>In these observations an accident had been defined as: <br>
+Involving personal injury occurring on the public highway (including footways) in which at least one road vehicle or a vehicle in collision with a pedestrian is involved. And becomes known to the police within 30 days of its accident.
+Damage-only accidents, with no human casualties or accidents on private roads or car parks are not included.
+</p>
+<br>
+</div>
+<br>
+<div id="imgright">
+<img src="templates/img/Leeds.jpeg">
+<br>
+</div>
+
+<!-- Observation 1-->
+<p id="special"> 1 </p>
+<hr style="border-color:#D0D0D0"><br>
+<h1>Demographic in Accident</h1>
+<br><br>
+<div style="overflow:auto" id="para">
+<p id= "heading">Hypothesis</p>
+<p>The demographic more likely to be in a Vehicle Accident are young males aged between 16-25 (teenagers and young adults).</p>
+<p id= "heading">Observation From Data</p>
+<p>In 2012, Males in Leeds are more likely to be the casualty of a Vehicle Accident in comparison to Females. In addition, the age group more likely to be the casualty of Vehicle Accident is 20-34.</p>
+<p>Press button below for additional information on observations from government reports</p>
+
+<!-- Additional Information 1-->
+<div class="container" style="color:black; text-align:left; width: 35%;">
+<button id ="button" type="button" data-toggle="modal" style= "background-color:#d85539; border-color:#d85539;" data-target="#myModal">Additional Information</button>
+<div class="modal fade" id="myModal" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body">
+<h4>Reported Road Casualties in Great Britain: Great Britain Annual Report 2012</h4>
+<br>
+<p id="pm">Since the start of the 2007 recession, young people (especially young males) are on average driving less. Hence, this may be influencing the falls in fatalities (and casualties of all severities) within this age group.</p>
+<br>
+<p id="pm">Despite this, the number of young drivers in vehicle accidents are still high as:</p>
+<ul id="pm">
+  <li>A fifth of people killed or seriously injured in a reported road accident in Great Britain during 2012 were involved in a collision where at least one of the cars was driven by a young driver </li>
+  <li>Around 22 per cent of all accidents involved at least one young driver. </li>
+  <li>The 32,400 accidents involving at least one young car driver resulted in 350 deaths and more than 4,100 seriously injured casualties. </li>
+  <li>Nearly a quarter of all car drivers (133 out of 542 drivers) who died in 2012 were young drivers themselves. </li>
+  <li>Young car drivers are involved in accidents are considerably higher than would be expected given the distance they drive. </li>
+</ul>
+<br><br>
+<h4>Reported Road Casualties in West Yorkshire: Main Results in 2014 </h4>
+<br>
+<p id="pm">The number of young car drivers and passengers aged 16 to 29 had been falling steadily, and fell substantially in 2010 and further in 2011 before rising in 2012, 2013.</p>
+<p id="pm"> Additionaly, for young children,  boys are twice as likely as girls to suffer fatal or serious injury.</p>
+<p id="pm">Also, the downward trend since 2005 in killed or seriously injured casualties amongst the more mature age group of 30 to 59 has slowed down considerably, where there was a substantial fall in 2011 and 2012 but then an increase in 2013.  </p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Graph 1-->
+<div>
+<div id="container_a" style="float: right; width: 50%; height: 435px"></div>
+<br><br><br><br><br>
+</div>
+<script type="text/javascript">
+          $(function () {
+              $('#container_a').highcharts({
+                  chart: {
+                      type: 'column',
+                      spacingLeft: 15,
+                      spacingBottom: 35,
+                      spacingRight: 50,
+                  },
+                  credits: {
+                      enabled: false,
+                  },
+                  title: {
+                      text: 'Age of Casualty in Accidents Leeds 2012'
+                  },
+                  subtitle: {
+                      text: 'Source: Leeds.com'
+                  },
+                  xAxis: {
+                      categories: [
+                            '0 -4',
+                            '5 -9',
+                            '10 -14',
+                            '15 -19',
+                            '20 -24',
+                            '25 -29',
+                            '30 -34',
+                            '35 -39',
+                            '40 -44',
+                            '45 -49',
+                            '50 -54',
+                            '55 -59',
+                            '60 -64',
+                            '65 -69',
+                            '70 -74',
+                            '75 -79',
+                            '80 -84',
+                            '85 -89',
+                            '90 -94',
+                            '95 -99',
+                      ],
+                      crosshair: true
+                  },
+                  yAxis: {
+                      min: 0,
+                      title: {
+                          text: 'Number of Casualties'
+                      }
+                  },
+                  tooltip: {
+                      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                          '<td style="padding:0"><b>{point.y:4f}</b></td></tr>',
+                      footerFormat: '</table>',
+                      shared: true,
+                      useHTML: true
+                  },
+                  plotOptions: {
+                      column: {
+                          pointPadding: 0.2,
+                          borderWidth: 0
+                      }
+                  },
+                  series: [{
+                      name: 'Female',
+                      data: [47,98,104,205,379,252,235,189,131,168,127,85,67,74,38,47,24,27,4,1]
+
+                  }, {
+                      name: 'Male',
+                      data: [37,75,128,285,516,404,347,280,242,203,171,110,66,48,26,41,28,14,4,1]
+
+                  }]
+              });
+          });
+    </script>
+
+
+<p id="special"> 1 </p>
+<hr style="border-color:#D0D0D0">
+<br>
+
+<!-- Observation 2-->
+<h1>Vehicle in Accident</h1>
+<br>
+<div id="para" style="overflow:auto">
+<br>
+<p id= "heading">Hypothesis</p>
+<p>Cars are the most likely vehicle to be in an accident.</p>
+<p id= "heading">Observation From Data</p>
+<p>In 2012, majority of vehicle accidents in Leeds occur in a car. Other vehicles that are likely to be in a accident are bicycles, motorcyles, taxi , bus or goods vehicle. <br>However, these other vehicles contribute nearly 50% of accidents of severity of fatal or serious. Also, motorcyles appear to be particularly vunerable as 13% of fatal accidents and 19% of serious accidents involve motorcycles.<p>
+<p>Press button below for additional information on observations from government reports</p>
+
+<!-- Additional Information 2-->
+  <div class="container" style="color:black; text-align:left; width: 35%;">
+  <button id ="button" type="button" data-toggle="modal" style= "background-color:#d85539; border-color:#d85539;" data-target="#myModal1">Additional Information</button>
+  <div class="modal fade" id="myModal1" role="dialog">
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body">
+  <h4>Reported Road Casualties in Great Britain: Great Britain Annual Report 2012</h4>
+  <br>
+  <p id="pm">Car occupants make up the largest group of road accident casualties across all severities (36 per cent of serious and 65 per cent of slight).  Also, there has been a decreasing trend in car accidents; one hypothesis for the rapid decrease over this period is the economic downturn and recession from 2007 and heavy snowfall in 2010.</p>
+  <p id="pm">However, the vulnerable road user groups, and especially motorcyclists and pedal cyclists make up considerably larger proportions of the seriously injured casualties.
+     The three vulnerable road user groups (pedestrians, pedal cyclists and motorcyclists) between them account for almost 50 per cent of all deaths and 60 per cent of all seriously injured casualties.
+     Also it is the eighth year that the number of seriously injured cyclist casualties has increased. </p>
+  <p id='pm'>Also eventhough, vulnerable road users only account for around 29 per cent of slightly injured casualties. This might not be indicative of anything to do with accidents and casualties, but rather an artefact of underreporting. Pedal cyclists and pedestrians, especially slightly injured casualties, are both road user groups who are more likely to be underreported in the road accident data collected by the police. Therefore the data held in the database might under- represent these groups.</p>
+  <br>
+  <p id="pm">The relative risk for vulnerable road users is still high as:</p>
+  <ul id="pm">
+    <li>Motorcycle users, per mile ridden, are roughly 35 times more likely to be killed in a road traffic accident than car occupants. </li>
+    <li>Pedestrians and pedal cyclists, per mile walked and cycled respectively, are roughly 11 times more likely to be killed in a road accident than car occupants. </li>
+    <li>Motorcyclists are over 50 times and pedal cyclists 30 times more likely to be seriously injured in a reported road accident than a car occupant.  </li>
+  </ul>
+  <br><br>
+  <h4>Reported Road Casualties in West Yorkshire: Main Results in 2014 </h4>
+  <br>
+  <p id="pm">While the car is the largest contributor to vehicle accidents there has been a downward trend in the number of car occupants killed or seriously injured. It has effectively levelled off between 2005 and 2008 before falling for the following 5 years between 2010 and 2013.</p>
+  <p id="pm">In comparison the number of cyclists injured on the county’s roads has increased consistently since 2001. In the recent five years, the increase is even higher: 39% more collisions between 2010 and 2014. The number of adult cyclist casualties has almost doubled since 2001. This recent surge in cycling popularity may explain the persistent increase in cyclist casualties.</p>
+  <p id='pm'>It is also noteworthy, that Leeds district recorded the highest number (340) of cyclist casualties.
+             And the large majority of these collisions occurred during commuting times of weekdays, in daylight, and on dry road surfaces which links to the Weather Observation further on in this page.</p>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+</div>
+
+<!-- Graph 2-->
+<div id="container_b" style="float: right; width: 50%; height: 435px; margin: 0 auto"><br><br><br></div>
+<script type="text/javascript">
+$(function () {
+    $('#container_b').highcharts({
+        chart: {
+            type: 'column',
+            spacingLeft: 15,
+            spacingBottom: 35,
+            spacingRight: 50,
+        },
+        credits: {
+            enabled: false,
+        },
+        title: {
+            text: 'Type of Vehicle in Accidents Leeds 2012'
+        },
+        xAxis: {
+            categories: ['Fatal', 'Serious', 'Slight', 'All']
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total Accidents'
+            }
+        },
+        tooltip: {
+            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+            shared: true
+        },
+        plotOptions: {
+            column: {
+                stacking: 'percent'
+            }
+        },
+        series: [{
+            name: 'Car',
+            data: [8,160,1714,1882]
+        }, {
+            name: 'Bus or Coach or Minibus',
+            data: [1,12,180,193]
+        }, {
+            name: 'Pedal cycle',
+            data: [0,45,217,262]
+        }, {
+            name: 'Motorcycle',
+            data: [2,55,133,190]
+
+        }, {
+            name: 'Goods Vehicle',
+            data: [3,8,73,84]
+
+        }, {
+            name: 'Taxi',
+            data: [1,4,110,115]
+        }, {
+            name: 'Other',
+            data: [0,4,18,22]
+        }]
+    });
+});
+
+</script>
+
+
+<p id="special"> 1 </p>
+<hr style="border-color:#D0D0D0">
+<br>
+
+<!-- Observation 3-->
+<h1>Conditions in Accident</h1>
+<br><br>
+<p id="heading">Hypothesis</p>
+<p>Poor weather conditions, lighting conditions, road surface causes road accidents.<p>
+<p id="heading">Observation</p>
+<p>From the data in 2012 in Leeds, fine weather, daylight and dry roads are the largest contributors to vehicle accidents in Leeds.<br>
+A reasonable assumption is that fine weather, daylight and dry roads are not the reason for vehicle accidents.
+<br>In fact, from the additional information obtained, a reasonable assumption is that there are less casualties when the weather is poor as road users, <br> particularly pedestrians, cyclists and motorcyclists will use roads less when it is rains.<p>
+<p>Press button below for additional information on observations from government reports </p>
+
+<!-- Additional Information 3-->
+<div class="container" style="color:black; text-align:left; width: 15.25%;">
+<button id ="button" type="button" data-toggle="modal" style= "background-color:#d85539; border-color:#d85539;" data-target="#myModal2">Additional Information</button>
+<div class="modal fade" id="myModal2" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body">
+<h4>Reported Road Casualties in Great Britain: Main Results in 2012</h4>
+<br>
+<p id="pm">In 2012 it was the second wettest year on record, behind 2000. Eight of the last nine months of the year had considerably more rainfall than the 1981-2010 long term average. In particular, there were sustained periods of heavy rainfall during late spring and early summer in the UK. Rainfall in April was 79 per cent higher than the April long term average. More than double the average June rainfall fell in June 2012. The equivalent figure for July was 53 per cent higher than the long term average for that month. The second quarter of 2012 (April to June) was the wettest second quarter since Met Office records began in 1910. </p>
+<p id="pm">The likely result of this additional rainfall in 2012 would have been to reduce the number of pedestrians, pedal cyclists and motorcyclists on Britain’s roads, especially during the spring and summer months. A reduction in exposure in this way may have had the effect of reducing the number of accidents and casualties from these user groups. Other road users, such as car occupants, are less likely to have been affected by the heavy rainfall.</p>
+<p id='pm'>Therefore it is reasonable to assume that the unusually heavy rainfall suppressed the number of vulnerable users on the roads and footways, particularly at a time when they could have been expected to be most active. This may have lead to a lower number of casualties than might have been expected during that period. </p>
+<br><br>
+<h4>Reported Road Casualties in Great Britain: Great Britain Annual Report 2012</h4>
+<br>
+<p id="pm">The return to the long term downward trend in fatalities in 2012 after the increase between 2010 and 2011 reinforces the hypothesis that the 2010 figures were affected by the weather. </p>
+<p id="pm">In 2010 there were two periods of significant and extended snowfall throughout Britain. The net effect of the snow was probably to reduce the number of reported road casualties that year. The year 2010 still remains the year with the record low number of serious injuries and killed or serious injury casualties. Secondly to this, 2012 was an unusually wet year. 2012 was the second wettest year on record and the second quarter, during the months of April, May and June, was the wettest quarter 2 on record. Again, the effect of the heavy rainfall, especially as it fell during late spring and most of summer, would have been to discourage people from using the road, thereby lowering the number of casualties</p>
+<p id='pm'>
+Although the behaviour of all road user groups are likely to be influenced by the weather, by the very nature of how exposed to the elements pedestrians, pedal cyclists and motorcyclists are, these groups are likely to be more sensitive to abnormal weather.
+</p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<br><br>
+<p id="special"> 1 </p>
+<hr style="border-color:#D0D0D0">
+<br><br><br>
+
+<!-- Graph 3.1-->
+<div id="container_c" style="float: left; width:33.33%; height: 450px; max-width: 600px; margin: 0 auto"></div><script type="text/javascript">
+$(function () {
+    $('#container_c').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie',
+            spacingBottom: 50,
+            spacingLeft: 15,
+        },
+        credits: {
+            enabled: false,
+        },
+        title: {
+            text: 'Weather Conditions in Accidents Leeds 2012'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    color: 'gray',
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Vehicle',
+            colorByPoint: true,
+            data: [{
+                name: 'Fine',
+                y: 2450
+            }, {
+                name: 'Raining',
+                y: 283
+            }, {
+                name: 'Fog or Mist',
+                y: 4,
+            }, {
+                name: 'Other',
+                y: 5
+            }, {
+                name: 'Snowing',
+                y: 4
+
+            }]
+        }]
+    });
+});
+</script>
+
+<!-- Graph 3.2-->
+<div id="container_d" style="float: left; width: 33.33%; height: 450px; max-width: 600px; margin: 0 auto"></div>
+<script type="text/javascript">
+$(function () {
+
+    $(document).ready(function () {
+
+        // Build the chart
+        $('#container_d').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie',
+                spacingBottom: 50,
+            },
+            credits: {
+                enabled: false,
+            },
+            title: {
+                text: 'Lighting Conditions in Accidents Leeds 2012'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        color: '#424242',
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            legend: {
+                  itemStyle: {
+                  color: 'gray'
+      },
+   },
+            series: [{
+                name: 'Lighting Conditions',
+                colorByPoint: true,
+                data: [{
+                    name: 'Darkness: street lights present but unlit',
+                    y: 9
+                }, {
+                    name: 'Darkness: no street lighting',
+                    y: 39,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Darkness: street lighting unknown',
+                    y: 670
+                }, {
+                    name: 'Darkness: street lights present and lit',
+                    y: 472
+                }, {
+                    name: 'Daylight: street lights present',
+                    y: 1558
+                }]
+            }]
+        });
+    });
+});
+</script>
+
+<!-- Graph 3.3-->
+<div id="container_e" style="float: left; width:33.33%; height: 450px; max-width: 600px; margin: 0 auto"></div>
+<br><br><br><br>
+<script type="text/javascript">
+$(function () {
+    $('#container_e').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie',
+            spacingBottom: 50
+        },
+        credits: {
+            enabled: false,
+        },
+        title: {
+            text: 'Road Conditions in Accidents Leeds 2012'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    color: 'gray',
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Vehicle',
+            colorByPoint: true,
+            data: [{
+                name: 'Flood',
+                y: 5
+            }, {
+                name: 'Snow',
+                y: 7
+            }, {
+                name: 'Frost or Ice',
+                y: 22,
+            }, {
+                name: 'Wet or Damp',
+                y: 605
+            }, {
+                name: 'Dry',
+                y: 2109
+
+            }]
+        }]
+    });
+});
+</script>
+
+<p id="special"> 1 </p>
+<hr style="border-color:#D0D0D0">
+<br><br><br>
+
+<!-- Extra Observation 3-->
+<div id="para">
+<br><br><br><br><br>
+<p id= "heading">Extra Observation From Data</p>
+<p>Instead from the data in 2012 in Leeds, it depicts that there is correlation between time period and vehicle accidents. As there are more car accidents during the time period 8am-8pm.
+The assumption is that when there is a greater number of cars on roads it causes more vehicle accidents.</p>
+</div>
+
+<!-- Extra Graph 3-->
+<div id="container_f" style="float: right; width: 50%; height: 435px; margin: 0 auto"></div>
+<script type="text/javascript">
+          $(function () {
+              $('#container_f').highcharts({
+                  chart: {
+                      type: 'column',
+                      spacingLeft: 15,
+                      spacingBottom: 35,
+                      spacingRight: 50,
+                  },
+                  credits: {
+                      enabled: false,
+                  },
+                  title: {
+                      text: 'Time periods of Accidents in Leeds 2012'
+                  },
+                  subtitle: {
+                      text: 'Source: Leeds.com'
+                  },
+                  xAxis: {
+                      categories: [
+                            '0:00 -1:59',
+                            '2:00 -3:59',
+                            '4:00 -5:59',
+                            '6:00 -7:59',
+                            '8:00 -9:59',
+                            '10:00 -11:59',
+                            '12:00 -13:59',
+                            '14:00 -15:59',
+                            '16:00 -17:59',
+                            '18:00 -19:59',
+                            '20:00 -21:59',
+                            '22:00 -23:59',
+
+                      ],
+                      crosshair: true
+                  },
+                  yAxis: {
+                      min: 0,
+                      title: {
+                          text: 'Number of Accidents'
+                      }
+                  },
+                  tooltip: {
+                      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                          '<td style="padding:0"><b>{point.y:4f}</b></td></tr>',
+                      footerFormat: '</table>',
+                      shared: true,
+                      useHTML: true
+                  },
+                  plotOptions: {
+                      column: {
+                          pointPadding: 0.2,
+                          borderWidth: 0
+                      }
+                  },
+                  series: [{
+                      name: 'Time Periods',
+                      data: [111,38,52,144,308,274,329,406,474,290,178,144]
+                  }]
+              });
+          });
+    </script>
+
+<p id="special"> 1 </p>
+<hr style="border-color:#D0D0D0">
+<br>
+
+<!-- Observation 4-->
+<h1>Months in Accident</h1>
+<br>
+<div id="para" style="overflow:auto">
+<br>
+<p id= "heading">Hypothesis</p>
+<p>During the winter periods or holiday periods there are more likely to be car accidents as there are more cars on poor road conditions</p>
+<p id= "heading">Observation From Data</p>
+<p>From the data in 2012 in Leeds it shows no correlation between months and number of accidents. <br>From the additional information from government reports, it is reasonable to assume that decreases in casualties in certain months (March, April, June) may be due to unusually wet months. Assuming the number of road users in Leeds decrease during wetter months. </p>
+<p>Press button below for additional information on observations from government reports </p>
+
+<!-- Addtional Information 4-->
+<div class="container" style="color:black; text-align:left; width: 35%;">
+<button id ="button" type="button" data-toggle="modal" style= "background-color:#d85539; border-color:#d85539;" data-target="#myModal5">Additional Information</button>
+<div class="modal fade" id="myModal5" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body">
+<h4>Reported Road Casualties in Great Britain: Main Results in 2012</h4>
+<br>
+<p id="pm">Rainfall in April was 79 per cent higher than the April long term average. More than double the average June rainfall fell in June 2012. The equivalent figure for July was 53 per cent higher than the long term average for that month. The second quarter of 2012 (April to June) was the wettest second quarter since Met Office records began in 1910. </P>
+<p id="pm">The likely result of this additional rainfall in 2012 would have been to reduce the number of pedestrians, pedal cyclists and motorcyclists on Britain’s roads, especially during the spring and summer months. A reduction in exposure in this way may have had the effect of reducing the number of accidents and casualties from these user groups. Other road users, such as car occupants, are less likely to have been affected by the heavy rainfall.</p>
+<p id="pm">Therefore it is reasonable to assume that the unusually heavy rainfall suppressed the number of vulnerable users on the roads and footways, particularly at a time when they could have been expected to be most active. This may have lead to a lower number of casualties than might have been expected during that period (particularly April and June in Leeds 2012).</p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Graph 4-->
+  <div id="container_g" style="width:50%; float:right; height: 435px; margin: 0 auto"></div>
+  <script type="text/javascript">
+  $(function () {
+      $('#container_g').highcharts({
+          chart: {
+            spacingLeft: 15,
+            spacingBottom: 35,
+            spacingRight: 50,
+          },
+          legend: {
+              enabled: false
+          },
+          title: {
+              text: 'Months of Accidents in Leeds 2012',
+              x: -20 //center
+          },
+          credits: {
+              enabled: false,
+          },
+          subtitle: {
+              text: 'Source: Leeds.com',
+              x: -20
+          },
+          xAxis: {
+              title: {
+                  text: 'Months'},
+              categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                },
+          yAxis: {
+              min: 0,
+              max: 300,
+              title: {
+                    text: 'Number of Accidents'
+              },
+              plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                    }]
+                },
+          series: [{
+              data: [186,248,228,189,258,192,244,251,259,249,222,222]
+          }]
+      });
+  });
+</script>
+
+<p id="special"> 1 </p>
+<hr style="border-color:#D0D0D0">
+<br>
+
+<!-- Observation 5-->
+<h1>Severity of Casualty in Accident</h1>
+<br><br>
+<div id="para" style="overflow:auto">
+<br>
+<p id="heading">Hypothesis</p>
+<p>Most vehicle accidents result in small accidents and the people hurt are most likely the driver and passenger<p>
+<p id="heading">Observation From Data </p>
+<p>While drivers and passengers contribute a large proportion to vehicle accidents, pedestrians are more vulnerable to severe accidents. From the data in 2012 in Leeds there is a higher chance that pedestrian will be involved in a serious accident as 131 out of 465 accident are serious. </p>
+  <p>Press button below for additional information on observations from government reports </p>
+
+  <!-- Addtitional Information 5-->
+  <div class="container" style="color:black; text-align:left; width: 35%;">
+  <button id ="button" type="button" data-toggle="modal" style= "background-color:#d85539; border-color:#d85539;" data-target="#myModal3">Additional Information</button>
+  <div class="modal fade" id="myModal3" role="dialog">
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body">
+  <h4>Reported Road Casualties in Great Britain: Great Britain Annual Report 2012</h4>
+  <br>
+  <p id="pm">Car occupants make up the largest group of road accident casualties across all severities (36 per cent of serious and 65 per cent of slight).  </P>
+  <p id="pm">Even though, the number of pedestrian killed or seriously injured casualties fell by 4 per cent to 1,545 in comparison with 2011. The three vulnerable road user groups (pedestrians, pedal cyclists and motorcyclists) between them account for almost 50 per cent of all deaths and 60 per cent of all seriously injured casualties. And pedestrians and pedal cyclists, per mile walked and cycled respectively, are roughly 11 times more likely to be killed in a road accident than car occupants. Additionally, pedestrians made up around 41 per cent of child casualties and 68 per cent of child killed or seriously injured casualties</p>
+  <p id="pm">Despite this, vulnerable road users only account for around 29 per cent of slightly injured casualties. This might not be indicative of anything to do with accidents and casualties, but rather an artefact of underreporting. Pedal cyclists and pedestrians, especially slightly injured casualties, are both road user groups who are more likely to be underreported in the road accident data collected by the police. Therefore the data held in the database might under- represent these groups.</p>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+</div>
+
+<!-- Graph 5-->
+  <div id="container_i" style="width: 50%; float:right; height: 435px; margin: 0 auto"></div>
+<script type="text/javascript">
+          $(function () {
+              $('#container_i').highcharts({
+                  chart: {
+                      type: 'column',
+                      spacingLeft: 15,
+                      spacingBottom: 35,
+                      spacingRight: 50,
+                  },
+                  credits: {
+                      enabled: false,
+                  },
+                  title: {
+                      text: 'Casualty Class in Accidents Leeds 2012'
+                  },
+                  subtitle: {
+                      text: 'Source: Leeds.com'
+                  },
+                  xAxis: {
+                      categories: [
+                            'Driver',
+                            'Passeger',
+                            'Pedestrian',
+                      ],
+                      crosshair: true
+                  },
+                  yAxis: {
+                      min: 0,
+                      title: {
+                          text: 'Number of Casualties'
+                      }
+                  },
+                  tooltip: {
+                      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                          '<td style="padding:0"><b>{point.y:4f}</b></td></tr>',
+                      footerFormat: '</table>',
+                      shared: true,
+                      useHTML: true
+                  },
+                  plotOptions: {
+                      column: {
+                          pointPadding: 0.2,
+                          borderWidth: 0
+                      }
+                  },
+                  series: [{
+                      name: 'Slight',
+                      data: [2534,2021,327]
+
+                  }, {
+                      name: 'Serious',
+                      data: [180,109,131]
+                  }, {
+                      name: 'Fatal',
+                      data: [11,8,7]
+                  }]
+              });
+          });
+    </script>
+
+<p id="special"> 1 </p>
+<hr style="border-color:#D0D0D0">
+<br><br><br>
+
+<!-- Comparisons-->
+<h1>Comparison of Road Accidents</h1>
+<div id="paraintro">
+<p id= "heading">Cities in West Yorkshire</p>
+<br>
+<!-- Comparisons Graph-->
+<div id="container_j" style=" float:left; width:100%; height: 330px;"></div>
+<script type="text/javascript">
+$(function () {
+    $('#container_j').highcharts({
+        chart: {
+            type: 'column',
+            spacingLeft: 44,
+        },
+        credits: {
+            enabled: false,
+        },
+        title: {
+            text: 'West Yorkshire Vehicle Accidents 2012'
+        },
+        subtitle: {
+            text: 'Source: Leeds.com'
+        },
+        xAxis: {
+            categories: [
+                  'Leeds',
+                  'Bradford',
+                  'Kirklees',
+                  'Wakefield',
+                  'Calderdale',
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:4f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Total Accidents',
+            data: [1932,1307,1014,719,444]
+
+        }, {
+            name: 'Total Casualties',
+            data: [2748,1966,1460,1061,616]
+
+        }]
+    });
+});
+</script>
+<br><br>
+</div>
+
+<!-- Comparisons 2 Graph (note image used cause too difficult to graph data over 40years to that detail)-->
+<div id="imgright">
+<p id= "heading">Trend in Road Accidents in Great Britain over 40 years</p>
+<br>
+<img src="templates/img/graph.jpeg">
+
+<!-- Comparisons 2 Additional Information-->
+<div class="container" style="color:black; text-align:left; width: 37%;">
+<button id ="button" type="button" data-toggle="modal" style= "background-color:#d85539; border-color:#d85539;" data-target="#myModal6">Additional Information</button>
+<div class="modal fade" id="myModal6" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body">
+<h4>Reported Road Casualties in Great Britain: Main Results in 2012</h4>
+<br>
+<p id="pm">As the number of fatalities has been falling even during periods when both GDP and traffic were growing, the relationship between the economy and road accident fatalities is neither simple nor linear. What can be concluded, though, is that although there are other reasons for the large drop in fatalities over the last forty years, economic recessions have seemingly accelerated decreases in road accident deaths. </p>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br><br>
+</div>
+
+<!-- conclusion-->
+<div id="conclusion">
+<p id="special"> 1 </p>
+<hr style="border-color:#D0D0D0">
+<br>
+<h2>Conclusion</h2>
+<p id=conclusion>The overall contention of Vehicle Accidents in Leeds 2012:</p>
+<br>
+<ul>
+<li>The most likely demographic to be involved in Vehicle Accidents are males aged between 20-34.</li>
+
+<li>Majority of Vehicle Accidents occur in car. However, vunerable vehicles including motorcycles and bicycles contritbute a large proportion of serious and fatal accidents.</li>
+
+<li>Poor weather conditions are more likely to deter road accidents rather than cause road accidents. Also more road accidents are likely to occur when more vehicles are on the roads.</li>
+
+<li>There is no correlation between vehicle accidents and months, however when the month is wetter it increases the change of a vehicle accident.</li>
+
+<li>While most vehicle accidents are small and involve cars, pedestrians are the most vunerable as they are more likely to be involved in serious or fatal accidents.</li>
+</ul>
+</div>
+
+{% endblock %}

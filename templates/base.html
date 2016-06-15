@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<!-- the base template html page. Other pages will be extending from this page to use its footer and navbar. Jinja2 is used to connect this with the other templates.  -->
+
+<html lang="en">
+
+<html>
+    <head>
+        <meta charset="utf-8"/>
+
+        <title>{{vars.title}}</title>
+
+        <link rel="stylesheet" href="templates/stylesheets/base.css" type="text/css">
+
+        {% block customCSS %}{% endblock %}
+
+    </head>
+
+
+    <body>
+
+        {% block navbar %}
+        <!--navigation bar-->
+        <div style="margin-bottom:30px;">
+	    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+		    <div class="container-fluid">
+		        <div class="navbar-header">
+		        	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                	</button>
+		            <span>
+                        <a class="navbar-brand page-scroll" href="/">Traffic Statistics</a>
+                        <img style="padding-top:10px" src = "templates/img/traffic_lights.png" width="10%"/>
+                    </span>
+		        </div>
+		        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="/">Home</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/dataset">Data</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/pivot_table_builder">Pivot Table</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="/findings">Findings</a>
+                    </li>
+                </ul>
+            </div>
+		    </div>
+	   	</nav>
+        </div>
+        {% endblock %}
+
+        <!--General layout of the other html pages-->
+        <div id="wrapper">
+            <div id="header">
+                {% block header %}{% endblock %}
+            </div>
+
+            <div id="content">
+                {% block content %}{% endblock %}
+            </div>
+
+            <div id="footer">
+                <p>Quoc Lieu, Jennifer Fong, Shishan Fu <br>
+                Phase 3 - Foundations of Informatics INFO20002</p>
+            </div>
+        </div>
+
+        {% block customJS %}{% endblock %}
+
+
+    </body>
+</html>
