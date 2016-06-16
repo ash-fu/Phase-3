@@ -31,7 +31,7 @@ def pivot_table():
     headers = getelements()
     
 
-    with open('templates/pivot_table.html' , 'w',encoding = 'utf-8') as html:
+    with open('templates/pivot_table.html' , 'w') as html:
         html.write('''
             {% extends "base.html" %}
 

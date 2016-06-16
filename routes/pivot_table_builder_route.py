@@ -19,7 +19,7 @@ def pivot_table_builder():
     numerical_elements = elements_list[0]
 
 
-    with open('templates/pivot_table_builder.html' , 'w',encoding = 'utf-8') as html:
+    with open('templates/pivot_table_builder.html' , 'w') as html:
         html.write('''
             {% extends "base.html" %}
 

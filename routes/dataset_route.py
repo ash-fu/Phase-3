@@ -5,7 +5,7 @@ import csv
 #This page contains the dataset table that we used for our analysis. Python is
 #used to construct the csv file into a table with Bootstrap.
 
-csvFile = open('data_2012.csv',encoding = 'utf-8')
+csvFile = open('data_2012.csv')
 csvReader = csv.reader(csvFile)
 csvData = list(csvReader)
 
@@ -16,7 +16,7 @@ def dataset():
     template_vars = {
         "title": title
     }
-    with open('templates/dataset.html', 'w',encoding = 'utf-8') as html: #enter the output filename
+    with open('templates/dataset.html', 'w') as html: #enter the output filename
         html.write('''
             {% extends "base.html" %}
 
